@@ -1,5 +1,4 @@
 # Frank.
-## Cosc 3v97 - Final Project
 ### Packages
 #### characters
 Stores character classes
