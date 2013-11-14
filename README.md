@@ -3,5 +3,5 @@
 Stores character classes
 #### io
 Handles user input and eventually output to database
-#### periphals
+#### peripherals
 weapons and accessories
