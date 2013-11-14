@@ -1,6 +1,6 @@
 package com.example.sidescroller.characters;
 
-import com.example.sidescroller.Peripherals.Weapon;
+import com.example.sidescroller.peripherals.Weapon;
 
 /**
  * Created by Owner on 14/11/13.
