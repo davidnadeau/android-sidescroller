@@ -38,5 +38,7 @@
         android:layout_height="wrap_content"
         android:text="PLAY!"
         android:id="@+id/play"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="startGame"
+        />
 </LinearLayout>

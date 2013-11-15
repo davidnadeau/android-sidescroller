@@ -52,5 +52,6 @@
         android:layout_height="wrap_content"
         android:text="BACK"
         android:id="@+id/back"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="goBack"/>
 </LinearLayout>

@@ -21,7 +21,8 @@
         android:id="@+id/start"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp" />
+        android:layout_marginTop="58dp"
+        android:onClick="startStartScreen"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -30,7 +31,8 @@
         android:id="@+id/options"
         android:layout_below="@+id/start"
         android:layout_alignLeft="@+id/start"
-        android:layout_alignRight="@+id/start" />
+        android:layout_alignRight="@+id/start"
+        android:onClick="startOptions"/>
 
     <Button
         android:layout_width="wrap_content"
