@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
@@ -20,7 +19,7 @@
         android:text="000420"
         android:id="@+id/textView2"
         android:layout_gravity="center_horizontal"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="20dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -28,7 +27,7 @@
         android:text="Resume"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
-        android:onClick="resume" />
+        android:onClick="resume"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -36,7 +35,7 @@
         android:text="Restart"
         android:id="@+id/button2"
         android:layout_gravity="center_horizontal"
-        android:onClick="restart" />
+        android:onClick="restart"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -44,5 +43,5 @@
         android:text="Quit"
         android:id="@+id/button3"
         android:layout_gravity="center_horizontal"
-        android:onClick="quit" />
+        android:onClick="quit"/>
 </LinearLayout>

@@ -9,12 +9,8 @@ public class Enemy extends Entity {
     private int value; //how much the enemy is worth for the score once hit
 
     //fight the power
-    public Enemy() {
-    }
-
-    public Enemy(int value) {
-        this.value = value;
-    }
+    public Enemy() {}
+    public Enemy(int value){ this.value = value; }
 
     public void move(Point p) {
         if (collision(p)) return;
@@ -29,11 +25,7 @@ public class Enemy extends Entity {
         return false;
     }
 
-    public int getValue() {
-        return value;
-    }
+    public int getValue() { return value; }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
+    public void setValue(int value) { this.value = value; }
 }

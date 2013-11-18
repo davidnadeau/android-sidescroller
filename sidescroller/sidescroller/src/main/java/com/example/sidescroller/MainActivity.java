@@ -35,7 +35,6 @@ public class MainActivity extends Activity {
                 .addToBackStack(null)
                 .commit();
     }
-
     public void startOptions(View v) {
         getFragmentManager()
                 .beginTransaction()
@@ -43,11 +42,9 @@ public class MainActivity extends Activity {
                 .addToBackStack(null)
                 .commit();
     }
-
     public void startGame(View v) {
         startActivity(new Intent(getApplicationContext(), GameScreen.class));
     }
-
     public void goBack(View v) {
         getFragmentManager().popBackStack();
     }

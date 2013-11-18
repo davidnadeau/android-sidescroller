@@ -11,10 +11,8 @@ public class Frank extends Entity {
     private int lives, score;
     private Weapon weapon;
 
-    public Frank() {
-    }
-
-    public Frank(int lives, int score, Weapon weapon) {
+    public Frank() {}
+    public Frank(int lives, int score, Weapon weapon){
         this.lives = lives;
         this.score = score;
         this.weapon = weapon;
@@ -35,31 +33,13 @@ public class Frank extends Entity {
     /**
      * Returns true if the object was hit
      */
-    public boolean shoot() {
-        return true;
-    }
+    public boolean shoot() { return true; }
 
-    public int getLives() {
-        return lives;
-    }
+    public int getLives() { return lives; }
+    public int getScore() { return score; }
+    public Weapon getWeapon() { return weapon; }
 
-    public int getScore() {
-        return score;
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
-    public void setLives(int lives) {
-        this.lives = lives;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
+    public void setLives(int lives) { this.lives = lives; }
+    public void setScore(int score) { this.score = score; }
+    public void setWeapon(Weapon weapon) { this.weapon = weapon; }
 }
