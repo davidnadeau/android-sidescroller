@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 /**
  * Created by Owner on 15/11/13.
  */
-public class OptionScreenFragment extends Fragment {
+public class OptionFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

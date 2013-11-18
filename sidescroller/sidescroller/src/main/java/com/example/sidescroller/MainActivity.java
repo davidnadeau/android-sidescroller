@@ -31,19 +31,19 @@ public class MainActivity extends Activity {
     public void startStartScreen(View v) {
         getFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, new StartScreenFragment())
+                .replace(android.R.id.content, new LevelSelectFragment())
                 .addToBackStack(null)
                 .commit();
     }
     public void startOptions(View v) {
         getFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, new OptionScreenFragment())
+                .replace(android.R.id.content, new OptionFragment())
                 .addToBackStack(null)
                 .commit();
     }
     public void startGame(View v) {
-        startActivity(new Intent(getApplicationContext(), GameScreen.class));
+        startActivity(new Intent(getApplicationContext(), GameActivity.class));
     }
     public void goBack(View v) {
         getFragmentManager().popBackStack();

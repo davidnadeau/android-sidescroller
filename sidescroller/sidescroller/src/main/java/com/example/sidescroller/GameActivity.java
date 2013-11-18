@@ -10,7 +10,7 @@ import com.example.sidescroller.graphics.SurfaceView;
 /**
  * Created by Owner on 15/11/13.
  */
-public class GameScreen extends Activity {
+public class GameActivity extends Activity {
 
     private GLSurfaceView sv;
 
