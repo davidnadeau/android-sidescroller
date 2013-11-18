@@ -1,11 +1,8 @@
 package com.example.sidescroller;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
@@ -38,6 +35,7 @@ public class MainActivity extends Activity {
                 .addToBackStack(null)
                 .commit();
     }
+
     public void startOptions(View v) {
         getFragmentManager()
                 .beginTransaction()
@@ -45,9 +43,11 @@ public class MainActivity extends Activity {
                 .addToBackStack(null)
                 .commit();
     }
+
     public void startGame(View v) {
         startActivity(new Intent(getApplicationContext(), GameScreen.class));
     }
+
     public void goBack(View v) {
         getFragmentManager().popBackStack();
     }

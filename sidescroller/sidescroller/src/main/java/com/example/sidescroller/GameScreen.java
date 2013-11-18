@@ -1,8 +1,6 @@
 package com.example.sidescroller;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,14 +13,22 @@ public class GameScreen extends Activity {
         setContentView(R.layout.game_screen);
     }
 
-    public void showMenu(View v){
+    public void showMenu(View v) {
         getFragmentManager()
                 .beginTransaction()
                 .replace(android.R.id.content, new MenuFragment())
                 .addToBackStack(null)
                 .commit();
     }
-    public void resume(View v) { getFragmentManager().popBackStack(); }
-    public void restart(View v) {}//restart this activity at current level
-    public void quit(View v) { finish();}//start main activity
+
+    public void resume(View v) {
+        getFragmentManager().popBackStack();
+    }
+
+    public void restart(View v) {
+    }//restart this activity at current level
+
+    public void quit(View v) {
+        finish();
+    }//start main activity
 }
