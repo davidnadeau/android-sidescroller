@@ -1,16 +1,23 @@
 package com.example.sidescroller;
 
 import android.app.Activity;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.sidescroller.graphics.SurfaceView;
 
 /**
  * Created by Owner on 15/11/13.
  */
 public class GameScreen extends Activity {
+
+    private GLSurfaceView sv;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_screen);
+        sv = new SurfaceView(this);
+        setContentView(sv);
     }
 
     public void showMenu(View v) {
@@ -22,5 +29,5 @@ public class GameScreen extends Activity {
     }
     public void resume(View v) { getFragmentManager().popBackStack(); }
     public void restart(View v) {}//restart this activity at current level
-    public void quit(View v) { finish();}//start main activity
+    public void quit(View v) { finish(); }//start main activity
 }
