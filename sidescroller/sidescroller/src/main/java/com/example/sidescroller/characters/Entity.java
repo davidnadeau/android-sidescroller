@@ -6,16 +6,8 @@ import android.graphics.Point;
  * Created by Owner on 14/11/13.
  */
 public class Entity {
-    private int speed, direction;
-    private Point location;
-
-
-    /*
-     * Returns true/false based on whether there was a collision or not
-     */
-    protected boolean move(){
-     return true;
-    }
+    protected int speed, direction;
+    protected Point location;
 
     public int getSpeed() { return speed; }
     public int getDirection() { return direction; }
