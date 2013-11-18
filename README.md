@@ -5,3 +5,5 @@ Stores character classes
 Handles user input and eventually output to database
 #### peripherals
 weapons and accessories
+#### graphics
+Opengl gfx classes
