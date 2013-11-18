@@ -1,6 +1,7 @@
 package com.example.sidescroller.peripherals;
 
 import android.graphics.Point;
+
 /**
  * Created by Owner on 18/11/13.
  */
@@ -10,7 +11,7 @@ public class Projectile {
     private Point start, end;
 
     public Projectile() {}
-    public Projectile( int speed, Point start, Point end ) {
+    public Projectile(int speed, Point start, Point end) {
         this.speed = speed;
         this.start = start;
         this.end = end;

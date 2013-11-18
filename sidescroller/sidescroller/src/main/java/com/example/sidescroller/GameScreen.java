@@ -13,7 +13,7 @@ public class GameScreen extends Activity {
         setContentView(R.layout.game_screen);
     }
 
-    public void showMenu(View v){
+    public void showMenu(View v) {
         getFragmentManager()
                 .beginTransaction()
                 .replace(android.R.id.content, new MenuFragment())

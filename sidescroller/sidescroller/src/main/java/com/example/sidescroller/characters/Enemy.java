@@ -10,7 +10,7 @@ public class Enemy extends Entity {
 
     //fight the power
     public Enemy() {}
-    public Enemy(int value){ this.value = value; }
+    public Enemy(int value) { this.value = value; }
 
     public void move(Point p) {
         if (collision(p)) return;

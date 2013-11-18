@@ -12,7 +12,7 @@ public class Frank extends Entity {
     private Weapon weapon;
 
     public Frank() {}
-    public Frank(int lives, int score, Weapon weapon){
+    public Frank(int lives, int score, Weapon weapon) {
         this.lives = lives;
         this.score = score;
         this.weapon = weapon;

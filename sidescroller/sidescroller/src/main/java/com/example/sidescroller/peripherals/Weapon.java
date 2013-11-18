@@ -11,10 +11,10 @@ public class Weapon {
 
     public Weapon() {}
     public Weapon(String name, int damage, int rof, Projectile projectile) {
-    	this.name = name;
-    	this.damage = damage;
-    	this.rof = rof;
-    	this.projectile = projectile;
+        this.name = name;
+        this.damage = damage;
+        this.rof = rof;
+        this.projectile = projectile;
     }
 
     public String getName() { return name; }
