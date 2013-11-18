@@ -13,6 +13,7 @@ import com.example.sidescroller.graphics.SurfaceView;
 public class GameActivity extends Activity {
 
     private GLSurfaceView sv;
+    private boolean btnClicked = false;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +22,21 @@ public class GameActivity extends Activity {
     }
 
     public void showMenu(View v) {
+        //avoid multiple btn clicks from running multiple fragments
+        if (btnClicked) return;
+        btnClicked = true;
+
         getFragmentManager()
                 .beginTransaction()
                 .replace(android.R.id.content, new MenuFragment())
                 .addToBackStack(null)
                 .commit();
     }
-    public void resume(View v) { getFragmentManager().popBackStack(); }
+    public void resume(View v) {
+        //enable buttons
+        btnClicked = false;
+        getFragmentManager().popBackStack();
+    }
     public void restart(View v) {}//restart this activity at current level
     public void quit(View v) { finish(); }//start main activity
 }

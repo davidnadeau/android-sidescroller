@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 /**
  * Created by Owner on 15/11/13.
  */
-public class OptionFragment extends Fragment {
+public class OptionsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View vw = inflater.inflate(R.layout.options_fragment, container, false);
+        View vw = inflater.inflate(R.layout.fragment_options, container, false);
         vw.setBackgroundColor(getResources().getColor(android.R.color.background_light));
         //start the xml files using this class not by just setting content view
         return vw;

@@ -57,5 +57,5 @@
         android:text="BACK"
         android:id="@+id/back"
         android:layout_gravity="center_horizontal"
-        android:onClick="goBack" />
+        android:onClick="onBackPressed" />
 </LinearLayout>

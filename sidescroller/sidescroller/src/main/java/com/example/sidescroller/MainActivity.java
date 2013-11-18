@@ -8,45 +8,60 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
+    private boolean btnClicked       = false,
+                    nestedBtnClicked = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button button2 = (Button) findViewById(R.id.quit);//New button for quit
-        button2.setOnClickListener(new View.OnClickListener() { //Set On Click Listener
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        enabledButtons();
         //close start screen fragment
         getFragmentManager().popBackStack();
     }
 
-    public void startStartScreen(View v) {
+    @Override
+    public void onBackPressed() { super.onBackPressed(); enabledButtons(); }
+    public void onBackPressed(View v) { super.onBackPressed(); enabledButtons(); }
+
+    public void openLevelSelect(View v) {
+        //avoid multiple btn clicks from running multiple fragments
+        if (btnClicked) return;
+        btnClicked = true;
+
         getFragmentManager()
                 .beginTransaction()
                 .replace(android.R.id.content, new LevelSelectFragment())
                 .addToBackStack(null)
                 .commit();
     }
-    public void startOptions(View v) {
+    public void openOptions(View v) {
+        //avoid multiple btn clicks from running multiple fragments
+        if (btnClicked) return;
+        btnClicked = true;
+
         getFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, new OptionFragment())
+                .replace(android.R.id.content, new OptionsFragment())
                 .addToBackStack(null)
                 .commit();
     }
     public void startGame(View v) {
+        //avoid multiple btn clicks from running multiple fragments
+        if (nestedBtnClicked) return;
+        nestedBtnClicked = true;
         startActivity(new Intent(getApplicationContext(), GameActivity.class));
     }
-    public void goBack(View v) {
-        getFragmentManager().popBackStack();
+    public void quit(View v) { finish(); }
+
+    private void enabledButtons() {
+        btnClicked = false;
+        nestedBtnClicked = false;
     }
 
 }

@@ -13,7 +13,7 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View vw = inflater.inflate(R.layout.menu_fragment, container, false);
+        View vw = inflater.inflate(R.layout.fragment_menu, container, false);
         vw.setBackgroundColor(getResources().getColor(android.R.color.background_light));
         //start the xml files using this class not by just setting content view
         return vw;
