@@ -7,14 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Owner on 14/11/13.
+ * Created by Owner on 11/18/13.
  */
-public class StartScreenFragment extends Fragment {
-
+public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View vw = inflater.inflate(R.layout.start_fragment, container, false);
+        View vw = inflater.inflate(R.layout.menu_fragment, container, false);
         vw.setBackgroundColor(getResources().getColor(android.R.color.background_light));
         //start the xml files using this class not by just setting content view
         return vw;

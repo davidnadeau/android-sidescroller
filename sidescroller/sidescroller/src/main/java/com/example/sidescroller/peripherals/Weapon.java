@@ -1,7 +1,7 @@
 package com.example.sidescroller.peripherals;
 
 /**
- * Created by Owner on 14/11/13.
+ * Created by Owner on 18/11/13.
  */
 public class Weapon {
     private String name;

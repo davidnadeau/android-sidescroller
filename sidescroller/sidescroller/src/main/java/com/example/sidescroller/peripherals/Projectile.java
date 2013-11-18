@@ -1,7 +1,9 @@
 package com.example.sidescroller.peripherals;
 
 import android.graphics.Point;
-
+/**
+ * Created by Owner on 18/11/13.
+ */
 public class Projectile {
     //img file
     private int speed;

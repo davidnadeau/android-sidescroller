@@ -3,7 +3,7 @@ package com.example.sidescroller.characters;
 import android.graphics.Point;
 
 /**
- * Created by Owner on 14/11/13.
+ * Created by Owner on 18/11/13.
  */
 public class Enemy extends Entity {
     private int value; //how much the enemy is worth for the score once hit
@@ -17,7 +17,7 @@ public class Enemy extends Entity {
         //move
     }
 
-    /*
+    /**
      * return true if 1 pixel over in the set direction is a solid tile
      */
     protected boolean collision(Point p) {

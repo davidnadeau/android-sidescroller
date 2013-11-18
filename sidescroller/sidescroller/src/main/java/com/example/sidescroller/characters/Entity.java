@@ -3,7 +3,7 @@ package com.example.sidescroller.characters;
 import android.graphics.Point;
 
 /**
- * Created by Owner on 14/11/13.
+ * Created by Owner on 18/11/13.
  */
 public class Entity {
     protected int speed, direction;
