@@ -15,11 +15,16 @@ public class GameActivity extends Activity {
     private GLSurfaceView sv;
     private boolean btnClicked = false;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sv = new SurfaceView(this);
         setContentView(sv);
     }
+
+    @Override
+    public void onBackPressed() { super.onBackPressed(); enabledButtons(); }
+    public void onBackPressed(View v) { super.onBackPressed(); enabledButtons(); }
 
     public void showMenu(View v) {
         //avoid multiple btn clicks from running multiple fragments
@@ -32,11 +37,9 @@ public class GameActivity extends Activity {
                 .addToBackStack(null)
                 .commit();
     }
-    public void resume(View v) {
-        //enable buttons
-        btnClicked = false;
-        getFragmentManager().popBackStack();
-    }
+
     public void restart(View v) {}//restart this activity at current level
     public void quit(View v) { finish(); }//start main activity
+
+    private void enabledButtons() { btnClicked = false; }
 }
