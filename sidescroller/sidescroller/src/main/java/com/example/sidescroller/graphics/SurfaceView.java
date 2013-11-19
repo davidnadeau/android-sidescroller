@@ -18,7 +18,7 @@ public class SurfaceView extends GLSurfaceView {
         setEGLContextClientVersion(2);
 
         // Set the mRenderer for drawing on the GLSurfaceView
-        r = new mRenderer();
+        r = new mRenderer(context);
         setEGLConfigChooser(8 , 8, 8, 8, 16, 0);
         setRenderer(r);
 
