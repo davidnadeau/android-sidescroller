@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
                 .commit();
     }
     public void startGame(View v) {
-        //avoid multiple btn clicks from running multiple fragments
+        //avoid multiple btn clicks from running multiple activities
         if (nestedBtnClicked) return;
         nestedBtnClicked = true;
         startActivity(new Intent(getApplicationContext(), GameActivity.class));

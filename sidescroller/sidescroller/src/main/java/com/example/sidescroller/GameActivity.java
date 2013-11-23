@@ -1,25 +1,34 @@
 package com.example.sidescroller;
 
 import android.app.Activity;
-import android.opengl.GLSurfaceView;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.sidescroller.graphics.SurfaceView;
+import com.example.sidescroller.graphics.Sprite;
+import com.example.sidescroller.graphics.Surface;
+import com.example.sidescroller.levels.CreateLevel;
+import com.example.sidescroller.levels.Level;
 
 /**
  * Created by Owner on 15/11/13.
  */
 public class GameActivity extends Activity {
 
-    private GLSurfaceView sv;
     private boolean btnClicked = false;
-
+    private Level level;
+    private Surface s;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sv = new SurfaceView(this);
-        setContentView(sv);
+        setContentView(R.layout.activity_game);
+        s = new Surface(64,64);
+
+        level = new CreateLevel(R.id.level);
+        level.render(0, 0, s);
+        Bitmap b = Bitmap.createBitmap(s.pixels, s.getWidth(), s.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
     }
 
     @Override

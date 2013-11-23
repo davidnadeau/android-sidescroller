@@ -12,4 +12,16 @@
         android:text="Menu"
         android:id="@+id/menu"
         android:onClick="showMenu" />
+
+    <ImageView
+        android:id="@+id/spritesheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/spritesheet" />
+
+    <ImageView
+        android:id="@+id/level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/level" />
 </LinearLayout>
