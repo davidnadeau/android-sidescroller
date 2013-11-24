@@ -1,5 +1,7 @@
 package com.example.sidescroller.graphics;
 
+import android.util.Log;
+
 /**
  * Created by soote on 11/23/13.
  */
@@ -53,15 +55,11 @@ public class Level {
     }
 
     public Tile getTile(int x, int y){
+        Log.v("COLORSS", Integer.toString(tiles[x + y * IMAGE_WIDTH]));
         if(x<0||y<0||x>=IMAGE_WIDTH||y>=IMAGE_HEIGHT)return Tile.waterTile;
-        else if(tiles[x+y*IMAGE_WIDTH] == 0xff00ff00)return Tile.grass;
-        else if(tiles[x+y*IMAGE_WIDTH] == 0xffffff00)return Tile.flower;
-        else if(tiles[x+y*IMAGE_WIDTH] == 0xff808100)return Tile.rock;
-        else if(tiles[x+y*IMAGE_WIDTH] == 0xff70818c)return Tile.brick;
-        else if(tiles[x+y*IMAGE_WIDTH] == 0xff43545e)return Tile.rainbowBrick;
-        else if(tiles[x+y*IMAGE_WIDTH] == 0xffc9b992)return Tile.lightBrick;
-        else if(tiles[x+y*IMAGE_WIDTH] == 0xffcb3000)return Tile.lightWood;
-        else if(tiles[x+y*IMAGE_WIDTH] == 0xff572803)return Tile.darkWood;
+        else if(tiles[x+y*IMAGE_WIDTH] == 0x00ff00)return Tile.grass;
+        else if(tiles[x+y*IMAGE_WIDTH] == 0xffff00)return Tile.flower;
+        else if(tiles[x+y*IMAGE_WIDTH] == 0x808100)return Tile.rock;
         else return Tile.errTile;
     }
 }

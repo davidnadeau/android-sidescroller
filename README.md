@@ -7,3 +7,5 @@ Handles user input and eventually output to database
 weapons and accessories
 #### graphics
 Opengl gfx classes
+### Useful Links
+*[Emulator Shortcuts](https://developer.android.com/tools/help/emulator.html#KeyMapping)

@@ -1,16 +1,13 @@
 package com.example.sidescroller.graphics;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
-
-import com.example.sidescroller.R;
-
-import java.util.Arrays;
 
 /**
  * Created by soote on 11/23/13.
@@ -18,13 +15,18 @@ import java.util.Arrays;
 public class Surface  extends View {
     int[] pixels;
     int width,height;
+    private static int GAME_WIDTH;
+    private static int GAME_HEIGHT;
 
-    public Surface(Context context) {
-        super(context);
+    public static void setDimensions(int width, int height) { GAME_WIDTH=width;GAME_HEIGHT=height; }
+
+    public Surface(Context c) {
+        super(c);
+
         SpriteSheet.setView(this);
         CreateLevel.setView(this);
 
-        Screen s = new Screen(64,64);
+        Screen s = new Screen(GAME_WIDTH,GAME_HEIGHT);
         Level l = new CreateLevel();
         l.render(0, 0, s);
 

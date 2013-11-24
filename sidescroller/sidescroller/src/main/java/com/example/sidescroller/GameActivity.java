@@ -2,6 +2,7 @@ package com.example.sidescroller;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.example.sidescroller.graphics.CreateLevel;
@@ -18,6 +19,13 @@ public class GameActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels;
+
+        Surface.setDimensions(width,height);
         setContentView(new Surface(this));
 
     }

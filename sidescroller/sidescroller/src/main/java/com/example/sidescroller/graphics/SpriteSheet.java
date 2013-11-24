@@ -2,9 +2,12 @@ package com.example.sidescroller.graphics;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.R;
+
+import java.util.Arrays;
 
 /**
  * Created by soote on 11/23/13.
