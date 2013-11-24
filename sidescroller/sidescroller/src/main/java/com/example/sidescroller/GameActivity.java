@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-import com.example.sidescroller.graphics.CreateLevel;
-import com.example.sidescroller.graphics.Level;
-import com.example.sidescroller.graphics.Screen;
 import com.example.sidescroller.graphics.Surface;
 
 /**
@@ -25,14 +22,20 @@ public class GameActivity extends Activity {
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
 
-        Surface.setDimensions(width,height);
+        Surface.setDimensions(width, height);
         setContentView(new Surface(this));
 
     }
 
     @Override
-    public void onBackPressed() { super.onBackPressed(); enabledButtons(); }
-    public void onBackPressed(View v) { super.onBackPressed(); enabledButtons(); }
+    public void onBackPressed() {
+        super.onBackPressed();
+        enabledButtons();
+    }
+    public void onBackPressed(View v) {
+        super.onBackPressed();
+        enabledButtons();
+    }
 
     public void showMenu(View v) {
         //avoid multiple btn clicks from running multiple fragments

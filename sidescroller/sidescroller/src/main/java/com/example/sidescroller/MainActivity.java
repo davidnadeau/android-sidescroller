@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-    private boolean btnClicked       = false,
-                    nestedBtnClicked = false;
+    private boolean btnClicked = false,
+            nestedBtnClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +25,14 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public void onBackPressed() { super.onBackPressed(); enabledButtons(); }
-    public void onBackPressed(View v) { super.onBackPressed(); enabledButtons(); }
+    public void onBackPressed() {
+        super.onBackPressed();
+        enabledButtons();
+    }
+    public void onBackPressed(View v) {
+        super.onBackPressed();
+        enabledButtons();
+    }
 
     public void openLevelSelect(View v) {
         //avoid multiple btn clicks from running multiple fragments

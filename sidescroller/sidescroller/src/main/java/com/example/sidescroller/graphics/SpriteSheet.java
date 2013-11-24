@@ -2,12 +2,9 @@ package com.example.sidescroller.graphics;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.R;
-
-import java.util.Arrays;
 
 /**
  * Created by soote on 11/23/13.
@@ -22,23 +19,24 @@ public class SpriteSheet {
 
     public static void setView(View v1) { v = v1; }
 
-    public SpriteSheet(){
+    public SpriteSheet() {
         Bitmap bmp = loadBitmap(R.drawable.spritesheet);
-        IMAGE_WIDTH = bmp.getWidth();IMAGE_HEIGHT=bmp.getHeight();
-        pixels = new int[IMAGE_WIDTH*IMAGE_HEIGHT];
+        IMAGE_WIDTH = bmp.getWidth();
+        IMAGE_HEIGHT = bmp.getHeight();
+        pixels = new int[IMAGE_WIDTH * IMAGE_HEIGHT];
 
         //Convert bitmap into int array
-        bmp.getPixels(pixels,0,IMAGE_WIDTH,0,0,IMAGE_WIDTH,IMAGE_HEIGHT);
+        bmp.getPixels(pixels, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
     }
 
     private Bitmap loadBitmap(int id) {
         return BitmapFactory.decodeResource(v.getResources(), id);
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return IMAGE_HEIGHT;
     }
-    public int getWidth(){
+    public int getWidth() {
         return IMAGE_WIDTH;
     }
 }
