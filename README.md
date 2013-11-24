@@ -8,4 +8,4 @@ weapons and accessories
 #### graphics
 Opengl gfx classes
 ### Useful Links
-*[Emulator Shortcuts](https://developer.android.com/tools/help/emulator.html#KeyMapping)
+* [Emulator Shortcuts](https://developer.android.com/tools/help/emulator.html#KeyMapping)
