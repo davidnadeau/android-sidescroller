@@ -3,6 +3,7 @@ package com.example.sidescroller;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.graphics.Surface;
@@ -21,7 +22,7 @@ public class GameActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
-
+        Log.v("WHATIDBE",""+height+"- "+width);
         Surface.setDimensions(width, height);
         setContentView(new Surface(this));
 

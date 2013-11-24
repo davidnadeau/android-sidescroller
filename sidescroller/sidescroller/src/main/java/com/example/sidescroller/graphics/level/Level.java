@@ -68,6 +68,10 @@ public class Level {
                 return Tile.flower;
             case 0xff808100:
                 return Tile.rock;
+            case 0xffdd33ff:
+                return Tile.darkWood;
+            case 0xff404040:
+                return Tile.rainbowBrick;
             default:
                 return Tile.errTile;
         }
