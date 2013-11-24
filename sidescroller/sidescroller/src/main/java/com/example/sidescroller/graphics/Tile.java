@@ -1,8 +1,4 @@
-package com.example.sidescroller.levels;
-
-import com.example.sidescroller.graphics.Sprite;
-import com.example.sidescroller.graphics.Surface;
-import com.example.sidescroller.graphics.TileSprite;
+package com.example.sidescroller.graphics;
 
 /**
  * Created by soote on 11/23/13.
@@ -19,18 +15,15 @@ public class Tile {
     public static Tile rainbowBrick =   new Tile(TileSprite.rainbowBrick,true);
     public static Tile lightBrick   =   new Tile(TileSprite.lightBrick,true);
     public static Tile lightWood    =   new Tile(TileSprite.lightWood,false);
-    public static Tile darktWood    =   new Tile(TileSprite.darkWood,false);
+    public static Tile darkWood     =   new Tile(TileSprite.darkWood,false);
     public static Tile waterTile    =   new Tile(TileSprite.waterSprite,true);
     public static Tile errTile      =   new Tile(TileSprite.errSprite,true);
 
-    public Tile(Sprite sprite,boolean solid){
+    public Tile(Sprite sprite,boolean solid) {
         this.sprite = sprite;
         this.solid = solid;
     }
-    public void render(int x, int y, Surface s){
-        s.drawTile(x << 4, y << 4, this);
-    }
-    public boolean isSolid(){
-        return solid;
-    }
+
+    public void render(int x, int y, Screen s) { s.renderTile(x<<4, y<<4, this); }
+    public boolean isSolid() { return solid; }
 }

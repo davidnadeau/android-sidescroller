@@ -9,33 +9,27 @@ import com.example.sidescroller.R;
 /**
  * Created by soote on 11/23/13.
  */
-public class SpriteSheet {
-
-    private final int IMAGE_WIDTH;
-    private final int IMAGE_HEIGHT;
-
+public class CreateLevel extends Level{
     private static View v;
-    public int[] pixels;
-
     public static void setView(View v1) { v = v1; }
 
-    public SpriteSheet(){
+    public CreateLevel(){
+        super();
+    }
+
+    protected void loadLevel(){
         Bitmap bmp = loadBitmap(R.drawable.spritesheet);
         IMAGE_WIDTH = bmp.getWidth();IMAGE_HEIGHT=bmp.getHeight();
-        pixels = new int[IMAGE_WIDTH*IMAGE_HEIGHT];
+        tiles = new int[IMAGE_WIDTH*IMAGE_HEIGHT];
 
         //Convert bitmap into int array
-        bmp.getPixels(pixels,0,IMAGE_WIDTH,0,0,IMAGE_WIDTH,IMAGE_HEIGHT);
+        bmp.getPixels(tiles, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
     }
 
     private Bitmap loadBitmap(int id) {
         return BitmapFactory.decodeResource(v.getResources(), id);
     }
 
-    public int getHeight(){
-        return IMAGE_HEIGHT;
-    }
-    public int getWidth(){
-        return IMAGE_WIDTH;
+    protected void generateLevel(){
     }
 }

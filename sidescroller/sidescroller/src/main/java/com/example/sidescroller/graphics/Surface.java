@@ -1,63 +1,53 @@
 package com.example.sidescroller.graphics;
 
-import com.example.sidescroller.levels.Tile;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.util.Log;
+import android.view.View;
 
-import java.util.Random;
+import com.example.sidescroller.R;
+
+import java.util.Arrays;
 
 /**
  * Created by soote on 11/23/13.
  */
-public class Surface {
-    private int width, height;
-    public int[] pixels;
-    public int xOffset, yOffset;
-    public final int MAP_SIZE = 64;
-    public int[] tiles = new int[MAP_SIZE*MAP_SIZE];
+public class Surface  extends View {
+    int[] pixels;
+    int width,height;
 
-    private Random random = new Random();
-    public Surface(int width,int height){
-        this.width = width;
-        this.height = height;
+    public Surface(Context context) {
+        super(context);
+        SpriteSheet.setView(this);
+        CreateLevel.setView(this);
 
+        Screen s = new Screen(64,64);
+        Level l = new CreateLevel();
+        l.render(0, 0, s);
+
+        width = s.getWidth();height = s.getHeight();
         pixels = new int[width*height];
+        System.arraycopy(s.pixels, 0, pixels, 0, pixels.length);
 
-        for (int i = 0; i < width; i++)
-            tiles[i]=random.nextInt(0xffffff);
-    }
-
-    public void clear() {
-        for (int i = 0; i < pixels.length; i++)
-            pixels[i] = 0;
     }
 
 
-    public void drawTile(int xp, int yp, Tile tile){
-        xp -= xOffset;
-        yp -= yOffset;
-        for (int y = 0; y<tile.sprite.SIZE; y++){
-            int ya = y + yp;
-            for (int x= 0; x<tile.sprite.SIZE; x++){
-                int xa = x + xp;
-                if(xa < -tile.sprite.SIZE||xa>=width||ya<0||ya>=height)break;
-                if(xa<0)xa=0;
-                pixels[xa+ya*width] = tile.sprite.pixels[x+y*tile.sprite.SIZE];            }
-        }
+    @Override
+    public void onDraw(Canvas c) {
+        Paint p = new Paint();
+        Bitmap bmp = newBitmap();
+        fillBitmap(bmp);
+        c.drawBitmap(bmp, 0, 0, p);
     }
 
-    private boolean isColorInRange(int color){
-        if(color>0xffdcdcd0 && color<0xffdcdcdf)return true;
-        return false;
+    private Bitmap newBitmap() {
+        return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
     }
 
-    public void setOffset(int xOffset, int yOffset){
-        this.xOffset = xOffset;
-        this.yOffset = yOffset;
-    }
-
-    public int getWidth(){
-        return width;
-    }
-    public int getHeight(){
-        return height;
+    private void fillBitmap(Bitmap bmp) {
+        bmp.setPixels(pixels,0,width,0,0,width,height);
     }
 }

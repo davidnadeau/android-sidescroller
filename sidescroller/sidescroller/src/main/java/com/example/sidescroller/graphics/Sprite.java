@@ -10,28 +10,32 @@ public class Sprite {
     public int[] pixels;
     private SpriteSheet sheet;
 
-    public Sprite(int size, int x,int y,SpriteSheet sheet) {
+    public Sprite(int size, int x,int y,SpriteSheet sheet){
         SIZE = size;
-
         pixels = new int[SIZE*SIZE];
         this.x=x*SIZE;
         this.y=y*SIZE;
         this.sheet=sheet;
-
-        for (int xx = 0; xx < SIZE; xx++)
-        for (int yy = 0; yy < SIZE; yy++)
-            pixels[xx+yy*SIZE] = sheet.pixels[(xx+this.x)+(yy+this.y)*sheet.getWidth()];
+        load();
     }
 
-    public Sprite(int size, int colour) {
+    public Sprite(int size, int colour){
         SIZE = size;
         pixels = new int[SIZE*SIZE];
         setColour(colour);
     }
 
-    private void setColour(int colour) {
-        for (int i = 0; i < pixels.length; i++)
+    private void setColour(int colour){
+        for (int i = 0; i < SIZE*SIZE; i++){
             pixels[i] = colour;
+        }
+    }
+    private void load(){
+        for(int y = 0; y<SIZE; y++){
+            for(int x = 0; x<SIZE; x++){
+                pixels[x+y*SIZE] = sheet.pixels[(x+this.x)+(y+this.y)*sheet.getWidth()];
+            }
+        }
     }
 
 }
