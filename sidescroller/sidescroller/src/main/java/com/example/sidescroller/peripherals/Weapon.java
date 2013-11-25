@@ -5,7 +5,7 @@ package com.example.sidescroller.peripherals;
  */
 public class Weapon {
     private String name;
-    private int damage, rof; //ROF = rate of fire
+    private int    damage, rof; //ROF = rate of fire
     //image file
     private Projectile projectile;
 

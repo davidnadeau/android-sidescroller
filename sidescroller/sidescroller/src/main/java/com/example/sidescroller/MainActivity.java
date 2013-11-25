@@ -8,7 +8,7 @@ import android.view.View;
 public class MainActivity extends Activity {
 
     private boolean btnClicked = false,
-            nestedBtnClicked = false;
+            nestedBtnClicked   = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

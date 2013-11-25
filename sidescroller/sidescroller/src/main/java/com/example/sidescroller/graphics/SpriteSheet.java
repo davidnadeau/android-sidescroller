@@ -14,8 +14,8 @@ public class SpriteSheet {
     private final int IMAGE_WIDTH;
     private final int IMAGE_HEIGHT;
 
-    private static View v;
-    public int[] pixels;
+    private static View  v;
+    public         int[] pixels;
 
     public static void setView(View v1) { v = v1; }
 

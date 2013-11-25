@@ -1,7 +1,8 @@
 package com.example.sidescroller.characters;
 
-import android.graphics.Point;
-
+import com.example.sidescroller.graphics.Screen;
+import com.example.sidescroller.graphics.Sprite;
+import com.example.sidescroller.graphics.player.PlayerSprites;
 import com.example.sidescroller.peripherals.Weapon;
 
 /**
@@ -9,7 +10,8 @@ import com.example.sidescroller.peripherals.Weapon;
  */
 public class Frank extends Entity {
     private int lives, score;
-    private Weapon weapon;
+    private   Weapon weapon;
+    protected Sprite sprite = PlayerSprites.player_side;
 
     public Frank() {}
     public Frank(int lives, int score, Weapon weapon) {
@@ -18,17 +20,25 @@ public class Frank extends Entity {
         this.weapon = weapon;
     }
 
-    public void move(Point p) {
-        if (collision(p)) return;
+    public void move(int xa, int ya) {
+        if(!collision(xa,ya)){
+            y += ya;
+        }
     }
 
     /**
      * return true if 1 pixel over in the set direction is a solid tile
      */
-    protected boolean collision(Point p) {
-        //get next tile, check if solid
+    private boolean collision(int xa,int ya){
+        for(int i = 0; i<4; i++){
+            //multiply to change left and top side
+            int xt = ((getX() +xa)+ i % 2 * 14 - 8)>>4;
+            int yt = ((getY() +ya)+ i / 2 * 10 + 2)>>4;
+            if(level.getTile(xt, yt).isSolid())return true;
+        }
         return false;
     }
+    public void draw(Screen s){ s.drawFrank(x - 16, y - 16, sprite); }
 
     /**
      * Returns true if the object was hit

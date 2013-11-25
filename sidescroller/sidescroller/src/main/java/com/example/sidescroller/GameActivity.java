@@ -22,10 +22,9 @@ public class GameActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
-        Log.v("WHATIDBE",""+height+"- "+width);
+
         Surface.setDimensions(width, height);
         setContentView(new Surface(this));
-
     }
 
     @Override

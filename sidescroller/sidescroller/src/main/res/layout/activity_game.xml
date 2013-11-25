@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -11,17 +11,17 @@
         android:layout_height="wrap_content"
         android:text="Menu"
         android:id="@+id/menu"
-        android:onClick="showMenu" />
+        android:onClick="showMenu"/>
 
     <ImageView
         android:id="@+id/spritesheet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/spritesheet" />
+        android:src="@drawable/spritesheet"/>
 
     <ImageView
         android:id="@+id/level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/level" />
+        android:src="@drawable/level"/>
 </LinearLayout>

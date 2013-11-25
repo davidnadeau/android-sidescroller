@@ -1,5 +1,11 @@
 package com.example.sidescroller.graphics.level;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+import android.view.View;
+
+import com.example.sidescroller.R;
 import com.example.sidescroller.graphics.Screen;
 
 /**
@@ -8,39 +14,27 @@ import com.example.sidescroller.graphics.Screen;
 public class Level {
 
     protected int IMAGE_WIDTH, IMAGE_HEIGHT;
-    protected int[] tilesInt;
     protected int[] tiles;
 
-    public Level(int width, int height) {
-        this.IMAGE_WIDTH = width;
-        this.IMAGE_HEIGHT = height;
-        tilesInt = new int[width * height];
-
-        generateLevel();
-    }
+    private static View v;
+    public static void setView(View v1) { v = v1; }
 
     public Level() {
-        loadLevel();
-        generateLevel();
-
+        int levelID = R.drawable.level;
+        loadLevel(levelID);
     }
 
-    protected void generateLevel() {
+    private void loadLevel(int id) {
+        Bitmap bmp = loadBitmap(id);
+        IMAGE_WIDTH = bmp.getWidth();
+        IMAGE_HEIGHT = bmp.getHeight();
+        tiles = new int[IMAGE_WIDTH * IMAGE_HEIGHT];
 
+        //Convert bitmap into int array
+        bmp.getPixels(tiles, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
     }
 
-    protected void loadLevel() {
-
-    }
-
-    public void update() {
-
-    }
-
-    private void time() {
-
-    }
-    public void render(int xScroll, int yScroll, Screen s) {
+    public void draw(int xScroll, int yScroll, Screen s) {
         s.setOffset(xScroll, yScroll);
         int x0 = xScroll >> 4;
         int x1 = (xScroll + s.getWidth() + 16) >> 4;
@@ -73,7 +67,11 @@ public class Level {
             case 0xff404040:
                 return Tile.rainbowBrick;
             default:
-                return Tile.errTile;
+                return Tile.waterTile;
         }
+    }
+
+    private Bitmap loadBitmap(int id) {
+        return BitmapFactory.decodeResource(v.getResources(), id);
     }
 }

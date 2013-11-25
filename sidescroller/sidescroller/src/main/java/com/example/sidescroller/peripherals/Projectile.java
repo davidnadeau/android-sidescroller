@@ -7,7 +7,7 @@ import android.graphics.Point;
  */
 public class Projectile {
     //img file
-    private int speed;
+    private int   speed;
     private Point start, end;
 
     public Projectile() {}
