@@ -34,13 +34,25 @@ public class GameLoop extends Thread{
 
     public void run() {
         Canvas c;
+        c=null;
+        if (!running)return;
+
         Log.v("Colorss","Start running");
+        try {
+            c = surfaceHolder.lockCanvas(null);
+            synchronized (surfaceHolder) {
+                Log.v("Colorss","got it, try to draw");
+                //call methods to draw and process next fame
+                gamePanel.onDraw(c);
+            }
+        } finally {
+            if (c != null) {
+                Log.v("Colorss","unlock the canvas and update?");
 
+                surfaceHolder.unlockCanvasAndPost(c);
+            }
+        }
         while (running) {
-            Log.v("Colorss","running");
-
-            c = null;
-
             //limit frame rate to max 60fps
             timeNow = System.currentTimeMillis();
             timeDelta = timeNow - timePrevFrame;
@@ -52,26 +64,13 @@ public class GameLoop extends Thread{
 
                 }
             }
-            timePrevFrame = System.currentTimeMillis();
-            Log.v("Colorss","try to get lock");
 
-            try {
-                c = surfaceHolder.lockCanvas(null);
-                synchronized (surfaceHolder) {
-                    Log.v("Colorss","got it, try to draw");
-                    //call methods to draw and process next fame
-                    gamePanel.onDraw(c);
-                }
-            } finally {
-                if (c != null) {
-                    Log.v("Colorss","unlock the canvas and update?");
-
-                    surfaceHolder.unlockCanvasAndPost(c);
-                }
+            c = surfaceHolder.lockCanvas(null);
+            synchronized (surfaceHolder) {
+                //call methods to draw and process next fame
+                //gamePanel.onDraw(c);
             }
-            Log.v("Colorss","run again?");
-
-
         }
+        if (c!=null) surfaceHolder.unlockCanvasAndPost(c);
     }
 }
