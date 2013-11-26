@@ -3,7 +3,7 @@ package com.example.sidescroller.characters;
 import com.example.sidescroller.graphics.Screen;
 import com.example.sidescroller.graphics.Sprite;
 import com.example.sidescroller.graphics.player.PlayerSprites;
-import com.example.sidescroller.peripherals.Weapon;
+import com.example.sidescroller.graphics.peripherals.Weapon;
 
 /**
  * Created by Owner on 18/11/13.

@@ -1,7 +1,5 @@
 package com.example.sidescroller.characters;
 
-import android.graphics.Point;
-
 import com.example.sidescroller.graphics.level.Level;
 
 /**

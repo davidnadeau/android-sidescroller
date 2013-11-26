@@ -27,6 +27,6 @@ public class Tile {
         this.solid = solid;
     }
 
-    public void draw(int x, int y, Screen s) { s.drawTile(x << 4, y << 4, this); }
+    //public void draw(int x, int y, Screen s) { s.drawTile(x << 4, y << 4, this); } ----uncomment this line
     public boolean isSolid() { return solid; }
 }

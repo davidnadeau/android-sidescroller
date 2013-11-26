@@ -3,15 +3,15 @@ package com.example.sidescroller.graphics;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.Point;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
 import com.example.sidescroller.characters.Frank;
 import com.example.sidescroller.graphics.level.Level;
+import com.example.sidescroller.graphics.peripherals.Bomb;
 
 /**
  * Created by soote on 11/23/13.
@@ -26,6 +26,7 @@ public class Surface extends SurfaceView implements
     Screen s;
     Level l;
     Frank frank;
+    Bomb bomb;
     int xScroll = 0;
     GameLoop thread;
     public static void setDimensions(int width, int height) {
@@ -84,8 +85,11 @@ public class Surface extends SurfaceView implements
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        bomb = new Bomb();
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            // handle touch
+            Log.d("BOMB","before bomb"+Math.round(event.getX())+ "," + Math.round(event.getY()));
+            bomb.draw(s, Math.round(event.getX()), Math.round(event.getY()));
+            Log.d("BOMB","after bomb");
         }
         return true;
     }
