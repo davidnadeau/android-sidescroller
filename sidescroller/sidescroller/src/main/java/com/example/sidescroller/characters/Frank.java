@@ -12,7 +12,7 @@ public class Frank extends Entity {
     private int lives, score;
     private   Weapon weapon;
     protected Sprite sprite = PlayerSprites.player_side;
-
+    private boolean jumping=false;
     public Frank() {}
     public Frank(int lives, int score, Weapon weapon) {
         this.lives = lives;
@@ -25,6 +25,39 @@ public class Frank extends Entity {
             y += ya;
         }
     }
+
+
+    //xa is where the Frank is on the screen before jump
+    //speed is number of pixel of period move on X
+    //jumpHeight is ,from xa, if nothing block him, the max height he can jump ** unit is number of pixel
+    //jumpPeriod is ,from xa, if nothing block him, how much FPS the rising will use
+    // when jumping, if next coordinate  is not solid move to there
+    public void jump(int xa,int ya,int speed,int jumpHeight,int jumpPeriod){
+        double rise=(double)jumpHeight/(double)jumpPeriod; //rise per period
+        jumping=true;
+        for(int i=0;i<jumpPeriod;i++)
+        {
+
+            if(!collision(xa+speed,(int)(ya+rise))){
+                y=ya; ya+=rise;
+            }//end if
+            else break;
+            //x=xa;
+            xa+=speed;
+           };//end for
+
+        // falling down
+        while(!collision(xa-speed,(int)(ya-rise))){
+            ya-=rise;
+            y=ya;
+            xa+=speed;
+            //x=xa;
+        };//end while;
+
+        jumping=false;
+    };//end jump
+
+
 
     /**
      * return true if 1 pixel over in the set direction is a solid tile
@@ -48,8 +81,10 @@ public class Frank extends Entity {
     public int getLives() { return lives; }
     public int getScore() { return score; }
     public Weapon getWeapon() { return weapon; }
+    public boolean getJumping(){return jumping;}
 
     public void setLives(int lives) { this.lives = lives; }
     public void setScore(int score) { this.score = score; }
     public void setWeapon(Weapon weapon) { this.weapon = weapon; }
+
 }

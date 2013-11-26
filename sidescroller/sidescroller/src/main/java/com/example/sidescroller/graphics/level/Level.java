@@ -44,7 +44,7 @@ public class Level {
         for (int y = y0; y < y1; y++) {
             for (int x = x0; x < x1; x++) {
                 //draw every tile to Screen
-                //getTile(x, y).draw(x, y, s);-----------------------------------uncomment this line
+                //getTile(x, y).draw(x, y, s);//-----------------------------------uncomment this line
             }
         }
     }
