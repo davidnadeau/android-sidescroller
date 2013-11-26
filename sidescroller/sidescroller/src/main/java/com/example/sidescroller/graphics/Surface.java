@@ -115,6 +115,7 @@ public class Surface extends SurfaceView implements
 
         //l.draw(xScroll, 0, s);
         //xScroll++; //scroll map to the left
+
         frank.draw(s);
 
         //pixels = new int[GAME_WIDTH * GAME_HEIGHT];

@@ -57,6 +57,7 @@ public class Screen {
             for (int x = 0; x < sprite.getSize(); x++) {
                 int xa = x + xp;
                 if (xa < -sprite.getSize() || xa >= width || ya < 0 || ya >= height) break;
+                
             }
         }
     }

@@ -26,7 +26,6 @@ public class Frank extends Entity {
         }
     }
 
-
     //xa is where the Frank is on the screen before jump
     //speed is number of pixel of period move on X
     //jumpHeight is ,from xa, if nothing block him, the max height he can jump ** unit is number of pixel
