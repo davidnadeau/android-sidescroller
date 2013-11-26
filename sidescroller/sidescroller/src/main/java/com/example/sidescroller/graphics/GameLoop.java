@@ -64,13 +64,20 @@ public class GameLoop extends Thread{
 
                 }
             }
+            try {
+                c = surfaceHolder.lockCanvas(null);
+                synchronized (surfaceHolder) {
+                    Log.v("Colorss","got it, try to draw");
+                    //call methods to draw and process next fame
+                    gamePanel.onDrawLoop(c);
+                }
+            } finally {
+                if (c != null) {
+                    Log.v("Colorss","unlock the canvas and update?");
 
-            c = surfaceHolder.lockCanvas(null);
-            synchronized (surfaceHolder) {
-                //call methods to draw and process next fame
-                //gamePanel.onDraw(c);
+                    surfaceHolder.unlockCanvasAndPost(c);
+                }
             }
         }
-        if (c!=null) surfaceHolder.unlockCanvasAndPost(c);
     }
 }

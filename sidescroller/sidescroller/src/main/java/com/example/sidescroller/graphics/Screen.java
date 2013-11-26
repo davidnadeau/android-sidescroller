@@ -26,19 +26,19 @@ public class Screen {
     }
 
 
-//    public void drawTile(int xp, int yp, Tile tile) {
-//        xp -= xOffset;
-//        yp -= yOffset;
-//        for (int y = 0; y < tile.sprite.getSize(); y++) {
-//            int ya = y + yp;
-//            for (int x = 0; x < tile.sprite.getSize(); x++) {
-//                int xa = x + xp;
-//                if (xa < -tile.sprite.getSize() || xa >= width || ya < 0 || ya >= height) break;
-//                if (xa < 0) xa = 0;
-//                pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.getSize()];
-//            }
-//        }
-//    }
+    public void drawTile(int xp, int yp, Tile tile) {
+        xp -= xOffset;
+        yp -= yOffset;
+        for (int y = 0; y < tile.sprite.getSize(); y++) {
+            int ya = y + yp;
+            for (int x = 0; x < tile.sprite.getSize(); x++) {
+                int xa = x + xp;
+                if (xa < -tile.sprite.getSize() || xa >= width || ya < 0 || ya >= height) break;
+                if (xa < 0) xa = 0;
+                pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.getSize()];
+            }
+        }
+    }
     public void drawFrank(int xp, int yp, Sprite sprite){
         for(int y = 0; y<sprite.getSize(); y++){
             int ya = y + yp;

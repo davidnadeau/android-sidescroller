@@ -98,8 +98,6 @@ public class Surface extends SurfaceView implements
     public void onDraw(Canvas c) {
         super.onDraw(c);
 
-        Log.v("Colorss","Drawing");
-
         l.draw(xScroll, 0, s);
         xScroll++; //scroll map to the left
         frank.draw(s);
@@ -110,7 +108,21 @@ public class Surface extends SurfaceView implements
         Bitmap bmp = newBitmap();
         fillBitmap(bmp);
         c.drawBitmap(bmp, 0, 0, null);
-        Log.v("Colorss","drawing complete");
+    }
+
+    public void onDrawLoop(Canvas c) {
+        super.onDraw(c);
+
+        //l.draw(xScroll, 0, s);
+        //xScroll++; //scroll map to the left
+        frank.draw(s);
+
+        //pixels = new int[GAME_WIDTH * GAME_HEIGHT];
+        System.arraycopy(s.pixels, 0, pixels, 0, pixels.length);
+
+        Bitmap bmp = newBitmap();
+        fillBitmap(bmp);
+        c.drawBitmap(bmp, 0, 0, null);
     }
 
     private Bitmap newBitmap() { return Bitmap.createBitmap(GAME_WIDTH, GAME_HEIGHT, IMAGE_FORMAT); }
