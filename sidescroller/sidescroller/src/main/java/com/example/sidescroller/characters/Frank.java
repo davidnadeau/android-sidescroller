@@ -31,25 +31,24 @@ public class Frank extends Entity {
     //jumpHeight is ,from xa, if nothing block him, the max height he can jump ** unit is number of pixel
     //jumpPeriod is ,from xa, if nothing block him, how much FPS the rising will use
     // when jumping, if next coordinate  is not solid move to there
-    public void jump(int xa,int ya,int speed,int jumpHeight,int jumpPeriod){
+    public void jump(int jumpHeight,int jumpPeriod){
         double rise=(double)jumpHeight/(double)jumpPeriod; //rise per period
         jumping=true;
         for(int i=0;i<jumpPeriod;i++)
         {
 
-            if(!collision(xa+speed,(int)(ya+rise))){
-                y=ya; ya+=rise;
+            if(!collision(x,(int)(y+rise))){
+                y+=rise;
             }//end if
             else break;
             //x=xa;
-            xa+=speed;
+
            };//end for
 
         // falling down
-        while(!collision(xa-speed,(int)(ya-rise))){
-            ya-=rise;
-            y=ya;
-            xa+=speed;
+        while(!collision(x,(int)(y-rise))){
+            y-=rise;
+            
             //x=xa;
         };//end while;
 
