@@ -2,7 +2,6 @@ package com.example.sidescroller.graphics.level;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.R;

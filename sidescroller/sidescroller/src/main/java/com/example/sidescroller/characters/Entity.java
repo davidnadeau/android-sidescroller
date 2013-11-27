@@ -6,8 +6,8 @@ import com.example.sidescroller.graphics.level.Level;
  * Created by Owner on 18/11/13.
  */
 public class Entity {
-    protected int   x,
-                    y;
+    protected int x,
+            y;
 
     protected Level level;
 
@@ -17,5 +17,5 @@ public class Entity {
     public void setX(int x) { this.x = x; }
     public void setY(int y) { this.y = y; }
 
-    public void setLevel(Level level){ this.level = level; }
+    public void setLevel(Level level) { this.level = level; }
 }

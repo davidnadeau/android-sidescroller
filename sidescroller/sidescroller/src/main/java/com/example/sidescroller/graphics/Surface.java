@@ -3,7 +3,6 @@ package com.example.sidescroller.graphics;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Point;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -17,16 +16,16 @@ import com.example.sidescroller.graphics.peripherals.Bomb;
  * Created by soote on 11/23/13.
  */
 public class Surface extends SurfaceView implements
-        SurfaceHolder.Callback{
+        SurfaceHolder.Callback {
 
     int[] pixels;
     private static int GAME_WIDTH;
     private static int GAME_HEIGHT;
     private static final Bitmap.Config IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
     Screen s;
-    Level l;
-    Frank frank;
-    Bomb bomb;
+    Level  l;
+    Frank  frank;
+    Bomb   bomb;
     int xScroll = 0;
     GameLoop thread;
     public static void setDimensions(int width, int height) {
@@ -61,7 +60,7 @@ public class Surface extends SurfaceView implements
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        thread = new GameLoop(holder,this);
+        thread = new GameLoop(holder, this);
         // at this point the surface is created and
         // we can safely start the game loop
         thread.setRunning(true);
@@ -87,9 +86,13 @@ public class Surface extends SurfaceView implements
     public boolean onTouchEvent(MotionEvent event) {
         bomb = new Bomb();
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            Log.d("BOMB","before bomb"+Math.round(event.getX())+ "," + Math.round(event.getY()));
+            Log.d("BOMB", "before bomb" + Math.round(event.getX()) + "," +
+                    "" + Math.round(event.getY()));
             bomb.draw(s, Math.round(event.getX()), Math.round(event.getY()));
-            Log.d("BOMB","after bomb");
+            Log.d("BOMB", "after bomb");
+
+            //TESTING JUMP -- this will be moved to button click when thats created
+            frank.setJumping(true);
         }
         return true;
     }
@@ -115,7 +118,7 @@ public class Surface extends SurfaceView implements
 
         //l.draw(xScroll, 0, s);
         //xScroll++; //scroll map to the left
-
+        frank.jump();
         frank.draw(s);
 
         //pixels = new int[GAME_WIDTH * GAME_HEIGHT];
@@ -126,6 +129,12 @@ public class Surface extends SurfaceView implements
         c.drawBitmap(bmp, 0, 0, null);
     }
 
-    private Bitmap newBitmap() { return Bitmap.createBitmap(GAME_WIDTH, GAME_HEIGHT, IMAGE_FORMAT); }
-    private void fillBitmap(Bitmap bmp) { bmp.setPixels(pixels, 0, GAME_WIDTH, 0, 0, GAME_WIDTH, GAME_HEIGHT); }
+    private Bitmap newBitmap() {
+        return Bitmap.createBitmap(GAME_WIDTH, GAME_HEIGHT,
+                IMAGE_FORMAT);
+    }
+    private void fillBitmap(Bitmap bmp) {
+        bmp.setPixels(pixels, 0, GAME_WIDTH, 0, 0, GAME_WIDTH,
+                GAME_HEIGHT);
+    }
 }

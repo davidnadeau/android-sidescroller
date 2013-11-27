@@ -3,7 +3,6 @@ package com.example.sidescroller;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.graphics.Surface;

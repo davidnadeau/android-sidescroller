@@ -7,7 +7,7 @@ import android.view.SurfaceHolder;
 /**
  * Created by soote on 11/25/13.
  */
-public class GameLoop extends Thread{
+public class GameLoop extends Thread {
 
     //Frame speed
     long timeNow;
@@ -18,7 +18,7 @@ public class GameLoop extends Thread{
     private SurfaceHolder surfaceHolder;
     // The actual view that handles inputs
     // and draws to the surface
-    private Surface gamePanel;
+    private Surface       gamePanel;
 
     // flag to hold game state
     private boolean running;
@@ -34,20 +34,20 @@ public class GameLoop extends Thread{
 
     public void run() {
         Canvas c;
-        c=null;
-        if (!running)return;
+        c = null;
+        if (!running) return;
 
-        Log.v("Colorss","Start running");
+        Log.v("Colorss", "Start running");
         try {
             c = surfaceHolder.lockCanvas(null);
             synchronized (surfaceHolder) {
-                Log.v("Colorss","got it, try to draw");
+                Log.v("Colorss", "got it, try to draw");
                 //call methods to draw and process next fame
                 gamePanel.onDraw(c);
             }
         } finally {
             if (c != null) {
-                Log.v("Colorss","unlock the canvas and update?");
+                Log.v("Colorss", "unlock the canvas and update?");
 
                 surfaceHolder.unlockCanvasAndPost(c);
             }
@@ -56,24 +56,23 @@ public class GameLoop extends Thread{
             //limit frame rate to max 60fps
             timeNow = System.currentTimeMillis();
             timeDelta = timeNow - timePrevFrame;
-            if ( timeDelta < 16) {
+            if (timeDelta < 16) {
                 try {
                     Thread.sleep(16 - timeDelta);
-                }
-                catch(InterruptedException e) {
+                } catch (InterruptedException e) {
 
                 }
             }
             try {
                 c = surfaceHolder.lockCanvas(null);
                 synchronized (surfaceHolder) {
-                    Log.v("Colorss","got it, try to draw");
+                    Log.v("Colorss", "got it, try to draw");
                     //call methods to draw and process next fame
                     gamePanel.onDrawLoop(c);
                 }
             } finally {
                 if (c != null) {
-                    Log.v("Colorss","unlock the canvas and update?");
+                    Log.v("Colorss", "unlock the canvas and update?");
 
                     surfaceHolder.unlockCanvasAndPost(c);
                 }
