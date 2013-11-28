@@ -15,6 +15,7 @@ public class Frank extends Entity {
     protected Sprite  sprite  = PlayerSprites.player_side;
     protected Sprite  jumpSprite = PeripheralSprites.jumpSprite;
     private   boolean jumping = false;
+    private  boolean fulling =false;
     private   int     startY  = y;
     private   int GAME_WIDTH;
     private int GAME_HEIGHT;
@@ -48,16 +49,22 @@ public class Frank extends Entity {
         else if (y < startY - 64) jumping = false;
         */
 
-        if(isJumping())//if is jumping
-            if (y < startY -64 ) jumping =false;
-            else {
-            if (!collision(0, -16)) {
+        if(isJumping()&&!fulling)//if is jumping but not in fulling
+            if (y < startY -64 ){// when touch maxjump, full
+                jumping =false;
+                fulling=true;
+            }//end if
+            else {// if not touch maxjump
+                if (!collision(0, -16)) {// if not hit top, jump 16
                 y -= 16;
                 x++;
-            }
-           else jumping=false;
+                }
+                else { //if hit top full
+                    jumping=false; fulling=true;
+                }
             }//end else
         else {  //if not jumping
+            jumping=false;
             startY=y;
             return;
         };
@@ -86,7 +93,10 @@ public class Frank extends Entity {
         return false;
     }
     public void draw(Screen s) {
-        if (!collision(0, 16) && !isJumping()) y += 16;
+        if (!collision(0, 16))
+            if(fulling && !isJumping())y += 16;
+            else;
+        else fulling=false;
         s.drawFrank(x - 16, y - 16, sprite);
         s.drawFrank(jumpX,jumpY,jumpSprite);
     }
