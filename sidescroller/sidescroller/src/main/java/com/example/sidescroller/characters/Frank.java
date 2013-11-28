@@ -41,7 +41,7 @@ public class Frank extends Entity {
     /**
      *
      */
-    private boolean collision(int xa, int ya) {
+    public boolean collision(int xa, int ya) {
         for (int i = 0; i < 4; i++) {
             //multiply to change left and top side
             int xt = ((getX() + xa) + i % 2 * 14 - 8) >> 4;

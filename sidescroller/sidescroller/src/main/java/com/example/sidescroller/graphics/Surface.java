@@ -12,12 +12,14 @@ import com.example.sidescroller.characters.Frank;
 import com.example.sidescroller.graphics.level.Level;
 import com.example.sidescroller.graphics.peripherals.Bomb;
 
+import java.util.LinkedList;
+
 /**
  * Created by soote on 11/23/13.
  */
 public class Surface extends SurfaceView implements
         SurfaceHolder.Callback {
-
+    LinkedList <Bomb> bomb_list = new LinkedList();
     int[] pixels;
     private static int GAME_WIDTH;
     private static int GAME_HEIGHT;
@@ -42,7 +44,6 @@ public class Surface extends SurfaceView implements
         s = new Screen(GAME_WIDTH, GAME_HEIGHT);
         l = new Level();
         frank = new Frank();
-
         frank.setLevel(l);
         frank.setX(GAME_WIDTH / 2);
         frank.setY(GAME_HEIGHT / 2);
@@ -86,11 +87,8 @@ public class Surface extends SurfaceView implements
     public boolean onTouchEvent(MotionEvent event) {
         bomb = new Bomb();
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            Log.d("BOMB", "before bomb" + Math.round(event.getX()) + "," +
-                    "" + Math.round(event.getY()));
-            bomb.draw(s, Math.round(event.getX()), Math.round(event.getY()));
-            Log.d("BOMB", "after bomb");
-
+            bomb.setShooting(true, frank.getX(), frank.getY());
+            bomb_list.add(bomb);
             //TESTING JUMP -- this will be moved to button click when thats created
             frank.setJumping(true);
         }
@@ -115,11 +113,16 @@ public class Surface extends SurfaceView implements
 
     public void onDrawLoop(Canvas c) {
         super.onDraw(c);
-
         //l.draw(xScroll, 0, s);
         //xScroll++; //scroll map to the left
+
         frank.jump();
         frank.draw(s);
+
+    //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
+        for(int i = 0; i < bomb_list.size(); i++){
+            bomb_list.get(i).shoot(s);
+        }
 
         //pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(s.pixels, 0, pixels, 0, pixels.length);
