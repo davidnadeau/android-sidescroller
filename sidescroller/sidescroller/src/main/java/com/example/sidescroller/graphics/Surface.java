@@ -43,7 +43,7 @@ public class Surface extends SurfaceView implements
 
         s = new Screen(GAME_WIDTH, GAME_HEIGHT);
         l = new Level();
-        frank = new Frank();
+        frank = new Frank(GAME_WIDTH,GAME_HEIGHT);
         frank.setLevel(l);
         frank.setX(GAME_WIDTH / 2);
         frank.setY(GAME_HEIGHT / 2);
@@ -87,13 +87,25 @@ public class Surface extends SurfaceView implements
     public boolean onTouchEvent(MotionEvent event) {
         bomb = new Bomb();
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            int X=frank.getJumpX();
+            int Y=frank.getJumpY();
+            if(event.getX()>=X&&event.getX()<=X+16&&event.getY()>=Y&&event.getY()<=Y+16)
+                frank.setJumping(true);
+            else{
+
             bomb.setShooting(true, frank.getX(), frank.getY());
             bomb_list.add(bomb);
+            }
             //TESTING JUMP -- this will be moved to button click when thats created
-            frank.setJumping(true);
+            //frank.setJumping(true);
         }
         return true;
     }
+
+
+
+
+
 
     @Override
     public void onDraw(Canvas c) {
@@ -115,7 +127,6 @@ public class Surface extends SurfaceView implements
         super.onDraw(c);
         //l.draw(xScroll, 0, s);
         //xScroll++; //scroll map to the left
-
         frank.jump();
         frank.draw(s);
 

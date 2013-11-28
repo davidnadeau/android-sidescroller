@@ -16,4 +16,5 @@ public class TileSprites {
     public static Sprite darkWood     = new Sprite(16, 4, 2);
     public static Sprite waterSprite  = new Sprite(16, 5, 2);
     public static Sprite errSprite    = new Sprite(16, 5, 5);
+
 }
