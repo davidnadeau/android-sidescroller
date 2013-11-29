@@ -30,8 +30,8 @@ public class Bomb{
         }
         else{
 
-            startX += (int)(8 * Math.cos(angle)); //increment bomb going to the right (note: 8 is the speed)
-            startY += (int)(8 * Math.sin(angle)); //increment bomb going up
+            startX += (int)(16 * Math.cos(angle)); //increment bomb going to the right (note: 8 is the speed)
+            startY += (int)(16 * Math.sin(angle)); //increment bomb going up
             if(!collision(startX, startY)){ //if no collision and the bomb is not off the screen (miss)
                 draw(s, startX, startY); //draw there
             }
@@ -46,7 +46,7 @@ public class Bomb{
         return false;
     }
 
-    public void setShooting(boolean shooting,int startX, int startY, float touchX, float touchY, int GAME_HEIGHT) {
+    public void setShooting(boolean shooting,int startX, int startY, float touchX, float touchY) {
         this.shooting = shooting;
         this.startX = startX; this.startY = startY;
 

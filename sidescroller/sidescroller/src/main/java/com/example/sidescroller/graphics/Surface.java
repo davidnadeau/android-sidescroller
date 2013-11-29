@@ -92,7 +92,7 @@ public class Surface extends SurfaceView implements
             if(event.getX()>=X&&event.getX()<=X+16&&event.getY()>=Y&&event.getY()<=Y+16)
                 frank.setJumping(true);
             else{
-                bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY(), GAME_HEIGHT);
+                bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
                 bomb_list.add(bomb);
             }
             //TESTING JUMP -- this will be moved to button click when thats created
