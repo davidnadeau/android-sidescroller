@@ -1,5 +1,7 @@
 package com.example.sidescroller.graphics.peripherals;
 
+import android.util.Log;
+
 import com.example.sidescroller.characters.Entity;
 import com.example.sidescroller.characters.Frank;
 import com.example.sidescroller.graphics.Screen;
@@ -11,15 +13,12 @@ import com.example.sidescroller.graphics.level.Level;
  */
 public class Bomb{
 
-    private int   speed;
     private int startX, startY;
+    double angle;
     protected Sprite sprite = PeripheralSprites.bomb;
     private boolean shooting = false;
 
     public Bomb() {}
-    public Bomb(int speed) {
-        this.speed = speed;
-    }
 
     public void draw(Screen s, int x, int y) {
         s.drawPeripheral(x - 16, y - 16, sprite);
@@ -30,7 +29,9 @@ public class Bomb{
             return;
         }
         else{
-            startX += 8; //increment bomb going to the right
+
+            startX += (int)(8 * Math.cos(angle)); //increment bomb going to the right (note: 8 is the speed)
+            startY += (int)(8 * Math.sin(angle)); //increment bomb going up
             if(!collision(startX, startY)){ //if no collision and the bomb is not off the screen (miss)
                 draw(s, startX, startY); //draw there
             }
@@ -45,14 +46,13 @@ public class Bomb{
         return false;
     }
 
-    public void setShooting(boolean shooting,int startX, int startY) {
+    public void setShooting(boolean shooting,int startX, int startY, float touchX, float touchY, int GAME_HEIGHT) {
         this.shooting = shooting;
         this.startX = startX; this.startY = startY;
+
+        angle = Math.atan2(touchY - startY,
+                           touchX - startX);
     }
 
     public boolean isShooting() { return shooting; }
-
-    public int getSpeed() { return speed; }
-
-    public void setSpeed(int speed) { this.speed = speed; }
 }
