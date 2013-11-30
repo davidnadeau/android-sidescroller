@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.example.sidescroller.R;
 import com.example.sidescroller.fragments.LevelSelectFragment;
-import com.example.sidescroller.fragments.OptionsFragment;
+import com.example.sidescroller.game.buttons.OptionsFragment;
 
 public class MainActivity extends Activity {
 

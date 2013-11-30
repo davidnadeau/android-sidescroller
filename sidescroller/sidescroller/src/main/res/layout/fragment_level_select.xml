@@ -14,6 +14,7 @@
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"/>
 
+    <!--
     <RadioButton
         android:layout_width="125dp"
         android:layout_height="wrap_content"
@@ -36,6 +37,32 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="16dp"/>
 
+
+    -->
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton android:id="@+id/levelOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 - ONE"
+            />
+
+        <RadioButton android:id="@+id/levelTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 - TWO"
+            />
+        <RadioButton android:id="@+id/levelThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 - THREE"
+           />
+    </RadioGroup>
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,4 +70,11 @@
         android:id="@+id/play"
         android:layout_gravity="center_horizontal"
         android:onClick="startGame"/>
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New RadioButton"
+        android:id="@+id/radioButton"
+        android:layout_gravity="right|center_vertical" />
 </LinearLayout>

@@ -24,6 +24,10 @@ public class Level {
         loadLevel(levelID);
     }
 
+    public Level(int ID){
+        loadLevel(ID);
+    };
+
     private void loadLevel(int id) {
         Bitmap bmp = loadBitmap(id);
         IMAGE_WIDTH = bmp.getWidth();
