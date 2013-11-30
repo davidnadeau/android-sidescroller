@@ -1,9 +1,6 @@
 package com.example.sidescroller.game.characters;
 
-import android.util.Log;
-
 import com.example.sidescroller.game.Screen;
-import com.example.sidescroller.game.graphics.PlayerSprites;
 import com.example.sidescroller.game.graphics.Sprite;
 
 /**
@@ -29,24 +26,24 @@ public class Frank extends Entity {
         if (jumping) {
             if (!collision(0, -16) && y >= jumpHeight) {
                 y -= 16;
-                sprite = PlayerSprites.player_side;//jump sprite
+                sprite = FrankSprites.frank_jump;//jump sprite
             } else {
                 jumping = false;
                 falling = true;
-                sprite = PlayerSprites.player_side;//fall sprite
+                sprite = FrankSprites.frank_fall;//fall sprite
 
             }
         } else if (falling) {
             if (!collision(0, 16)) {
                 y += 16;
-                sprite = PlayerSprites.player_side;//fall sprite
+                sprite = FrankSprites.frank_fall;//fall sprite
             } else {
                 falling = false;
-                sprite = PlayerSprites.player_side;//land sprite
+                sprite = FrankSprites.frank_land;//land sprite
             }
 
         } else {
-            sprite = PlayerSprites.player_side;//walking sprite
+            sprite = FrankSprites.frank_walk;//walking sprite
         }
     }
 

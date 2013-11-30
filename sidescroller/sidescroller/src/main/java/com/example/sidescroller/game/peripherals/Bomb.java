@@ -1,10 +1,8 @@
 package com.example.sidescroller.game.peripherals;
 
 import com.example.sidescroller.game.Screen;
-import com.example.sidescroller.game.graphics.PeripheralSprites;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
-import com.example.sidescroller.game.level.Tile;
 import com.example.sidescroller.game.level.TileSprites;
 
 /**
