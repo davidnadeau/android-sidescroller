@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 
 import com.example.sidescroller.R;
 import com.example.sidescroller.fragments.LevelSelectFragment;
@@ -75,13 +76,14 @@ public class MainActivity extends Activity {
             case R.id.levelOne:l=0;break;
             case R.id.levelTwo:l=1;break;
             case R.id.levelThree:l=2;break;
-
-
         };
-
-
     };
 
+    public void volumeSelect(View view){
+        SeekBar bar=(SeekBar)findViewById(R.id.seekBar);
+        int View=bar.getProgress();
+        //music.setVolume(View);???
+    };
 
     public void quit(View v) { finish(); }
 

@@ -74,10 +74,18 @@
         android:layout_gravity="center_horizontal"
         android:onClick="startGame"/>
 
-    <RadioButton
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton"
-        android:layout_gravity="right|center_vertical" />
+        android:layout_marginTop="20dp"
+        android:id="@+id/seekBar"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30pt"
+        android:layout_marginRight="30pt"
+        android:max="100"
+        android:progress="50"
+        android:onClick="volumeSelect"
+
+       />
+
 </LinearLayout>
