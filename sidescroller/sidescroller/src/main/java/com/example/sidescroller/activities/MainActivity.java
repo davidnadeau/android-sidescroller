@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
 
 import com.example.sidescroller.R;
 import com.example.sidescroller.fragments.LevelSelectFragment;
@@ -11,6 +12,7 @@ import com.example.sidescroller.game.buttons.OptionsFragment;
 
 public class MainActivity extends Activity {
 
+    public static int l=0;//level
     private boolean btnClicked = false,
             nestedBtnClicked   = false;
 
@@ -66,6 +68,21 @@ public class MainActivity extends Activity {
         nestedBtnClicked = true;
         startActivity(new Intent(getApplicationContext(), GameActivity.class));
     }
+
+    public void levelSelect(View view){
+        boolean checked = ((RadioButton)view).isChecked();
+        switch (view.getId()){
+            case R.id.levelOne:l=0;break;
+            case R.id.levelTwo:l=1;break;
+            case R.id.levelThree:l=2;break;
+
+
+        };
+
+
+    };
+
+
     public void quit(View v) { finish(); }
 
     private void enabledButtons() {

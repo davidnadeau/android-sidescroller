@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.example.sidescroller.activities.MainActivity;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.characters.Frank;
@@ -49,7 +50,8 @@ public class Surface extends SurfaceView implements
         jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT, ButtonSprites.jumpButton);
 
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
-        level = new Level();
+        //level = new Level();//select level;
+        level = new Level(MainActivity.l);//select level;
 
         frank = new Frank(GAME_WIDTH, GAME_HEIGHT);
         frank.setLevel(level);
@@ -57,8 +59,9 @@ public class Surface extends SurfaceView implements
         //Set thread
         getHolder().addCallback(this);
         setFocusable(true);
-
     }
+
+
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                int height) {

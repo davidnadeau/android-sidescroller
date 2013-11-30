@@ -25,6 +25,13 @@ public class Level {
     }
 
     public Level(int ID){
+        //change here to select level
+        switch (ID){
+            case 0:ID=R.drawable.level;break;
+            case 1:ID=R.drawable.level;break;
+            case 2:;break;
+
+        };
         loadLevel(ID);
     };
 
