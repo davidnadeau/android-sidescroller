@@ -47,6 +47,7 @@
         <RadioButton android:id="@+id/levelOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="1 - ONE"
             android:onClick="levelSelect"
             />
@@ -54,12 +55,14 @@
         <RadioButton android:id="@+id/levelTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="2 - TWO"
             android:onClick="levelSelect"
             />
         <RadioButton android:id="@+id/levelThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="3 - THREE"
             android:onClick="levelSelect"
            />
