@@ -3,6 +3,7 @@ package com.example.sidescroller.game.characters;
 import android.util.Log;
 
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.graphics.PlayerSprites;
 import com.example.sidescroller.game.graphics.Sprite;
 
 /**
@@ -13,7 +14,7 @@ public class Frank extends Entity {
     private Sprite sprite;
 
     private boolean jumping = false;
-    private boolean falling = false;
+    private boolean falling = true;
     private int     startY  = y;
     private int jumpHeight;
 
@@ -24,10 +25,10 @@ public class Frank extends Entity {
     }
 
     public void move() {
+
         if (jumping) {
             if (!collision(0, -16) && y >= jumpHeight) {
                 y -= 16;
-                x += 3;
                 sprite = PlayerSprites.player_side;//jump sprite
             } else {
                 jumping = false;
@@ -38,7 +39,6 @@ public class Frank extends Entity {
         } else if (falling) {
             if (!collision(0, 16)) {
                 y += 16;
-                x += 3;
                 sprite = PlayerSprites.player_side;//fall sprite
             } else {
                 falling = false;
@@ -50,19 +50,11 @@ public class Frank extends Entity {
         }
     }
 
-    /*
-        xa: number of pixels moved on the x axis
-        ya: number of pixels moved on the y axis
-     */
     public boolean collision(int xa, int ya) {
-        for (int i = 0; i < 4; i++) {
-            //multiply to change left and top side
-            int xt = ((x + xa) + i % 2 * 14 - 8) / 16;
-            int yt = ((y + ya) + i / 2 * 10 + 2) / 16;
-            if (jumping)
-                Log.v("COLLISION", "" + xt + ": " + yt + " -- " + level.getTile(xt, yt).isSolid());
-            if (level.getTile(xt, yt).isSolid()) return true;
-        }
+        int tileX = (x+xa)/16;
+        int tileY = (y+ya)/16;
+        if (level.getTile(tileX, tileY).isSolid())
+            return true;
         return false;
     }
 
@@ -74,10 +66,8 @@ public class Frank extends Entity {
         jumpHeight = startY - 64;
     }
     public boolean isJumping() { return jumping; }
-    public void setFalling(boolean falling) {
-        this.falling = falling;
-    }
     public boolean isFalling() { return falling; }
+
     /**
      * Returns true if the object was hit
      */
@@ -85,7 +75,6 @@ public class Frank extends Entity {
 
     public int getLives() { return lives; }
     public int getScore() { return score; }
-    public boolean getJumping() {return jumping;}
 
     public void setLives(int lives) { this.lives = lives; }
     public void setScore(int score) { this.score = score; }

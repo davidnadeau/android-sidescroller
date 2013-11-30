@@ -53,7 +53,6 @@ public class Surface extends SurfaceView implements
 
         frank = new Frank(GAME_WIDTH, GAME_HEIGHT);
         frank.setLevel(level);
-        frank.setFalling(true);
 
         //Set thread
         getHolder().addCallback(this);
@@ -112,25 +111,7 @@ public class Surface extends SurfaceView implements
         super.onDraw(c);
 
         level.draw(xScroll, 0, screen);
-        xScroll++; //scroll map to the left
-
-        //frank.move();
-        //frank.draw(screen);
-
-        //jumpButton.draw(screen);
-
-        pixels = new int[GAME_WIDTH * GAME_HEIGHT];
-        System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
-
-        Bitmap bmp = newBitmap();
-        fillBitmap(bmp);
-        c.drawBitmap(bmp, 0, 0, null);
-    }
-
-    public void onDrawLoop(Canvas c) {
-        super.onDraw(c);
-        //level.draw(xScroll, 0, screen);
-        //xScroll++; //scroll map to the left
+        xScroll+=16; //scroll map to the left
         frank.move();
         frank.draw(screen);
         jumpButton.draw(screen);
@@ -140,7 +121,7 @@ public class Surface extends SurfaceView implements
             bomb_list.get(i).shoot(screen);
         }
 
-        //pixels = new int[GAME_WIDTH * GAME_HEIGHT];
+        pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
         Bitmap bmp = newBitmap();

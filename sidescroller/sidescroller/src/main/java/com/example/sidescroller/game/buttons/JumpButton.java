@@ -11,8 +11,8 @@ public class JumpButton {
     private Sprite sprite;
 
     public JumpButton(int x, int y, Sprite sprite) {
-        this.x = x / 5;
-        this.y = y - (y / 5);
+        this.x = x / 8;
+        this.y = y - (y / 8);
         this.sprite = sprite;
     }
 

@@ -34,20 +34,7 @@ public class GameLoop extends Thread {
     public void run() {
         Canvas c;
         c = null;
-        if (!running) return;
 
-        try {
-            c = surfaceHolder.lockCanvas(null);
-            synchronized (surfaceHolder) {
-                //call methods to draw and process next fame
-                gamePanel.onDraw(c);
-            }
-        } finally {
-            if (c != null) {
-
-                surfaceHolder.unlockCanvasAndPost(c);
-            }
-        }
         while (running) {
             //limit frame rate to max 60fps
 //            timeNow = System.currentTimeMillis();
@@ -63,7 +50,7 @@ public class GameLoop extends Thread {
                 c = surfaceHolder.lockCanvas(null);
                 synchronized (surfaceHolder) {
                     //call methods to draw and process next fame
-                    gamePanel.onDrawLoop(c);
+                    gamePanel.onDraw(c);
                 }
             } finally {
                 if (c != null) {

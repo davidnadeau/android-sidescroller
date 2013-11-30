@@ -1,6 +1,7 @@
 package com.example.sidescroller.game.peripherals;
 
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.graphics.PeripheralSprites;
 import com.example.sidescroller.game.graphics.Sprite;
 
 /**

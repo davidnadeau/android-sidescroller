@@ -2,6 +2,7 @@ package com.example.sidescroller.game.level;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.R;
