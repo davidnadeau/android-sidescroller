@@ -99,8 +99,10 @@ public class Surface extends SurfaceView implements
                     frank.setJumping(true);
             } else {
                 bomb = new Bomb();
+                bomb.setLevel(level);
                 bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
                 bomb_list.add(bomb);
+
             }
         }
         return true;
