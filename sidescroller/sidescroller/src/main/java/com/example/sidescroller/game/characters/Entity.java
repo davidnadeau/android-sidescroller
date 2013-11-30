@@ -1,6 +1,6 @@
-package com.example.sidescroller.characters;
+package com.example.sidescroller.game.characters;
 
-import com.example.sidescroller.graphics.level.Level;
+import com.example.sidescroller.game.level.Level;
 
 /**
  * Created by Owner on 18/11/13.

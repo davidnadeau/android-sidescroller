@@ -1,16 +1,18 @@
-package com.example.sidescroller.graphics;
+package com.example.sidescroller.game;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.sidescroller.characters.Frank;
-import com.example.sidescroller.graphics.level.Level;
-import com.example.sidescroller.graphics.peripherals.Bomb;
+import com.example.sidescroller.game.buttons.ButtonSprites;
+import com.example.sidescroller.game.buttons.JumpButton;
+import com.example.sidescroller.game.characters.Frank;
+import com.example.sidescroller.game.graphics.SpriteSheet;
+import com.example.sidescroller.game.level.Level;
+import com.example.sidescroller.game.peripherals.Bomb;
 
 import java.util.LinkedList;
 
@@ -19,17 +21,20 @@ import java.util.LinkedList;
  */
 public class Surface extends SurfaceView implements
         SurfaceHolder.Callback {
-    LinkedList <Bomb> bomb_list = new LinkedList();
+
+    LinkedList<Bomb> bomb_list = new LinkedList();
     int[] pixels;
     private static int GAME_WIDTH;
     private static int GAME_HEIGHT;
     private static final Bitmap.Config IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
-    Screen s;
-    Level  l;
-    Frank  frank;
-    Bomb   bomb;
-    int xScroll = 0;
-    GameLoop thread;
+    private Screen screen;
+    private Level  level;
+    private Frank  frank;
+    private Bomb   bomb;
+    private int xScroll = 0;
+    private GameLoop   thread;
+    private JumpButton jumpButton;
+
     public static void setDimensions(int width, int height) {
         GAME_WIDTH = width;
         GAME_HEIGHT = height;
@@ -41,16 +46,17 @@ public class Surface extends SurfaceView implements
         SpriteSheet.setView(this);
         Level.setView(this);
 
-        s = new Screen(GAME_WIDTH, GAME_HEIGHT);
-        l = new Level();
-        frank = new Frank(GAME_WIDTH,GAME_HEIGHT);
-        frank.setLevel(l);
-        frank.setX(GAME_WIDTH / 2);
-        frank.setY(GAME_HEIGHT / 2);
+        jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT, ButtonSprites.jumpButton);
+
+        screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
+        level = new Level();
+
+        frank = new Frank(GAME_WIDTH, GAME_HEIGHT);
+        frank.setLevel(level);
+        frank.setFalling(true);
 
         //Set thread
         getHolder().addCallback(this);
-
         setFocusable(true);
 
     }
@@ -85,37 +91,36 @@ public class Surface extends SurfaceView implements
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        bomb = new Bomb();
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            int X=frank.getJumpX();
-            int Y=frank.getJumpY();
-            if(event.getX()>=X&&event.getX()<=X+16&&event.getY()>=Y&&event.getY()<=Y+16)
-                frank.setJumping(true);
-            else{
+            int x = (int) event.getX();
+            int y = (int) event.getY();
+            if (jumpButton.wasClicked(x, y)) {
+                if (!frank.isJumping() && !frank.isFalling())
+                    frank.setJumping(true);
+            } else {
+                bomb = new Bomb();
                 bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
                 bomb_list.add(bomb);
             }
-            //TESTING JUMP -- this will be moved to button click when thats created
-            //frank.setJumping(true);
         }
         return true;
     }
-
-
-
-
-
 
     @Override
     public void onDraw(Canvas c) {
         super.onDraw(c);
 
-        l.draw(xScroll, 0, s);
+        level.draw(xScroll, 0, screen);
         xScroll++; //scroll map to the left
-        frank.draw(s);
+
+        //frank.move();
+        //frank.draw(screen);
+
+        //jumpButton.draw(screen);
 
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
-        System.arraycopy(s.pixels, 0, pixels, 0, pixels.length);
+        System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
         Bitmap bmp = newBitmap();
         fillBitmap(bmp);
@@ -124,18 +129,19 @@ public class Surface extends SurfaceView implements
 
     public void onDrawLoop(Canvas c) {
         super.onDraw(c);
-        //l.draw(xScroll, 0, s);
+        //level.draw(xScroll, 0, screen);
         //xScroll++; //scroll map to the left
-        frank.jump();
-        frank.draw(s);
+        frank.move();
+        frank.draw(screen);
+        jumpButton.draw(screen);
 
-    //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
-        for(int i = 0; i < bomb_list.size(); i++){
-            bomb_list.get(i).shoot(s);
+        //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
+        for (int i = 0; i < bomb_list.size(); i++) {
+            bomb_list.get(i).shoot(screen);
         }
 
         //pixels = new int[GAME_WIDTH * GAME_HEIGHT];
-        System.arraycopy(s.pixels, 0, pixels, 0, pixels.length);
+        System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
         Bitmap bmp = newBitmap();
         fillBitmap(bmp);

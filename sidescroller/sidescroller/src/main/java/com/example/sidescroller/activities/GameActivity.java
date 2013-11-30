@@ -1,11 +1,12 @@
-package com.example.sidescroller;
+package com.example.sidescroller.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-import com.example.sidescroller.graphics.Surface;
+import com.example.sidescroller.fragments.MenuFragment;
+import com.example.sidescroller.game.Surface;
 
 /**
  * Created by Owner on 15/11/13.

@@ -1,9 +1,13 @@
-package com.example.sidescroller;
+package com.example.sidescroller.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.sidescroller.R;
+import com.example.sidescroller.fragments.LevelSelectFragment;
+import com.example.sidescroller.fragments.OptionsFragment;
 
 public class MainActivity extends Activity {
 

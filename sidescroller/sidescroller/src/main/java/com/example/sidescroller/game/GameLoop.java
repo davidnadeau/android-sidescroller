@@ -1,7 +1,6 @@
-package com.example.sidescroller.graphics;
+package com.example.sidescroller.game;
 
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**
@@ -37,43 +36,37 @@ public class GameLoop extends Thread {
         c = null;
         if (!running) return;
 
-        Log.v("Colorss", "Start running");
         try {
             c = surfaceHolder.lockCanvas(null);
             synchronized (surfaceHolder) {
-                Log.v("Colorss", "got it, try to draw");
                 //call methods to draw and process next fame
                 gamePanel.onDraw(c);
             }
         } finally {
             if (c != null) {
-                Log.v("Colorss", "unlock the canvas and update?");
 
                 surfaceHolder.unlockCanvasAndPost(c);
             }
         }
         while (running) {
             //limit frame rate to max 60fps
-            timeNow = System.currentTimeMillis();
-            timeDelta = timeNow - timePrevFrame;
-            if (timeDelta < 16) {
-                try {
-                    Thread.sleep(16 - timeDelta);
-                } catch (InterruptedException e) {
-
-                }
-            }
+//            timeNow = System.currentTimeMillis();
+//            timeDelta = timeNow - timePrevFrame;
+//            if (timeDelta < 16) {
+//                try {
+//                    Thread.sleep(16 - timeDelta);
+//                } catch (InterruptedException e) {
+//
+//                }
+//            }
             try {
                 c = surfaceHolder.lockCanvas(null);
                 synchronized (surfaceHolder) {
-                    Log.v("Colorss", "got it, try to draw");
                     //call methods to draw and process next fame
                     gamePanel.onDrawLoop(c);
                 }
             } finally {
                 if (c != null) {
-                    Log.v("Colorss", "unlock the canvas and update?");
-
                     surfaceHolder.unlockCanvasAndPost(c);
                 }
             }

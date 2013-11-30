@@ -1,10 +1,12 @@
-package com.example.sidescroller;
+package com.example.sidescroller.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.sidescroller.R;
 
 /**
  * Created by Owner on 11/18/13.

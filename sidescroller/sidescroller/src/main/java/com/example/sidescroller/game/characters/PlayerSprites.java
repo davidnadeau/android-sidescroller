@@ -1,6 +1,6 @@
-package com.example.sidescroller.graphics.player;
+package com.example.sidescroller.game.characters;
 
-import com.example.sidescroller.graphics.Sprite;
+import com.example.sidescroller.game.graphics.Sprite;
 
 /**
  * Created by soote on 11/24/13.

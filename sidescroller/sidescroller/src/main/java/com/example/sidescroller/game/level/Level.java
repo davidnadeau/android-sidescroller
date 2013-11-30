@@ -1,19 +1,19 @@
-package com.example.sidescroller.graphics.level;
+package com.example.sidescroller.game.level;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 
 import com.example.sidescroller.R;
-import com.example.sidescroller.graphics.Screen;
+import com.example.sidescroller.game.Screen;
 
 /**
  * Created by soote on 11/23/13.
  */
 public class Level {
 
-    protected int IMAGE_WIDTH, IMAGE_HEIGHT;
-    protected int[] tiles;
+    private int IMAGE_WIDTH, IMAGE_HEIGHT;
+    private int[] tiles;
 
     private static View v;
     public static void setView(View v1) { v = v1; }

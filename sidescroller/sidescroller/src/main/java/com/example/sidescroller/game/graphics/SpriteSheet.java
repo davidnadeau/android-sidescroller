@@ -1,4 +1,4 @@
-package com.example.sidescroller.graphics;
+package com.example.sidescroller.game.graphics;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

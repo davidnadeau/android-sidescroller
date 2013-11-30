@@ -1,4 +1,4 @@
-package com.example.sidescroller.characters;
+package com.example.sidescroller.game.characters;
 
 import android.graphics.Point;
 

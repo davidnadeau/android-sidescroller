@@ -1,6 +1,6 @@
-package com.example.sidescroller.graphics.level;
+package com.example.sidescroller.game.level;
 
-import com.example.sidescroller.graphics.Sprite;
+import com.example.sidescroller.game.graphics.Sprite;
 
 /**
  * Created by soote on 11/23/13.
