@@ -3,15 +3,15 @@ package com.example.sidescroller.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
+import com.example.sidescroller.game.entities.enemies.JumperEnemy;
+import com.example.sidescroller.game.entities.enemies.RunnerEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
-import com.example.sidescroller.game.entities.enemies.Enemy;
 import com.example.sidescroller.game.entities.player.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
@@ -34,7 +34,7 @@ public class Surface extends SurfaceView implements
     private Screen screen;
     private Level  level;
     private Frank  frank;
-    private Enemy  enemy;
+    private RunnerEnemy runnerEnemy; private JumperEnemy jumperEnemy;
     private Bomb   bomb;
     private int xScroll = 0;
     private GameLoop   thread;
@@ -59,8 +59,11 @@ public class Surface extends SurfaceView implements
         frank = new Frank(GAME_WIDTH, GAME_HEIGHT);
         frank.setLevel(level);
 
-        enemy = new Enemy(GAME_WIDTH, GAME_HEIGHT);
-        enemy.setLevel(level);
+        runnerEnemy = new RunnerEnemy(GAME_WIDTH, GAME_HEIGHT);
+        runnerEnemy.setLevel(level);
+
+        jumperEnemy = new JumperEnemy(GAME_WIDTH, GAME_HEIGHT);
+        jumperEnemy.setLevel(level);
 
         //Set thread
         getHolder().addCallback(this);
@@ -125,8 +128,11 @@ public class Surface extends SurfaceView implements
         frank.move();
         frank.draw(screen);
 
-        enemy.move();
-        enemy.draw(screen);
+        runnerEnemy.move();
+        runnerEnemy.draw(screen);
+
+        jumperEnemy.move();
+        jumperEnemy.draw(screen);
 
         jumpButton.draw(screen);
 
