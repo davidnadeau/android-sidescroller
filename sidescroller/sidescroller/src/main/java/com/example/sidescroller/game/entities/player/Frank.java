@@ -1,6 +1,7 @@
-package com.example.sidescroller.game.entities;
+package com.example.sidescroller.game.entities.player;
 
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Tile;
 

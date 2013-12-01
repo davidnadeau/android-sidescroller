@@ -1,4 +1,4 @@
-package com.example.sidescroller.game.entities;
+package com.example.sidescroller.game.entities.player;
 
 import com.example.sidescroller.game.graphics.Sprite;
 

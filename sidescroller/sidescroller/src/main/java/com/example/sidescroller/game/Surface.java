@@ -9,9 +9,9 @@ import android.view.SurfaceView;
 
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
-import com.example.sidescroller.game.entities.Bomb;
-import com.example.sidescroller.game.entities.Enemy;
-import com.example.sidescroller.game.entities.Frank;
+import com.example.sidescroller.game.entities.peripherals.Bomb;
+import com.example.sidescroller.game.entities.enemies.Enemy;
+import com.example.sidescroller.game.entities.player.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
