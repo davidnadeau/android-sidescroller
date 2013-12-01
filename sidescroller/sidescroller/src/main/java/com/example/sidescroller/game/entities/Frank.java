@@ -1,4 +1,4 @@
-package com.example.sidescroller.game.characters;
+package com.example.sidescroller.game.entities;
 
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
@@ -9,7 +9,6 @@ import com.example.sidescroller.game.level.Tile;
  */
 public class Frank extends Entity {
     private int lives, score;
-    private Sprite sprite;
 
     private boolean jumping = false;
     private boolean falling = true;
@@ -47,16 +46,6 @@ public class Frank extends Entity {
             sprite = FrankSprites.frank_walk;//walking sprite
         }
     }
-
-    public boolean collision(int xa, int ya) {
-        int tileX = (x+xa)/Tile.TILE_SIZE;
-        int tileY = (y+ya)/Tile.TILE_SIZE;
-        if (level.getTile(tileX, tileY).isSolid())
-            return true;
-        return false;
-    }
-
-    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
 
     public void setJumping(boolean jumping) {
         this.jumping = jumping;

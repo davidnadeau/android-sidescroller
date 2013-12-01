@@ -7,14 +7,13 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.example.sidescroller.activities.MainActivity;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
-import com.example.sidescroller.game.characters.Frank;
+import com.example.sidescroller.game.entities.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
-import com.example.sidescroller.game.peripherals.Bomb;
+import com.example.sidescroller.game.entities.Bomb;
 
 import java.util.LinkedList;
 

@@ -1,4 +1,4 @@
-package com.example.sidescroller.game.peripherals;
+package com.example.sidescroller.game.entities;
 
 import com.example.sidescroller.game.graphics.Sprite;
 

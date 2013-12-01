@@ -1,4 +1,4 @@
-package com.example.sidescroller.game.characters;
+package com.example.sidescroller.game.entities;
 
 import android.graphics.Point;
 
@@ -15,14 +15,6 @@ public class Enemy extends Entity {
     public void move(Point p) {
         if (collision(p)) return;
         //move
-    }
-
-    /**
-     * return true if 1 pixel over in the set direction is a solid tile
-     */
-    protected boolean collision(Point p) {
-        //get next tile, check if solid
-        return false;
     }
 
     public int getValue() { return value; }
