@@ -2,6 +2,7 @@ package com.example.sidescroller.game.buttons;
 
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
+import com.example.sidescroller.game.level.Tile;
 
 /**
  * Created by soote on 11/29/13.
@@ -17,12 +18,12 @@ public class JumpButton {
     }
 
     public boolean wasClicked(int x, int y) {
-        return x >= this.x - 16 &&
+        return x >= this.x - 80 &&
                 x <= this.x &&
-                y >= this.y - 16 &&
+                y >= this.y - 80 &&
                 y <= this.y;
     }
 
-    public void draw(Screen s) { s.draw(x - 16, y - 16, sprite); }
+    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
 
 }

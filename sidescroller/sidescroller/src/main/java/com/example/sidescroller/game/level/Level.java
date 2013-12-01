@@ -12,7 +12,6 @@ import com.example.sidescroller.game.Screen;
  * Created by soote on 11/23/13.
  */
 public class Level {
-
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
     private int[] tiles;
 
@@ -48,9 +47,9 @@ public class Level {
     public void draw(int xScroll, int yScroll, Screen s) {
         s.setOffset(xScroll, yScroll);
         int x0 = xScroll >> 4;
-        int x1 = (xScroll + s.getWidth() + 16) >> 4;
+        int x1 = (xScroll + s.getWidth() + Tile.TILE_SIZE) >> 4;
         int y0 = yScroll >> 4;
-        int y1 = (yScroll + s.getHeight() + 16) >> 4;
+        int y1 = (yScroll + s.getHeight() + Tile.TILE_SIZE) >> 4;
 
         for (int y = y0; y < y1; y++) {
             for (int x = x0; x < x1; x++) {

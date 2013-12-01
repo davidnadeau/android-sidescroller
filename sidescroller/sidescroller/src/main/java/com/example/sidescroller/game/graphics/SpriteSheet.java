@@ -10,7 +10,6 @@ import com.example.sidescroller.R;
  * Created by soote on 11/23/13.
  */
 public class SpriteSheet {
-
     private final int IMAGE_WIDTH;
     private final int IMAGE_HEIGHT;
 

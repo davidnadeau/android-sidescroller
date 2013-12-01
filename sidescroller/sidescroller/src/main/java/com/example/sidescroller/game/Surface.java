@@ -13,6 +13,7 @@ import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.characters.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
+import com.example.sidescroller.game.level.Tile;
 import com.example.sidescroller.game.peripherals.Bomb;
 
 import java.util.LinkedList;
@@ -116,7 +117,7 @@ public class Surface extends SurfaceView implements
         super.onDraw(c);
 
         level.draw(xScroll, 0, screen);
-        xScroll+=16; //scroll map to the left
+        xScroll+= Tile.TILE_SIZE; //scroll map to the left
         frank.move();
         frank.draw(screen);
         jumpButton.draw(screen);

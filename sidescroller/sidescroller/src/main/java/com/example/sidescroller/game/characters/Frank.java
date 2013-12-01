@@ -2,6 +2,7 @@ package com.example.sidescroller.game.characters;
 
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
+import com.example.sidescroller.game.level.Tile;
 
 /**
  * Created by Owner on 18/11/13.
@@ -24,8 +25,8 @@ public class Frank extends Entity {
     public void move() {
 
         if (jumping) {
-            if (!collision(0, -16) && y >= jumpHeight) {
-                y -= 16;
+            if (!collision(0, -Tile.TILE_SIZE) && y >= jumpHeight) {
+                y -= Tile.TILE_SIZE;
                 sprite = FrankSprites.frank_jump;//jump sprite
             } else {
                 jumping = false;
@@ -34,8 +35,8 @@ public class Frank extends Entity {
 
             }
         } else if (falling) {
-            if (!collision(0, 16)) {
-                y += 16;
+            if (!collision(0, Tile.TILE_SIZE)) {
+                y += Tile.TILE_SIZE;
                 sprite = FrankSprites.frank_fall;//fall sprite
             } else {
                 falling = false;
@@ -48,14 +49,14 @@ public class Frank extends Entity {
     }
 
     public boolean collision(int xa, int ya) {
-        int tileX = (x+xa)/16;
-        int tileY = (y+ya)/16;
+        int tileX = (x+xa)/Tile.TILE_SIZE;
+        int tileY = (y+ya)/Tile.TILE_SIZE;
         if (level.getTile(tileX, tileY).isSolid())
             return true;
         return false;
     }
 
-    public void draw(Screen s) { s.draw(x - 16, y - 16, sprite); }
+    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
 
     public void setJumping(boolean jumping) {
         this.jumping = jumping;

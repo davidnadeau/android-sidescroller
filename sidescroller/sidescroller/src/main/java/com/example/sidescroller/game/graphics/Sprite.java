@@ -4,7 +4,6 @@ package com.example.sidescroller.game.graphics;
  * Created by soote on 11/23/13.
  */
 public class Sprite {
-
     private final int SIZE;
     private       int x, y;
     public int[] pixels;

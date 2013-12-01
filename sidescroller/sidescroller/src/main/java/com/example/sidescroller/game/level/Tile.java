@@ -10,7 +10,7 @@ public class Tile {
     public int x, y;
     public  Sprite  sprite;
     private boolean solid;
-
+    public static int TILE_SIZE = 16;
     public static Tile grass        = new Tile(TileSprites.grass, false);
     public static Tile flower       = new Tile(TileSprites.flower, false);
     public static Tile rock         = new Tile(TileSprites.rock, true);

@@ -6,8 +6,7 @@ import com.example.sidescroller.game.level.Level;
  * Created by Owner on 18/11/13.
  */
 public class Entity {
-    protected int x,
-            y;
+    protected int x, y;
 
     protected Level level;
 
