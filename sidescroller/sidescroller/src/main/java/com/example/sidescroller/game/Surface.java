@@ -127,7 +127,7 @@ public class Surface extends SurfaceView implements
 
         enemy.move();
         enemy.draw(screen);
-        Log.d("ENEMY", "pass");
+
         jumpButton.draw(screen);
 
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one

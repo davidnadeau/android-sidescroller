@@ -24,7 +24,6 @@ public class Frank extends Entity {
     }
 
     public void move() {
-
         if (jumping) {
             if (!collision(0, -Tile.TILE_SIZE) && y >= jumpHeight) {
                 y -= Tile.TILE_SIZE;
