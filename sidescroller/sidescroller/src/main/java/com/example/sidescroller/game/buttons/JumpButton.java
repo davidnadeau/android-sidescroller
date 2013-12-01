@@ -18,10 +18,10 @@ public class JumpButton {
     }
 
     public boolean wasClicked(int x, int y) {
-        return x >= this.x - 80 &&
-                x <= this.x &&
-                y >= this.y - 80 &&
-                y <= this.y;
+        return    x >= this.x
+               && x <= this.x + sprite.getSize()
+               && y >= this.y
+               && y <= this.y + sprite.getSize();
     }
 
     public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
