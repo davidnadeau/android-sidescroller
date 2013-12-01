@@ -2,7 +2,6 @@ package com.example.sidescroller.game.level;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.R;
@@ -14,7 +13,7 @@ import com.example.sidescroller.game.Screen;
 public class Level {
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
     private int[] tiles;
-    private int levelID;
+    private int   levelID;
 
     private static View v;
     public static void setView(View v1) { v = v1; }

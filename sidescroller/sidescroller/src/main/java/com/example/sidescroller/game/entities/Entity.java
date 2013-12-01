@@ -1,6 +1,5 @@
 package com.example.sidescroller.game.entities;
 
-import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
@@ -22,13 +21,9 @@ public class Entity {
 
     public void setLevel(Level level) { this.level = level; }
 
-    protected void draw(Screen s, int x, int y) {
-        s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite);
-    }
-
     protected boolean collision(int xa, int ya) {
-        int tileX = (x+xa)/Tile.TILE_SIZE;
-        int tileY = (y+ya)/Tile.TILE_SIZE;
+        int tileX = (x + xa) / Tile.TILE_SIZE;
+        int tileY = (y + ya) / Tile.TILE_SIZE;
         if (level.getTile(tileX, tileY).isSolid())
             return true;
         return false;

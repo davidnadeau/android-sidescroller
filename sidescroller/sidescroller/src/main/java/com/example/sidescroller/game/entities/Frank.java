@@ -9,6 +9,7 @@ import com.example.sidescroller.game.level.Tile;
  */
 public class Frank extends Entity {
     private int lives, score;
+    private Sprite sprite;
 
     private boolean jumping = false;
     private boolean falling = true;
@@ -46,6 +47,8 @@ public class Frank extends Entity {
             sprite = FrankSprites.frank_walk;//walking sprite
         }
     }
+
+    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
 
     public void setJumping(boolean jumping) {
         this.jumping = jumping;

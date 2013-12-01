@@ -9,11 +9,12 @@ import android.view.SurfaceView;
 
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
+import com.example.sidescroller.game.entities.Bomb;
+import com.example.sidescroller.game.entities.Enemy;
 import com.example.sidescroller.game.entities.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
-import com.example.sidescroller.game.entities.Bomb;
 
 import java.util.LinkedList;
 
@@ -32,6 +33,7 @@ public class Surface extends SurfaceView implements
     private Screen screen;
     private Level  level;
     private Frank  frank;
+    private Enemy  enemy;
     private Bomb   bomb;
     private int xScroll = 0;
     private GameLoop   thread;
@@ -55,6 +57,9 @@ public class Surface extends SurfaceView implements
 
         frank = new Frank(GAME_WIDTH, GAME_HEIGHT);
         frank.setLevel(level);
+
+        enemy = new Enemy(GAME_WIDTH, GAME_HEIGHT);
+        enemy.setLevel(level);
 
         //Set thread
         getHolder().addCallback(this);
@@ -116,9 +121,14 @@ public class Surface extends SurfaceView implements
         super.onDraw(c);
 
         level.draw(xScroll, 0, screen);
-        xScroll+= Tile.TILE_SIZE; //scroll map to the left
+        xScroll += Tile.TILE_SIZE; //scroll map to the left
+
         frank.move();
         frank.draw(screen);
+
+        enemy.move();
+        enemy.draw(screen);
+
         jumpButton.draw(screen);
 
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one

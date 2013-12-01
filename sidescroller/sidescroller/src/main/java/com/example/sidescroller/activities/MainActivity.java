@@ -3,7 +3,6 @@ package com.example.sidescroller.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -59,13 +58,13 @@ public class MainActivity extends Activity {
 
         Intent i = new Intent(getApplicationContext(), GameActivity.class);
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        i.putExtra("level",radioGroup.getCheckedRadioButtonId());
+        i.putExtra("level", radioGroup.getCheckedRadioButtonId());
         startActivity(i);
     }
 
-    public void volumeSelect(View view){
-        SeekBar bar=(SeekBar)findViewById(R.id.seekBar);
-        int View=bar.getProgress();
+    public void volumeSelect(View view) {
+        SeekBar bar = (SeekBar) findViewById(R.id.seekBar);
+        int View = bar.getProgress();
         //music.setVolume(View);???
     }
 

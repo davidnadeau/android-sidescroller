@@ -1,6 +1,7 @@
 package com.example.sidescroller.game.entities;
 
-import android.graphics.Point;
+import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.level.Tile;
 
 /**
  * Created by Owner on 18/11/13.
@@ -10,14 +11,18 @@ public class Enemy extends Entity {
 
     //fight the power
     public Enemy() {}
-    public Enemy(int value) { this.value = value; }
-
-    public void move(Point p) {
-        if (collision(p)) return;
-        //move
+    public Enemy(int x, int y) {
+        this.x = x;
+        this.y = y / 2;
     }
 
-    public int getValue() { return value; }
+    public void move() {
+        sprite = EnemySprites.enemy_walker;//walking sprite
+        //move randomly
+        y += Math.random() > .5 ? 16 : -16;
+        x += Math.random() > .5 ? 16 : -16;
+    }
 
-    public void setValue(int value) { this.value = value; }
+    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
+
 }
