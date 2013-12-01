@@ -27,21 +27,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Options"
-        android:id="@+id/options"
-        android:layout_below="@+id/start"
-        android:layout_alignLeft="@+id/start"
-        android:layout_alignRight="@+id/start"
-        android:onClick="openOptions"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Quit"
         android:id="@+id/quit"
-        android:layout_below="@+id/options"
-        android:layout_alignRight="@+id/options"
-        android:layout_alignLeft="@+id/options"
-        android:onClick="quit"/>
+        android:onClick="quit"
+        android:layout_below="@+id/start"
+        android:layout_alignRight="@+id/start"
+        android:layout_alignLeft="@+id/start"/>
 
 </RelativeLayout>

@@ -28,6 +28,7 @@ public class Surface extends SurfaceView implements
     int[] pixels;
     private static int GAME_WIDTH;
     private static int GAME_HEIGHT;
+    private static int LEVEL_ID;
     private static final Bitmap.Config IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
     private Screen screen;
     private Level  level;
@@ -41,6 +42,7 @@ public class Surface extends SurfaceView implements
         GAME_WIDTH = width;
         GAME_HEIGHT = height;
     }
+    public static void setLevel(int id) { LEVEL_ID = id; }
 
     public Surface(Context c) {
         super(c);
@@ -49,10 +51,8 @@ public class Surface extends SurfaceView implements
         Level.setView(this);
 
         jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT, ButtonSprites.jumpButton);
-
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
-        //level = new Level();//select level;
-        level = new Level(MainActivity.l);//select level;
+        level = new Level(LEVEL_ID);
 
         frank = new Frank(GAME_WIDTH, GAME_HEIGHT);
         frank.setLevel(level);

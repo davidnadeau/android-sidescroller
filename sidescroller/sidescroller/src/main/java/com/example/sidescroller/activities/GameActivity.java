@@ -18,12 +18,15 @@ public class GameActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Bundle b = getIntent().getExtras();
+
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
 
         Surface.setDimensions(width, height);
+        Surface.setLevel(b.getInt("level"));
         setContentView(new Surface(this));
     }
 

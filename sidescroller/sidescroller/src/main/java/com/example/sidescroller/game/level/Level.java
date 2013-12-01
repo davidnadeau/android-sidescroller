@@ -14,27 +14,29 @@ import com.example.sidescroller.game.Screen;
 public class Level {
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
     private int[] tiles;
+    private int levelID;
 
     private static View v;
     public static void setView(View v1) { v = v1; }
 
-    public Level() {
-        int levelID = R.drawable.level;
+    public Level(int id) {
+        int levelID = 0;
+        switch (id) {
+            case 2131230730:
+                levelID = R.drawable.level1image;
+                break;
+            case 2131230731:
+                levelID = R.drawable.level2image;
+                break;
+            case 2131230732:
+                levelID = R.drawable.level3image;
+                break;
+        }
         loadLevel(levelID);
     }
 
-    public Level(int ID){
-        //change here to select level
-        switch (ID){
-            case 0:ID=R.drawable.level;break;
-            case 1:ID=R.drawable.level;break;
-            case 2:;break;
-
-        };
-        loadLevel(ID);
-    };
-
     private void loadLevel(int id) {
+
         Bitmap bmp = loadBitmap(id);
         IMAGE_WIDTH = bmp.getWidth();
         IMAGE_HEIGHT = bmp.getHeight();
