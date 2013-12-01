@@ -33,7 +33,6 @@ public class Frank extends Entity {
                 jumping = false;
                 falling = true;
                 sprite = FrankSprites.frank_fall;//fall sprite
-
             }
         } else if (falling) {
             if (!collision(0, Tile.TILE_SIZE)) {
@@ -43,7 +42,6 @@ public class Frank extends Entity {
                 falling = false;
                 sprite = FrankSprites.frank_land;//land sprite
             }
-
         } else {
             sprite = FrankSprites.frank_walk;//walking sprite
         }
@@ -69,6 +67,4 @@ public class Frank extends Entity {
 
     public void setLives(int lives) { this.lives = lives; }
     public void setScore(int score) { this.score = score; }
-
-
 }

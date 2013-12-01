@@ -3,6 +3,7 @@ package com.example.sidescroller.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -98,7 +99,6 @@ public class Surface extends SurfaceView implements
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             int x = (int) event.getX();
             int y = (int) event.getY();
@@ -110,7 +110,6 @@ public class Surface extends SurfaceView implements
                 bomb.setLevel(level);
                 bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
                 bomb_list.add(bomb);
-
             }
         }
         return true;
@@ -128,7 +127,7 @@ public class Surface extends SurfaceView implements
 
         enemy.move();
         enemy.draw(screen);
-
+        Log.d("ENEMY", "pass");
         jumpButton.draw(screen);
 
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one

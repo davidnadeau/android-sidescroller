@@ -10,36 +10,40 @@ import com.example.sidescroller.game.level.TileSprites;
  */
 public class Bomb extends Entity {
 
-    private int startX, startY;
+    private int startX, startY, numOfExplosionAnimations = 0;
     double angle;
 
-    private boolean shooting = false;
+    private boolean shooting = false, explosion = false;
 
     public Bomb() { sprite = PeripheralSprites.bomb;}
 
     public void shoot(Screen s) {
-        if (!isShooting()) {
-            return;
-        } else {
-
+        if (!isShooting()) {return;}
+        else {
             int tempX = startX, tempY = startY;
-            startX += (int) (Tile.TILE_SIZE * Math.cos(angle)); //increment bomb going to the
-            // right (note: 8
-            // is the speed)
-            startY += (int) (Tile.TILE_SIZE * Math.sin(angle)); //increment bomb going up
+            startX += (int) (Tile.TILE_SIZE * Math.cos(angle)); //increment bomb
+            startY += (int) (Tile.TILE_SIZE * Math.sin(angle)); //increment bomb
             int x = startX - tempX >= Tile.TILE_SIZE ? Tile.TILE_SIZE : 0;
             int y = startY - tempY >= Tile.TILE_SIZE ? Tile.TILE_SIZE : 0;
 
-            if (!collision(x, y)) { //if no collision and the bomb is not off the
-                // screen (miss)
+            if (!collision(x, y)) { //if no collision
                 draw(s, startX, startY); //draw there
             } else { //if there is a collision
-                //explosion animation (startX, startY);
                 shooting = false;
-                sprite = TileSprites.errSprite;
+                sprite = PeripheralSprites.explosion;
+                draw(s, startX, startY);
             }
         }
     }
+
+    public boolean collision(int xa, int ya){
+        int tileX = (startX+xa)/Tile.TILE_SIZE;
+        int tileY = (startY+ya)/Tile.TILE_SIZE;
+        if (level.getTile(tileX, tileY).isSolid())
+            return true;
+        return false;
+    }
+
     public void draw(Screen s, int x, int y) {
         s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite);
     }
