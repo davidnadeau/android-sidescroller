@@ -34,7 +34,7 @@ public class Enemy extends Entity {
         }
         else{ //if he is already on the ground
 
-            if(walking_left && !collision(-Tile.TILE_SIZE, y)){ //walk left until collision
+            if(walking_left && !collision(-Tile.TILE_SIZE, 0)){ //walk left until collision
                 Log.d("Enemy","left");
                 x -= Tile.TILE_SIZE; //move enemy to the left
             }
@@ -42,7 +42,7 @@ public class Enemy extends Entity {
                 Log.d("Enemy","collision on my left");
                 walking_right = true;
                 walking_left = false;
-                if(walking_right && !collision(Tile.TILE_SIZE, y)){//go right until we hit a collision
+                if(walking_right && !collision(Tile.TILE_SIZE, 0)){//go right until we hit a collision
                     Log.d("Enemy","GOING RIGHT NOW");
                     x += Tile.TILE_SIZE; //increment to the right
                 }
