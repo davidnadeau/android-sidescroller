@@ -35,7 +35,7 @@ public class Enemy extends Entity {
         else{ //if he is already on the ground
 
             if(walking_left && !collision(-Tile.TILE_SIZE, 0)){ //walk left until collision
-                x -= Tile.TILE_SIZE*1.5; //move enemy to the left
+                x -= Tile.TILE_SIZE*2; //move enemy to the left
             }
             else{ //if we hit a collision going left, go right
                 walking_right = true;
