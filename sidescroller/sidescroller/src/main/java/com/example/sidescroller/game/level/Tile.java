@@ -14,8 +14,9 @@ public class Tile {
     public static Tile castleWall   = new Tile(TileSprites.castleWall, false);
     public static Tile snowMid      = new Tile(TileSprites.snowMid, true);
     public static Tile snowCenter   = new Tile(TileSprites.snowCenter, false);
-    public static Tile cloud   = new Tile(TileSprites.cloud, false);
-    public static Tile sun   = new Tile(TileSprites.sun, false);
+    public static Tile cloud        = new Tile(TileSprites.cloud, false);
+    public static Tile cloud2       = new Tile(TileSprites.cloud2, false);
+    public static Tile spikes       = new Tile(TileSprites.spikes, true);
     public static Tile errTile      = new Tile(TileSprites.errTile, false);
 
 

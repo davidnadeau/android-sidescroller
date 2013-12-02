@@ -21,7 +21,7 @@ public class JumperEnemy extends Entity{
     }
 
     public void move() {
-        sprite = EnemySprites.enemy_walker;//walking sprite
+        sprite = EnemySprites.enemy_jumper;//walking sprite
 
         if(mid_air){ //if he is in mid air, we want him to fall to the floor
             if(!collision(x, +sprite.getSize())){ //if he is not on the ground to begin with
