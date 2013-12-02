@@ -24,6 +24,6 @@ public class JumpButton {
                 && y <= this.y + sprite.getSize();
     }
 
-    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
+    public void draw(Screen s) { s.draw(x, y, sprite); }
 
 }

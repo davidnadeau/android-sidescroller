@@ -6,15 +6,8 @@ import com.example.sidescroller.game.graphics.Sprite;
  * Created by soote on 11/23/13.
  */
 public class TileSprites {
-    public static Sprite grass        = new Sprite(Tile.TILE_SIZE, 0, 4);
-    public static Sprite flower       = new Sprite(Tile.TILE_SIZE, 3, 1);
-    public static Sprite rock         = new Sprite(Tile.TILE_SIZE, 2, 0);
-    public static Sprite brick        = new Sprite(Tile.TILE_SIZE, 2, 2);
-    public static Sprite rainbowBrick = new Sprite(Tile.TILE_SIZE, 2, 3);
-    public static Sprite lightBrick   = new Sprite(Tile.TILE_SIZE, 2, 5);
-    public static Sprite lightWood    = new Sprite(Tile.TILE_SIZE, 4, 1);
-    public static Sprite darkWood     = new Sprite(Tile.TILE_SIZE, 4, 2);
-    public static Sprite waterSprite  = new Sprite(Tile.TILE_SIZE, 5, 2);
-    public static Sprite errSprite    = new Sprite(Tile.TILE_SIZE, 5, 5);
-
+    public static Sprite castleWall = new Sprite(Tile.TILE_SIZE, 1, 0);
+    public static Sprite snowMid    = new Sprite(Tile.TILE_SIZE, 1, 1);
+    public static Sprite snowCenter = new Sprite(Tile.TILE_SIZE, 1, 2);
+    public static Sprite errTile    = new Sprite(Tile.TILE_SIZE, 0, 0);
 }

@@ -1,5 +1,7 @@
 package com.example.sidescroller.game.entities.player;
 
+import android.util.Log;
+
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.graphics.Sprite;
@@ -10,7 +12,6 @@ import com.example.sidescroller.game.level.Tile;
  */
 public class Frank extends Entity {
     private int lives, score;
-    private Sprite sprite;
 
     private boolean jumping = false;
     private boolean falling = true;
@@ -24,34 +25,42 @@ public class Frank extends Entity {
     }
 
     public void move() {
-        if (jumping) {
-            if (!collision(0, -Tile.TILE_SIZE) && y >= jumpHeight) {
-                y -= Tile.TILE_SIZE;
+        sprite = FrankSprites.frank_walk;
+        if (jumping) {        Log.d("COLLISION","jump");
+
+            if (!collision(0, -sprite.getSize()) && y >= jumpHeight) {        Log.d("COLLISION","keep jumping");
+
+                y -= sprite.getSize();
                 sprite = FrankSprites.frank_jump;//jump sprite
-            } else {
+            } else {        Log.d("COLLISION","done jump");
+
                 jumping = false;
                 falling = true;
                 sprite = FrankSprites.frank_fall;//fall sprite
             }
-        } else if (falling) {
-            if (!collision(0, Tile.TILE_SIZE)) {
-                y += Tile.TILE_SIZE;
+        } else if (falling) {        Log.d("COLLISION","fall");
+
+            if (!collision(0, sprite.getSize())) {        Log.d("COLLISION","keep falling");
+
+                y += sprite.getSize();
                 sprite = FrankSprites.frank_fall;//fall sprite
-            } else {
+            } else {        Log.d("COLLISION","done fall");
+
                 falling = false;
                 sprite = FrankSprites.frank_land;//land sprite
             }
-        } else {
+        } else {        Log.d("COLLISION","walk");
+
             sprite = FrankSprites.frank_walk;//walking sprite
         }
     }
 
-    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
+    public void draw(Screen s) { s.draw(x, y, sprite); }
 
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
         startY = y;
-        jumpHeight = startY - 64;
+        jumpHeight = startY - 128;
     }
     public boolean isJumping() { return jumping; }
     public boolean isFalling() { return falling; }

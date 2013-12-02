@@ -24,8 +24,8 @@ public class JumperEnemy extends Entity{
         sprite = EnemySprites.enemy_walker;//walking sprite
 
         if(mid_air){ //if he is in mid air, we want him to fall to the floor
-            if(!collision(x, +Tile.TILE_SIZE)){ //if he is not on the ground to begin with
-                y += Tile.TILE_SIZE; //increment y to make him closer to ground
+            if(!collision(x, +sprite.getSize())){ //if he is not on the ground to begin with
+                y += sprite.getSize(); //increment y to make him closer to ground
             }
             else{ //he has already hit the ground so now enemy has to jump
                 mid_air = false;
@@ -38,10 +38,10 @@ public class JumperEnemy extends Entity{
                 jumping = false;
             }
             else{
-                x -= Tile.TILE_SIZE; //decrement x
-                y -= Tile.TILE_SIZE; //decrement y
+                x -= sprite.getSize(); //decrement x
+                y -= sprite.getSize(); //decrement y
             }
         }
     }
-    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
+    public void draw(Screen s) { s.draw(x, y, sprite); }
 }

@@ -21,10 +21,10 @@ public class Bomb extends Entity {
         if (!isShooting()) {return;}
         else {
             int tempX = startX, tempY = startY;
-            startX += (int) (Tile.TILE_SIZE * Math.cos(angle)); //increment bomb
-            startY += (int) (Tile.TILE_SIZE * Math.sin(angle)); //increment bomb
-            int x = startX - tempX >= Tile.TILE_SIZE ? Tile.TILE_SIZE : 0;
-            int y = startY - tempY >= Tile.TILE_SIZE ? Tile.TILE_SIZE : 0;
+            startX += (int) (sprite.getSize() * Math.cos(angle)); //increment bomb
+            startY += (int) (sprite.getSize() * Math.sin(angle)); //increment bomb
+            int x = startX - tempX >= sprite.getSize() ? sprite.getSize() : 0;
+            int y = startY - tempY >= sprite.getSize() ? sprite.getSize() : 0;
 
             if (!collision(x, y)) { //if no collision
                 draw(s, startX, startY); //draw there
@@ -45,7 +45,7 @@ public class Bomb extends Entity {
     }
 
     public void draw(Screen s, int x, int y) {
-        s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite);
+        s.draw(x, y, sprite);
     }
 
     public void setShooting(boolean shooting, int startX, int startY, float touchX, float touchY) {

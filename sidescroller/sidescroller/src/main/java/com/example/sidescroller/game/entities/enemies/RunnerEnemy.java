@@ -24,8 +24,8 @@ public class RunnerEnemy extends Entity {
         sprite = EnemySprites.enemy_walker;//walking sprite
 
         if(mid_air){ //if he is in mid air, we want him to fall to the floor
-            if(!collision(x, +Tile.TILE_SIZE)){ //if he is not on the ground to begin with
-                y += Tile.TILE_SIZE; //increment y to make him closer to ground
+            if(!collision(x, +sprite.getSize())){ //if he is not on the ground to begin with
+                y += sprite.getSize(); //increment y to make him closer to ground
             }
             else{
                 mid_air = false;
@@ -33,8 +33,8 @@ public class RunnerEnemy extends Entity {
             }
         }
         else if(walking_left){ //if he is already on the ground
-            x -= Tile.TILE_SIZE; //move enemy to the left
+            x -= sprite.getSize(); //move enemy to the left
         }
     }
-    public void draw(Screen s) { s.draw(x - Tile.TILE_SIZE, y - Tile.TILE_SIZE, sprite); }
+    public void draw(Screen s) { s.draw(x, y, sprite); }
 }
