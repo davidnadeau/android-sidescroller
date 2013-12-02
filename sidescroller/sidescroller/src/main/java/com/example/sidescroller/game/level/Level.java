@@ -71,6 +71,10 @@ public class Level {
                 return Tile.snowMid;
             case 0xff000000:
                 return Tile.snowCenter;
+            case 0xffffff00:
+                return Tile.sun;
+            case 0xff00cccc:
+                return Tile.cloud;
             default:
                 return Tile.castleWall;
         }
