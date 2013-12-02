@@ -16,6 +16,7 @@ import com.example.sidescroller.game.entities.player.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
+import com.example.sidescroller.game.sound.soundPool;
 
 import java.util.LinkedList;
 
@@ -39,6 +40,7 @@ public class Surface extends SurfaceView implements
     private int xScroll = 0;
     private GameLoop   thread;
     private JumpButton jumpButton;
+    private soundPool pool;
 
     public static void setDimensions(int width, int height) {
         GAME_WIDTH = width;
@@ -65,6 +67,8 @@ public class Surface extends SurfaceView implements
         jumperEnemy = new JumperEnemy(GAME_WIDTH, GAME_HEIGHT);
         jumperEnemy.setLevel(level);
 
+        pool=new soundPool(c);
+        pool.play(0,true);
         //Set thread
         getHolder().addCallback(this);
         setFocusable(true);
@@ -108,11 +112,13 @@ public class Surface extends SurfaceView implements
             if (jumpButton.wasClicked(x, y)) {
                 if (!frank.isJumping() && !frank.isFalling())
                     frank.setJumping(true);
+                pool.play(1,false);
             } else {
                 bomb = new Bomb();
                 bomb.setLevel(level);
                 bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
                 bomb_list.add(bomb);
+                pool.play(2,false);
             }
         }
         return true;
