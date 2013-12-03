@@ -7,5 +7,5 @@ import com.example.sidescroller.game.graphics.Sprite;
  */
 public class PeripheralSprites {
     public static Sprite bomb = new Sprite(32, 1, 3);
-    public static Sprite explosion = new Sprite(16, 1, 6);
+    public static Sprite explosion = new Sprite(32, 0, 3);
 }

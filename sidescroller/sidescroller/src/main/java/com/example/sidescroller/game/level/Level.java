@@ -2,7 +2,6 @@ package com.example.sidescroller.game.level;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.R;
@@ -73,7 +72,7 @@ public class Level {
             case 0xff000000:
                 return Tile.snowCenter;
             case 0xfffff600: //yellow
-                return Tile.hills;
+                return Tile.spikes;
             case 0xff00cccc: //baby blue
                 return Tile.cloud;
             case 0xff7e5300: //brown
@@ -82,6 +81,8 @@ public class Level {
                 return Tile.grass;
             case 0xff0033ff: //dark blue
                 return Tile.liquidWater;
+            case 0xfffe00f0: //bright pink, put water underneath this tile to make it smooth
+                return Tile.bridge;
             default:
                 return Tile.castleWall;
         }
