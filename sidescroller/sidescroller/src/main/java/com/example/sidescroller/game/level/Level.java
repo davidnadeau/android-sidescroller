@@ -2,11 +2,11 @@ package com.example.sidescroller.game.level;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 
 import com.example.sidescroller.R;
 import com.example.sidescroller.game.Screen;
-import com.example.sidescroller.game.entities.enemies.EnemySprites;
 
 /**
  * Created by soote on 11/23/13.
@@ -72,10 +72,17 @@ public class Level {
                 return Tile.snowMid;
             case 0xff000000:
                 return Tile.snowCenter;
-            case 0xffffff00:
-                return Tile.cloud2;
-            case 0xff00cccc:
+            case 0xffffff00: //yellow
+                return Tile.hills;
+            case 0xff00cccc: //baby blue
                 return Tile.cloud;
+            case 0xffcc9966: //brown
+                return Tile.dirt;
+            case 0xff999933: //green
+                Log.d("color", "green");
+                return Tile.grass;
+            case 0xff0033ff: //dark blue
+                return Tile.liquidWater;
             default:
                 return Tile.castleWall;
         }
