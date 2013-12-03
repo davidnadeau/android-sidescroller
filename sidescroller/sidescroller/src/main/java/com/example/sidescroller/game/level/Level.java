@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.example.sidescroller.R;
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.entities.enemies.EnemySprites;
 
 /**
  * Created by soote on 11/23/13.
@@ -75,8 +76,6 @@ public class Level {
                 return Tile.cloud2;
             case 0xff00cccc:
                 return Tile.cloud;
-            case 0xffff0000:
-                return Tile.spikes;
             default:
                 return Tile.castleWall;
         }

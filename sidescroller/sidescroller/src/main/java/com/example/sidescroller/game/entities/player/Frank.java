@@ -17,41 +17,50 @@ public class Frank extends Entity {
     private boolean falling = true;
     private int     startY  = y;
     private int jumpHeight;
+    private int walkingNumber = 0;
 
     public Frank(int x, int y) {
-        this.x = x / 3;
-        this.y = y / 2;
+        this.x = x / 4;
+        this.y = y;
         jumpHeight = this.y - 64;
     }
 
     public void move() {
-        sprite = FrankSprites.frank_walk;
-        if (jumping) {        Log.d("COLLISION","jump");
-
-            if (!collision(0, -sprite.getSize()) && y >= jumpHeight) {        Log.d("COLLISION","keep jumping");
-
-                y -= sprite.getSize();
+        sprite = FrankSprites.frank_walk0;
+        if (jumping) {
+            if (!collision(0, -sprite.getSize()) && y >= jumpHeight) {
                 sprite = FrankSprites.frank_jump;//jump sprite
-            } else {        Log.d("COLLISION","done jump");
-
+                y -= sprite.getSize();
+            } else {
+                sprite = FrankSprites.frank_fall;//fall sprite
                 jumping = false;
                 falling = true;
-                sprite = FrankSprites.frank_fall;//fall sprite
             }
-        } else if (falling) {        Log.d("COLLISION","fall");
-
-            if (!collision(0, sprite.getSize())) {        Log.d("COLLISION","keep falling");
-
+        } else if (falling) {
+            if (!collision(0, sprite.getSize())) {
+                sprite = FrankSprites.frank_fall;//fall sprite
                 y += sprite.getSize();
-                sprite = FrankSprites.frank_fall;//fall sprite
-            } else {        Log.d("COLLISION","done fall");
-
-                falling = false;
+            } else {
                 sprite = FrankSprites.frank_land;//land sprite
+                falling = false;
             }
-        } else {        Log.d("COLLISION","walk");
-
-            sprite = FrankSprites.frank_walk;//walking sprite
+        } else { //if hes not falling or hes not jumping, hes walking
+            switch (walkingNumber) {
+                case 1:
+                    sprite = FrankSprites.frank_walk1;//walking sprite
+                    break;
+                case 2:
+                    sprite = FrankSprites.frank_walk2;//walking sprite
+                    break;
+                case 3:
+                    sprite = FrankSprites.frank_walk3;//walking sprite
+                    break;
+                case 4:
+                    sprite = FrankSprites.frank_walk4;//walking sprite
+                    walkingNumber = -1 ;  //-1 because it will get incremented to 0 outside this
+                    break;
+            }
+            walkingNumber++;
         }
     }
 

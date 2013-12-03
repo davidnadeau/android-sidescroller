@@ -12,7 +12,7 @@ public class Entity {
 
     protected Level  level;
     protected Sprite sprite;
-    protected int SIZE = 32;
+    protected int SIZE = 64;
 
     public int getX() { return x; }
     public int getY() { return y; }

@@ -9,7 +9,7 @@ public class Sprite {
     public int[] pixels;
 
     public Sprite(int size, int x, int y) {
-        SIZE = size;
+        SIZE = size ;
         pixels = new int[SIZE * SIZE];
 
         this.x = x * SIZE;

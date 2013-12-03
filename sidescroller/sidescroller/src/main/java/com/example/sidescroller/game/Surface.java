@@ -3,6 +3,7 @@ package com.example.sidescroller.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -58,7 +59,8 @@ public class Surface extends SurfaceView implements
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
         level = new Level(LEVEL_ID);
 
-        frank = new Frank(GAME_WIDTH, GAME_HEIGHT);
+     //game height is 720. that is not a multiple of 64 so we have to set franks y to be a multiple
+        frank = new Frank(GAME_WIDTH, 128);
         frank.setLevel(level);
 
         runnerEnemy = new RunnerEnemy(GAME_WIDTH, GAME_HEIGHT);
