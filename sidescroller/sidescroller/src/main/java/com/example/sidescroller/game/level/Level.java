@@ -72,14 +72,13 @@ public class Level {
                 return Tile.snowMid;
             case 0xff000000:
                 return Tile.snowCenter;
-            case 0xffffff00: //yellow
+            case 0xfffff600: //yellow
                 return Tile.hills;
             case 0xff00cccc: //baby blue
                 return Tile.cloud;
-            case 0xffcc9966: //brown
+            case 0xff7e5300: //brown
                 return Tile.dirt;
-            case 0xff999933: //green
-                Log.d("color", "green");
+            case 0xff147514: //green
                 return Tile.grass;
             case 0xff0033ff: //dark blue
                 return Tile.liquidWater;
