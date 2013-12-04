@@ -3,7 +3,6 @@ package com.example.sidescroller.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -11,7 +10,7 @@ import android.view.SurfaceView;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.entities.enemies.JumperEnemy;
-import com.example.sidescroller.game.entities.enemies.RunnerEnemy;
+import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.entities.player.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
@@ -36,7 +35,7 @@ public class Surface extends SurfaceView implements
     private Screen screen;
     private Level  level;
     private Frank  frank;
-    private RunnerEnemy runnerEnemy; private JumperEnemy jumperEnemy;
+    private SnailEnemy runnerEnemy; private JumperEnemy jumperEnemy;
     private Bomb   bomb;
     private int xScroll = 0;
     private GameLoop   thread;
@@ -63,10 +62,10 @@ public class Surface extends SurfaceView implements
         frank = new Frank(GAME_WIDTH, 128);
         frank.setLevel(level);
 
-        runnerEnemy = new RunnerEnemy(GAME_WIDTH, GAME_HEIGHT);
+        runnerEnemy = new SnailEnemy(GAME_WIDTH, 128);
         runnerEnemy.setLevel(level);
 
-        jumperEnemy = new JumperEnemy(GAME_WIDTH, GAME_HEIGHT);
+        jumperEnemy = new JumperEnemy(GAME_WIDTH, 128);
         jumperEnemy.setLevel(level);
 
         pool=new soundPool(c);

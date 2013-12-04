@@ -11,17 +11,17 @@ public class JumperEnemy extends Entity{
     private int value; //how much the enemy is worth for the score once hit
     private boolean mid_air = true, jumping;
     private int jumpHeight;
-
+    private int spriteNumber = 0;
     //fight the power
     public JumperEnemy() {}
     public JumperEnemy(int x, int y) {
         this.x = x;
-        this.y = y / 2;
+        this.y = y;
         jumpHeight = this.y - 10;
     }
 
     public void move() {
-        sprite = EnemySprites.enemy_jumper;//walking sprite
+        sprite = EnemySprites.flyFish;
 
         if(mid_air){ //if he is in mid air, we want him to fall to the floor
             if(!collision(x, +sprite.getSize())){ //if he is not on the ground to begin with
@@ -41,6 +41,13 @@ public class JumperEnemy extends Entity{
                 x -= sprite.getSize(); //decrement x
                 y -= sprite.getSize(); //decrement y
             }
+        }
+        if(spriteNumber == 1) {
+            sprite = EnemySprites.flyFish2;
+            spriteNumber = 0;
+        }
+        else {
+            spriteNumber++;
         }
     }
     public void draw(Screen s) { s.draw(x, y, sprite); }
