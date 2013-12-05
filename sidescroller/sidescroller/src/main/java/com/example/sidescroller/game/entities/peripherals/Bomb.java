@@ -1,5 +1,7 @@
 package com.example.sidescroller.game.entities.peripherals;
 
+import android.util.Log;
+
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
 
@@ -16,6 +18,7 @@ public class Bomb extends Entity {
 
     public Bomb() {
         sprite = PeripheralSprites.bomb;
+        Log.d("bomb", "yoyo");
         shooting = false;
     }
 

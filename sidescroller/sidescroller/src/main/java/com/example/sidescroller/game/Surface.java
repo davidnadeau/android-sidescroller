@@ -10,7 +10,7 @@ import android.view.SurfaceView;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.entities.Entity;
-import com.example.sidescroller.game.entities.enemies.JumperEnemy;
+import com.example.sidescroller.game.entities.enemies.FishEnemy;
 import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.entities.player.Frank;
@@ -38,8 +38,8 @@ public class Surface extends SurfaceView implements
     private Screen      screen;
     private Level       level;
     private Frank       frank;
-    private SnailEnemy  runnerEnemy;
-    private JumperEnemy jumperEnemy;
+    private SnailEnemy  snailEnemy;
+    private FishEnemy   fishEnemy;
     private GameLoop    thread;
     private JumpButton  jumpButton;
     private Sounds      pool;
@@ -69,8 +69,8 @@ public class Surface extends SurfaceView implements
         //game height is 720. that is not a multiple of 64 so we have to set franks y to be a
         // multiple
         frank = new Frank(GAME_WIDTH, 128);
-        runnerEnemy = new SnailEnemy(GAME_WIDTH, 128);
-        jumperEnemy = new JumperEnemy(GAME_WIDTH, 128);
+        snailEnemy = new SnailEnemy(GAME_WIDTH, 128);
+        fishEnemy = new FishEnemy(GAME_WIDTH, 128);
 
         for (Entity e : Entity.entities) {
             e.setLevel(level);
