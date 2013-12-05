@@ -2,8 +2,6 @@ package com.example.sidescroller.game.entities.peripherals;
 
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
-import com.example.sidescroller.game.level.Tile;
-import com.example.sidescroller.game.level.TileSprites;
 
 /**
  * Created by Owner on 18/11/13.
@@ -21,7 +19,7 @@ public class Bomb extends Entity {
     }
 
     public void shoot(Screen s) {
-        if (!isShooting()) {return;}
+        if (!isShooting()) return;
         else {
             int tempX = startX, tempY = startY;
             startX += (int) (sprite.getSize() * Math.cos(angle)); //increment bomb

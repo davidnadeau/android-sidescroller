@@ -2,7 +2,6 @@ package com.example.sidescroller.game.buttons;
 
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
-import com.example.sidescroller.game.level.Tile;
 
 /**
  * Created by soote on 11/29/13.

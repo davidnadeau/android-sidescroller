@@ -31,12 +31,9 @@ public class Entity {
             return true;
         return false;
     }
-    public void draw(Screen s, int x, int y) {
-        s.draw(x, y, sprite);
-    }
 
     public void move() {}
+    public void draw(Screen s, int x, int y) { s.draw(x, y, sprite); }
 
     public static LinkedList<Entity> entities;
-
 }

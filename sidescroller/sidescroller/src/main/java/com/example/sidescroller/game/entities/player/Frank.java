@@ -1,11 +1,6 @@
 package com.example.sidescroller.game.entities.player;
 
-import android.util.Log;
-
-import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
-import com.example.sidescroller.game.graphics.Sprite;
-import com.example.sidescroller.game.level.Tile;
 
 /**
  * Created by Owner on 18/11/13.
@@ -59,7 +54,7 @@ public class Frank extends Entity {
                     break;
                 case 4:
                     sprite = FrankSprites.frank_walk4;//walking sprite
-                    walkingNumber = -1 ;  //-1 because it will get incremented to 0 outside this
+                    walkingNumber = -1;  //-1 because it will get incremented to 0 outside this
                     break;
             }
             walkingNumber++;

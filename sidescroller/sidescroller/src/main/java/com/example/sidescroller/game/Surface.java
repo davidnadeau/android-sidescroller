@@ -27,22 +27,25 @@ import java.util.LinkedList;
 public class Surface extends SurfaceView implements
         SurfaceHolder.Callback {
 
-    LinkedList<Bomb> bomb_list = new LinkedList();
-    int[] pixels;
-    private static int GAME_WIDTH;
-    private static int GAME_HEIGHT;
-    private static int LEVEL_ID;
-    private static final Bitmap.Config IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
-    private Screen     screen;
-    private Level      level;
-    private Frank      frank;
-    private SnailEnemy runnerEnemy;
+    private static final Bitmap.Config    IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
+    private              LinkedList<Bomb> bomb_list    = new LinkedList();
+    private              int              xScroll      = -Tile.TILE_SIZE;
+
+    private        int[] pixels;
+    private static int   GAME_WIDTH;
+    private static int   GAME_HEIGHT;
+    private static int   LEVEL_ID;
+
+    private Screen      screen;
+    private Level       level;
+    private Frank       frank;
+    private SnailEnemy  runnerEnemy;
     private JumperEnemy jumperEnemy;
-    private Bomb bomb;
-    private int xScroll = 0;
-    private GameLoop   thread;
-    private JumpButton jumpButton;
-    private Sounds     pool;
+    private Bomb        bomb;
+    private GameLoop    thread;
+    private JumpButton  jumpButton;
+    private Sounds      pool;
+
 
     public static void setDimensions(int width, int height) {
         GAME_WIDTH = width;
@@ -68,7 +71,7 @@ public class Surface extends SurfaceView implements
         runnerEnemy = new SnailEnemy(GAME_WIDTH, 128);
         jumperEnemy = new JumperEnemy(GAME_WIDTH, 128);
 
-        for (Entity e:Entity.entities) {
+        for (Entity e : Entity.entities) {
             e.setLevel(level);
         }
 
@@ -117,14 +120,14 @@ public class Surface extends SurfaceView implements
             if (jumpButton.wasClicked(x, y)) {
                 if (!frank.isJumping() && !frank.isFalling()) {
                     frank.setJumping(true);
-                    pool.play(1,false);
+                    pool.play(1, false);
                 }
             } else {
                 bomb = new Bomb();
                 bomb.setLevel(level);
                 bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
                 bomb_list.add(bomb);
-                pool.play(2,false);
+                pool.play(2, false);
             }
         }
         return true;
@@ -134,16 +137,16 @@ public class Surface extends SurfaceView implements
     public void onDraw(Canvas c) {
         super.onDraw(c);
 
-        level.draw(xScroll, 0, screen);
         xScroll += Tile.TILE_SIZE; //scroll map to the left
+        level.draw(xScroll, 0, screen);
+        jumpButton.draw(screen);
 
         //move and draw all our entities
-        for (Entity e:Entity.entities) {
+        for (Entity e : Entity.entities) {
             e.move();
-            e.draw(screen, e.getX(),e.getY());
+            e.draw(screen);
         }
 
-        jumpButton.draw(screen);
 
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
         for (int i = 0; i < bomb_list.size(); i++) {
