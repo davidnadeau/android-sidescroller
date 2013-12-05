@@ -15,7 +15,10 @@ public class Bomb extends Entity {
 
     private boolean shooting = false, explosion = false;
 
-    public Bomb() { sprite = PeripheralSprites.bomb;}
+    public Bomb() {
+        sprite = PeripheralSprites.bomb;
+        Entity.entities.add(this);
+    }
 
     public void shoot(Screen s) {
         if (!isShooting()) {return;}
@@ -34,18 +37,6 @@ public class Bomb extends Entity {
                 draw(s, startX, startY);
             }
         }
-    }
-
-    public boolean collision(int xa, int ya){
-        int tileX = (startX+xa)/Tile.TILE_SIZE;
-        int tileY = (startY+ya)/Tile.TILE_SIZE;
-        if (level.getTile(tileX, tileY).isSolid())
-            return true;
-        return false;
-    }
-
-    public void draw(Screen s, int x, int y) {
-        s.draw(x, y, sprite);
     }
 
     public void setShooting(boolean shooting, int startX, int startY, float touchX, float touchY) {

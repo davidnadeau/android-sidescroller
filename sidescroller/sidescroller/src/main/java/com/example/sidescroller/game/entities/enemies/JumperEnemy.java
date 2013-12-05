@@ -18,8 +18,10 @@ public class JumperEnemy extends Entity{
         this.x = x;
         this.y = y;
         jumpHeight = this.y - 10;
+        Entity.entities.add(this);
     }
 
+    @Override
     public void move() {
         sprite = EnemySprites.flyFish;
 
@@ -50,5 +52,4 @@ public class JumperEnemy extends Entity{
             spriteNumber++;
         }
     }
-    public void draw(Screen s) { s.draw(x, y, sprite); }
 }

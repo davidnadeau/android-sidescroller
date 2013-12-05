@@ -18,10 +18,12 @@ public class RunnerEnemy extends Entity {
     public RunnerEnemy(int x, int y) {
         this.x = x - 50;
         this.y = y / 2;
+        Entity.entities.add(this);
     }
 
+    @Override
     public void move() {
-        sprite = EnemySprites.enemy_walker;//walking sprite
+        sprite = EnemySprites.snail2;//walking sprite
 
         if(mid_air){ //if he is in mid air, we want him to fall to the floor
             if(!collision(x, +sprite.getSize())){ //if he is not on the ground to begin with
@@ -36,5 +38,4 @@ public class RunnerEnemy extends Entity {
             x -= sprite.getSize(); //move enemy to the left
         }
     }
-    public void draw(Screen s) { s.draw(x, y, sprite); }
 }

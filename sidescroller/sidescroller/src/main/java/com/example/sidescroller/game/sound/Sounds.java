@@ -11,13 +11,13 @@ import java.security.PrivateKey;
 /**
  * Created by fishkiller on 13-12-2.
  */
-public class soundPool {
+public class Sounds {
 
     private final int soundSize=3;  //0 is background,1 is jump,2 is bomb
     private  SoundPool pool;
     private int soundID[];
 
-    public soundPool(Context c){
+    public Sounds(Context c){
 
         soundID=new int[soundSize];
         pool=new SoundPool(soundSize, AudioManager.STREAM_MUSIC,1);

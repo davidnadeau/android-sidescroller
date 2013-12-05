@@ -9,6 +9,7 @@ import android.view.SurfaceView;
 
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
+import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.entities.enemies.JumperEnemy;
 import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
@@ -16,7 +17,7 @@ import com.example.sidescroller.game.entities.player.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
-import com.example.sidescroller.game.sound.soundPool;
+import com.example.sidescroller.game.sound.Sounds;
 
 import java.util.LinkedList;
 
@@ -32,15 +33,16 @@ public class Surface extends SurfaceView implements
     private static int GAME_HEIGHT;
     private static int LEVEL_ID;
     private static final Bitmap.Config IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
-    private Screen screen;
-    private Level  level;
-    private Frank  frank;
-    private SnailEnemy runnerEnemy; private JumperEnemy jumperEnemy;
-    private Bomb   bomb;
+    private Screen     screen;
+    private Level      level;
+    private Frank      frank;
+    private SnailEnemy runnerEnemy;
+    private JumperEnemy jumperEnemy;
+    private Bomb bomb;
     private int xScroll = 0;
     private GameLoop   thread;
     private JumpButton jumpButton;
-    private soundPool pool;
+    private Sounds     pool;
 
     public static void setDimensions(int width, int height) {
         GAME_WIDTH = width;
@@ -54,22 +56,24 @@ public class Surface extends SurfaceView implements
         SpriteSheet.setView(this);
         Level.setView(this);
 
+        Entity.entities = new LinkedList<Entity>();
+
         jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT, ButtonSprites.jumpButton);
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
         level = new Level(LEVEL_ID);
 
-     //game height is 720. that is not a multiple of 64 so we have to set franks y to be a multiple
+        //game height is 720. that is not a multiple of 64 so we have to set franks y to be a
+        // multiple
         frank = new Frank(GAME_WIDTH, 128);
-        frank.setLevel(level);
-
         runnerEnemy = new SnailEnemy(GAME_WIDTH, 128);
-        runnerEnemy.setLevel(level);
-
         jumperEnemy = new JumperEnemy(GAME_WIDTH, 128);
-        jumperEnemy.setLevel(level);
 
-        pool=new soundPool(c);
-        pool.play(0,true);
+        for (Entity e:Entity.entities) {
+            e.setLevel(level);
+        }
+
+        pool = new Sounds(c);
+        pool.play(0, true);
         //Set thread
         getHolder().addCallback(this);
         setFocusable(true);
@@ -111,9 +115,10 @@ public class Surface extends SurfaceView implements
             int x = (int) event.getX();
             int y = (int) event.getY();
             if (jumpButton.wasClicked(x, y)) {
-                if (!frank.isJumping() && !frank.isFalling())
+                if (!frank.isJumping() && !frank.isFalling()) {
                     frank.setJumping(true);
-                pool.play(1,false);
+                    pool.play(1,false);
+                }
             } else {
                 bomb = new Bomb();
                 bomb.setLevel(level);
@@ -132,14 +137,11 @@ public class Surface extends SurfaceView implements
         level.draw(xScroll, 0, screen);
         xScroll += Tile.TILE_SIZE; //scroll map to the left
 
-        frank.move();
-        frank.draw(screen);
-
-        runnerEnemy.move();
-        runnerEnemy.draw(screen);
-
-        jumperEnemy.move();
-        jumperEnemy.draw(screen);
+        //move and draw all our entities
+        for (Entity e:Entity.entities) {
+            e.move();
+            e.draw(screen, e.getX(),e.getY());
+        }
 
         jumpButton.draw(screen);
 

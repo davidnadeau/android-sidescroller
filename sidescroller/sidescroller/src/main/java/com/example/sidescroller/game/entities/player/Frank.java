@@ -23,8 +23,10 @@ public class Frank extends Entity {
         this.x = x / 4;
         this.y = y;
         jumpHeight = this.y - 64;
+        Entity.entities.add(this);
     }
 
+    @Override
     public void move() {
         sprite = FrankSprites.frank_walk0;
         if (jumping) {
@@ -63,8 +65,6 @@ public class Frank extends Entity {
             walkingNumber++;
         }
     }
-
-    public void draw(Screen s) { s.draw(x, y, sprite); }
 
     public void setJumping(boolean jumping) {
         this.jumping = jumping;

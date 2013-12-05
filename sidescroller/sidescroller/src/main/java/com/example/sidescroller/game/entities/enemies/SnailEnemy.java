@@ -15,8 +15,10 @@ public class SnailEnemy extends Entity {
     public SnailEnemy(int x, int y) {
         this.x = x - 50;
         this.y = y;
+        Entity.entities.add(this);
     }
 
+    @Override
     public void move() {
         sprite = EnemySprites.snail;
         if(mid_air){ //if he is in mid air, we want him to fall to the floor
@@ -39,6 +41,4 @@ public class SnailEnemy extends Entity {
             }
         }
     }
-
-    public void draw(Screen s) { s.draw(x, y, sprite); }
 }

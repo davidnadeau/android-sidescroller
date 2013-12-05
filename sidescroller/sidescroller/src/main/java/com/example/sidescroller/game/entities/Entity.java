@@ -1,8 +1,11 @@
 package com.example.sidescroller.game.entities;
 
+import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
+
+import java.util.LinkedList;
 
 /**
  * Created by Owner on 18/11/13.
@@ -12,7 +15,6 @@ public class Entity {
 
     protected Level  level;
     protected Sprite sprite;
-    protected int SIZE = 64;
 
     public int getX() { return x; }
     public int getY() { return y; }
@@ -29,4 +31,12 @@ public class Entity {
             return true;
         return false;
     }
+    public void draw(Screen s, int x, int y) {
+        s.draw(x, y, sprite);
+    }
+
+    public void move() {}
+
+    public static LinkedList<Entity> entities;
+
 }
