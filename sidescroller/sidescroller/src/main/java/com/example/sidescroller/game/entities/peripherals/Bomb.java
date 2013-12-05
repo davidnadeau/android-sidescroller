@@ -6,15 +6,16 @@ import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
 
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by Owner on 18/11/13.
  */
 public class Bomb extends Entity {
 
-    private double angle;
-    private boolean shooting;
-    public static LinkedList<Bomb> bombs;
+    private                double                      angle;
+    private                boolean                     shooting;
+    public static volatile ConcurrentLinkedQueue<Bomb> bombs;
 
     public Bomb() {
         sprite = PeripheralSprites.bomb;

@@ -3,6 +3,7 @@ package com.example.sidescroller.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -20,6 +21,7 @@ import com.example.sidescroller.game.level.Tile;
 import com.example.sidescroller.game.sound.Sounds;
 
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by soote on 11/23/13.
@@ -63,7 +65,7 @@ public class Surface extends SurfaceView implements
 
         Entity.entities = new LinkedList<Entity>();
         Entity.setScreen(screen);
-        Bomb.bombs = new LinkedList<Bomb>();
+        Bomb.bombs = new ConcurrentLinkedQueue<Bomb>();
 
         xScroll = -Tile.TILE_SIZE;
         //game height is 720. that is not a multiple of 64 so we have to set franks y to be a
@@ -127,8 +129,10 @@ public class Surface extends SurfaceView implements
                 Bomb bomb = new Bomb();
                 bomb.setLevel(level);
                 bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
-                Bomb.bombs.add(bomb);
-                pool.play(2, false);
+                synchronized (Bomb.bombs) {
+                    Bomb.bombs.add(bomb);
+                }
+                //pool.play(2, false);
             }
         }
         return true;
@@ -137,6 +141,7 @@ public class Surface extends SurfaceView implements
     @Override
     public void onDraw(Canvas c) {
         super.onDraw(c);
+        Log.i("MyActivity", "MyClass.getView() — get item number " + 22);
 
         xScroll += Tile.TILE_SIZE; //scroll map to the left
         level.draw(xScroll, 0, screen);
