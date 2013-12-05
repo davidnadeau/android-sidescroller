@@ -28,8 +28,7 @@ public class Surface extends SurfaceView implements
         SurfaceHolder.Callback {
 
     private static final Bitmap.Config    IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
-    private              LinkedList<Bomb> bomb_list    = new LinkedList();
-    private              int              xScroll      = -Tile.TILE_SIZE;
+    private              int              xScroll;
 
     private        int[] pixels;
     private static int   GAME_WIDTH;
@@ -41,7 +40,6 @@ public class Surface extends SurfaceView implements
     private Frank       frank;
     private SnailEnemy  runnerEnemy;
     private JumperEnemy jumperEnemy;
-    private Bomb        bomb;
     private GameLoop    thread;
     private JumpButton  jumpButton;
     private Sounds      pool;
@@ -59,12 +57,15 @@ public class Surface extends SurfaceView implements
         SpriteSheet.setView(this);
         Level.setView(this);
 
-        Entity.entities = new LinkedList<Entity>();
-
         jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT, ButtonSprites.jumpButton);
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
         level = new Level(LEVEL_ID);
 
+        Entity.entities = new LinkedList<Entity>();
+        Entity.setScreen(screen);
+        Bomb.bombs = new LinkedList<Bomb>();
+
+        xScroll = -Tile.TILE_SIZE;
         //game height is 720. that is not a multiple of 64 so we have to set franks y to be a
         // multiple
         frank = new Frank(GAME_WIDTH, 128);
@@ -76,7 +77,7 @@ public class Surface extends SurfaceView implements
         }
 
         pool = new Sounds(c);
-        pool.play(0, true);
+
         //Set thread
         getHolder().addCallback(this);
         setFocusable(true);
@@ -123,10 +124,10 @@ public class Surface extends SurfaceView implements
                     pool.play(1, false);
                 }
             } else {
-                bomb = new Bomb();
+                Bomb bomb = new Bomb();
                 bomb.setLevel(level);
                 bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
-                bomb_list.add(bomb);
+                Bomb.bombs.add(bomb);
                 pool.play(2, false);
             }
         }
@@ -142,16 +143,9 @@ public class Surface extends SurfaceView implements
         jumpButton.draw(screen);
 
         //move and draw all our entities
-        for (Entity e : Entity.entities) {
-            e.move();
-            e.draw(screen);
-        }
-
-
+        for (Entity e : Entity.entities) e.move();
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
-        for (int i = 0; i < bomb_list.size(); i++) {
-            bomb_list.get(i).shoot(screen);
-        }
+        for (Bomb b : Bomb.bombs) b.shoot(screen);
 
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);

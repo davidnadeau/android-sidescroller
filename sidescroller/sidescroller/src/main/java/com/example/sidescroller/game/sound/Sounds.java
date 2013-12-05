@@ -16,17 +16,12 @@ public class Sounds {
     private int       soundID[];
 
     public Sounds(Context c) {
-
         soundID = new int[soundSize];
         pool = new SoundPool(soundSize, AudioManager.STREAM_MUSIC, 1);
 
-        soundID[0] = pool.load(c, R.raw.background1, 1);
         soundID[1] = pool.load(c, R.raw.jump, 1);
         soundID[2] = pool.load(c, R.raw.bomb, 1);
-
     }
-    ;
-
 
     public void pause(int index) {
         pool.pause(soundID[index]);
@@ -36,27 +31,22 @@ public class Sounds {
         int loop = (isLoop) ? -1 : 0;
         return pool.play(soundID[index], 1, 1, 0, loop, 1);
     }
-    ;
 
     public void release() {
         pool.release();
     }
-    ;
 
     public void resume(int index) {
         pool.resume(soundID[index]);
     }
-    ;
 
     public void setVolume(int index, float leftVolume, float rightVolume) {
         pool.setVolume(soundID[index], leftVolume, rightVolume);
     }
-    ;
 
     public void stop(int index) {
         pool.stop(soundID[index]);
     }
-    ;
 
 
 }

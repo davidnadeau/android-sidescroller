@@ -13,7 +13,9 @@ import com.example.sidescroller.game.Surface;
  */
 public class GameActivity extends Activity {
 
+    private Surface surface;
     private boolean btnClicked = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,8 @@ public class GameActivity extends Activity {
 
         Surface.setDimensions(width, height);
         Surface.setLevel(b.getInt("level"));
-        setContentView(new Surface(this));
+        surface = new Surface(this);
+        setContentView(surface);
     }
 
     @Override

@@ -59,6 +59,7 @@ public class Frank extends Entity {
             }
             walkingNumber++;
         }
+        draw();
     }
 
     public void setJumping(boolean jumping) {

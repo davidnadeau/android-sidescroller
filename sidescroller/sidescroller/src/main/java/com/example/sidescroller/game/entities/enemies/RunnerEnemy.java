@@ -31,5 +31,6 @@ public class RunnerEnemy extends Entity {
         } else if (walking_left) { //if he is already on the ground
             x -= sprite.getSize(); //move enemy to the left
         }
+        draw();
     }
 }

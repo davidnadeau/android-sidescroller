@@ -12,17 +12,13 @@ import java.util.LinkedList;
  */
 public class Entity {
     protected int x, y;
-
     protected Level  level;
     protected Sprite sprite;
-
-    public int getX() { return x; }
-    public int getY() { return y; }
-
-    public void setX(int x) { this.x = x; }
-    public void setY(int y) { this.y = y; }
+    private   static Screen screen;
+    public static LinkedList<Entity> entities;
 
     public void setLevel(Level level) { this.level = level; }
+    public static void setScreen(Screen displayScreen) { screen = displayScreen; }
 
     protected boolean collision(int xa, int ya) {
         int tileX = (x + xa) / Tile.TILE_SIZE;
@@ -33,7 +29,10 @@ public class Entity {
     }
 
     public void move() {}
-    public void draw(Screen s, int x, int y) { s.draw(x, y, sprite); }
+    public void draw() { screen.draw(x, y, sprite); }
 
-    public static LinkedList<Entity> entities;
+    public int getX() { return x; }
+    public int getY() { return y; }
+    public void setX(int x) { this.x = x; }
+    public void setY(int y) { this.y = y; }
 }

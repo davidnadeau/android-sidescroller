@@ -45,5 +45,6 @@ public class JumperEnemy extends Entity {
         } else {
             spriteNumber++;
         }
+        draw();
     }
 }
