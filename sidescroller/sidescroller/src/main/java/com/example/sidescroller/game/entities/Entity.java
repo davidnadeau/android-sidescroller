@@ -30,7 +30,7 @@ public class Entity {
     }
 
     protected boolean collision_enemy(int xa, int ya) {
-        for (int i = 0; i < entities.size(); i++) {//start at 1 because frank is the first entity??
+        for (int i = 1; i < entities.size(); i++) {//start at 1 because frank is the first entity
             if(inTheRangeOf(xa, 32, entities.get(i).getX(), 64) &&
                     inTheRangeOf(ya,32, entities.get(i).getY(), 64)){
                 entities.remove(i);//delete that guy!!
