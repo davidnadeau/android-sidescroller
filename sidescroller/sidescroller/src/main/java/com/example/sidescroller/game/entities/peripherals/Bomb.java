@@ -28,7 +28,7 @@ public class Bomb extends Entity {
             int xdelta = x - xold >= sprite.getSize() ? sprite.getSize() : 0;
             int ydelta = y - yold >= sprite.getSize() ? sprite.getSize() : 0;
 
-            if (!collision(xdelta, ydelta) && !collision_enemy(x, y)) { //if no collision
+            if (!collision(xdelta, ydelta) && !collision_enemy(x, y, 32)) { //if no collision
                 draw(); //draw there
             } else { //if there is a collision
                 shooting = false;

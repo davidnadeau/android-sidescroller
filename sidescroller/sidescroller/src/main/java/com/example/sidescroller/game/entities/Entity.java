@@ -28,10 +28,10 @@ public class Entity {
         return level.getTile(tileX, tileY).isSolid();
     }
 
-    protected boolean collision_enemy(int xa, int ya) {
+    protected boolean collision_enemy(int xa, int ya, int size) {
         for (int i = 1; i < entities.size(); i++) {//start at 1 because frank is the first entity
-            if(inTheRangeOf(xa, 32, entities.get(i).getX(), 64) &&
-                    inTheRangeOf(ya,32, entities.get(i).getY(), 64)){
+            if(inTheRangeOf(xa, size, entities.get(i).getX(), 64) &&
+               inTheRangeOf(ya, size, entities.get(i).getY(), 64)){ //all of our entities are size 64
                 entities.remove(i);//delete that guy!!
                 return true;
             }
@@ -44,9 +44,7 @@ public class Entity {
         bombPosition -= bombSize / 2;
         for (int i = 0; i < bombSize; i++) {
             for (int j = 0; j < enemySize; j++) {
-                if (bombPosition + j == enemyPosition + i) {
-                    return true;
-                }
+                if (bombPosition + j == enemyPosition + i) {return true;}
             }
         }
         return false;
@@ -55,6 +53,7 @@ public class Entity {
     public boolean isOffsetScreen() {
         return (x < 0 || y < 0 || x >= screen.getWidth() || y >= screen.getHeight())? true: false;
     }
+
     public void move() {}
     public void draw() { screen.draw(x, y, sprite); }
 

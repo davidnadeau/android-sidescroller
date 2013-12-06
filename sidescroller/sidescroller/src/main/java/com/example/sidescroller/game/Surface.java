@@ -1,6 +1,7 @@
 package com.example.sidescroller.game;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,7 +9,10 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.RadioGroup;
 
+import com.example.sidescroller.R;
+import com.example.sidescroller.activities.GameActivity;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.entities.Entity;
@@ -147,7 +151,6 @@ public class Surface extends SurfaceView implements
     @Override
     public void onDraw(Canvas c) {
         super.onDraw(c);
-
         xScroll += Tile.TILE_SIZE; //scroll map to the left
         level.draw(xScroll, 0, screen);
         jumpButton.draw(screen);
@@ -161,6 +164,11 @@ public class Surface extends SurfaceView implements
             if(b.isOffsetScreen()) Bomb.bombs.remove(b);
             else b.shoot(screen);
         }
+
+//        if(frank.frankIsDead){
+//            xScroll -= xScroll;
+//            frank.frankIsDead = false;
+//        }
 
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);

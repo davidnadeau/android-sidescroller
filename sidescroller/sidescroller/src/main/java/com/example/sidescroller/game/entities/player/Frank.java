@@ -13,6 +13,7 @@ public class Frank extends Entity {
     private int     startY  = y;
     private int jumpHeight;
     private int walkingNumber = 0;
+    public boolean frankIsDead = false;
 
     public Frank(int x, int y) {
         this.x = x / 4;
@@ -23,8 +24,10 @@ public class Frank extends Entity {
 
     @Override
     public void move() {
+
+
         sprite = FrankSprites.frank_walk0;
-        if (jumping) {
+        if (jumping && !frankIsDead) {
             if (!collision(0, -sprite.getSize()) && y >= jumpHeight) {
                 sprite = FrankSprites.frank_jump;//jump sprite
                 y -= sprite.getSize();
@@ -33,7 +36,7 @@ public class Frank extends Entity {
                 jumping = false;
                 falling = true;
             }
-        } else if (falling) {
+        } else if (falling && !frankIsDead) {
             if (!collision(0, sprite.getSize())) {
                 sprite = FrankSprites.frank_fall;//fall sprite
                 y += sprite.getSize();
@@ -41,7 +44,10 @@ public class Frank extends Entity {
                 sprite = FrankSprites.frank_land;//land sprite
                 falling = false;
             }
-        } else { //if hes not falling or hes not jumping, hes walking
+        } else  if(collision_enemy(x, y, 64)){
+            frankIsDead = true;
+            Entity.entities.remove(this);
+        }else { //if hes not falling or hes not jumping and hes not dying, hes walking
             if(!collision(0, sprite.getSize())){//make sure hes not falling into a hole though
                 falling = true;
                 sprite = FrankSprites.frank_fall;
@@ -77,6 +83,7 @@ public class Frank extends Entity {
         startY = y;
         jumpHeight = startY - 128;
     }
+
     public boolean isJumping() { return jumping; }
     public boolean isFalling() { return falling; }
 
