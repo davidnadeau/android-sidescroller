@@ -1,6 +1,7 @@
 package com.example.sidescroller.game.entities;
 
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
@@ -25,6 +26,30 @@ public class Entity {
         int tileY = (y + ya) / Tile.TILE_SIZE;
         if (level.getTile(tileX, tileY).isSolid())
             return true;
+        return false;
+    }
+
+    protected boolean collision_enemy(int xa, int ya) {
+        for (int i = 0; i < entities.size(); i++) {//start at 1 because frank is the first entity??
+            if(inTheRangeOf(xa, 32, entities.get(i).getX(), 64) &&
+                    inTheRangeOf(ya,32, entities.get(i).getY(), 64)){
+                entities.remove(i);//delete that guy!!
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean inTheRangeOf(int bombPosition, int bombSize, int enemyPosition, int enemySize){
+        enemyPosition -= enemySize/2; //start from bottom of it
+        bombPosition -= bombSize/2;
+        for(int i = 0; i < bombSize; i++){
+            for(int j = 0; j < enemySize; j++){
+                if(bombPosition+j == enemyPosition+i){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 

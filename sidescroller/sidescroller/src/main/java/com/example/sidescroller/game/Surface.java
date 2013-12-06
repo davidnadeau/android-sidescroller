@@ -132,7 +132,7 @@ public class Surface extends SurfaceView implements
                 synchronized (Bomb.bombs) {
                     Bomb.bombs.add(bomb);
                 }
-                //pool.play(2, false);
+                pool.play(2, false);
             }
         }
         return true;

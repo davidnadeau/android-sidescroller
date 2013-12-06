@@ -71,8 +71,6 @@ public class Level {
                 return Tile.snowMid;
             case 0xff000000:
                 return Tile.snowCenter;
-            case 0xfffff600: //yellow
-                return Tile.spikes;
             case 0xff00cccc: //baby blue
                 return Tile.cloud;
             case 0xff7e5300: //brown

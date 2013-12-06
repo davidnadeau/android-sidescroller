@@ -19,7 +19,6 @@ public class Bomb extends Entity {
 
     public Bomb() {
         sprite = PeripheralSprites.bomb;
-        Log.d("bomb", "yoyo");
         shooting = false;
     }
 
@@ -32,12 +31,13 @@ public class Bomb extends Entity {
             int xdelta = x - xold >= sprite.getSize() ? sprite.getSize() : 0;
             int ydelta = y - yold >= sprite.getSize() ? sprite.getSize() : 0;
 
-            if (!collision(xdelta, ydelta)) { //if no collision
+            if (!collision(xdelta, ydelta) && !collision_enemy(x, y)) { //if no collision
                 draw(); //draw there
             } else { //if there is a collision
                 shooting = false;
                 sprite = PeripheralSprites.explosion;
                 draw();
+                bombs.remove(this);
             }
         }
     }
