@@ -1,5 +1,7 @@
 package com.example.sidescroller.game.entities;
 
+import android.util.Log;
+
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
@@ -21,11 +23,9 @@ public class Entity {
     public static void setScreen(Screen displayScreen) { screen = displayScreen; }
 
     protected boolean collision(int xa, int ya) {
-        int tileX = (x + xa) / Tile.TILE_SIZE;
+        int tileX = (x + xa + screen.xOffset) / Tile.TILE_SIZE;
         int tileY = (y + ya) / Tile.TILE_SIZE;
-        if (level.getTile(tileX, tileY).isSolid())
-            return true;
-        return false;
+        return level.getTile(tileX, tileY).isSolid();
     }
 
     protected boolean collision_enemy(int xa, int ya) {
@@ -39,7 +39,7 @@ public class Entity {
         return false;
     }
 
-    private boolean inTheRangeOf(int bombPosition, int bombSize, int enemyPosition, int enemySize) {
+    protected boolean inTheRangeOf(int bombPosition, int bombSize, int enemyPosition, int enemySize) {
         enemyPosition -= enemySize / 2; //start from bottom of it
         bombPosition -= bombSize / 2;
         for (int i = 0; i < bombSize; i++) {

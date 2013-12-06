@@ -42,33 +42,36 @@ public class Frank extends Entity {
                 falling = false;
             }
         } else { //if hes not falling or hes not jumping, hes walking
-//            if(!collision(0, sprite.getSize())){//make sure hes not falling into a hole though
-//                falling = true;
-//                sprite = FrankSprites.frank_fall;
-//                y += sprite.getSize();
-//            }
-//            else{
-            switch (walkingNumber) {
-                case 1:
-                    sprite = FrankSprites.frank_walk1;//walking sprite
-                    break;
-                case 2:
-                    sprite = FrankSprites.frank_walk2;//walking sprite
-                    break;
-                case 3:
-                    sprite = FrankSprites.frank_walk3;//walking sprite
-                    break;
-                case 4:
-                    sprite = FrankSprites.frank_walk4;//walking sprite
-                    walkingNumber = -1;  //-1 because it will get incremented to 0 outside this
-                    break;
-            }
-            walkingNumber++;
-            //  }
+            if(!collision(0, sprite.getSize())){//make sure hes not falling into a hole though
+                falling = true;
+                sprite = FrankSprites.frank_fall;
+                y += sprite.getSize();
+            } else{
+                switch (walkingNumber) {
+                    case 1:
+                        sprite = FrankSprites.frank_walk1;//walking sprite
+                        break;
+                    case 2:
+                        sprite = FrankSprites.frank_walk2;//walking sprite
+                        break;
+                    case 3:
+                        sprite = FrankSprites.frank_walk3;//walking sprite
+                        break;
+                    case 4:
+                        sprite = FrankSprites.frank_walk4;//walking sprite
+                        walkingNumber = -1;  //-1 because it will get incremented to 0 outside this
+                        break;
+                }
+                walkingNumber++;
+          }
         }
         draw();
     }
-
+    private boolean coinCollision(int xa, int ya) {
+        int tileX = (x + xa) / sprite.getSize();
+        int tileY = (y + ya) / sprite.getSize();
+        return "coin".equals(level.getTile(tileX, tileY).getTileType());
+    }
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
         startY = y;

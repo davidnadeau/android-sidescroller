@@ -13,7 +13,6 @@ import com.example.sidescroller.game.Screen;
 public class Level {
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
     private int[] tiles;
-    private int   levelID;
 
     private static View v;
     public static void setView(View v1) { v = v1; }
@@ -73,7 +72,7 @@ public class Level {
                 return Tile.snowCenter;
             case 0xff00cccc: //baby blue
                 return Tile.cloud;
-            case 0xff7e5300: //brown
+            case 0xff8b4513: //brown
                 return Tile.dirt;
             case 0xff147514: //green
                 return Tile.grass;
@@ -81,7 +80,7 @@ public class Level {
                 return Tile.liquidWater;
             case 0xfffe00f0: //bright pink, put water underneath this tile to make it smooth
                 return Tile.bridge;
-            case 0xffabcbeb:
+            case 0xffff0000:
                 return Tile.goldCoin;
             default:
                 return Tile.castleWall;

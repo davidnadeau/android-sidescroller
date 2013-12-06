@@ -7,9 +7,9 @@ import com.example.sidescroller.game.graphics.Sprite;
  * Created by soote on 11/23/13.
  */
 public class Tile {
-    public int x, y;
     public  Sprite  sprite;
     private boolean solid;
+    private String tileType = "";
     public static int  TILE_SIZE   = 64;
     public static Tile castleWall  = new Tile(TileSprites.castleWall, false);
     public static Tile snowMid     = new Tile(TileSprites.snowMid, true);
@@ -20,7 +20,7 @@ public class Tile {
     public static Tile dirt        = new Tile(TileSprites.dirt, false);
     //  public static Tile spikes      = new Tile(TileSprites.spikes, true);
     public static Tile bridge      = new Tile(TileSprites.bridge, true);
-    public static Tile goldCoin      = new Tile(TileSprites.goldCoin, false);
+    public static Tile goldCoin      = new Tile(TileSprites.goldCoin, "coin");
     public static Tile errTile     = new Tile(TileSprites.errTile, false);
 
 
@@ -28,7 +28,12 @@ public class Tile {
         this.sprite = sprite;
         this.solid = solid;
     }
-
+    public Tile(Sprite sprite, String tileType) {
+        this.sprite = sprite;
+        this.tileType = tileType;
+    }
     public void draw(int x, int y, Screen s) { s.drawTile(x * TILE_SIZE, y * TILE_SIZE, sprite); }
     public boolean isSolid() { return solid; }
+    public String getTileType() { return "".equals(tileType) ? "" : tileType; }
+
 }
