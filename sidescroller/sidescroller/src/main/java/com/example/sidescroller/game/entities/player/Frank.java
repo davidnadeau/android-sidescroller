@@ -48,23 +48,23 @@ public class Frank extends Entity {
 //                y += sprite.getSize();
 //            }
 //            else{
-                switch (walkingNumber) {
-                    case 1:
-                        sprite = FrankSprites.frank_walk1;//walking sprite
-                        break;
-                    case 2:
-                        sprite = FrankSprites.frank_walk2;//walking sprite
-                        break;
-                    case 3:
-                        sprite = FrankSprites.frank_walk3;//walking sprite
-                        break;
-                    case 4:
-                        sprite = FrankSprites.frank_walk4;//walking sprite
-                        walkingNumber = -1;  //-1 because it will get incremented to 0 outside this
-                        break;
-                }
-                walkingNumber++;
-          //  }
+            switch (walkingNumber) {
+                case 1:
+                    sprite = FrankSprites.frank_walk1;//walking sprite
+                    break;
+                case 2:
+                    sprite = FrankSprites.frank_walk2;//walking sprite
+                    break;
+                case 3:
+                    sprite = FrankSprites.frank_walk3;//walking sprite
+                    break;
+                case 4:
+                    sprite = FrankSprites.frank_walk4;//walking sprite
+                    walkingNumber = -1;  //-1 because it will get incremented to 0 outside this
+                    break;
+            }
+            walkingNumber++;
+            //  }
         }
         draw();
     }

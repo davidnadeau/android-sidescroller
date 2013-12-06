@@ -1,11 +1,8 @@
 package com.example.sidescroller.game.entities.peripherals;
 
-import android.util.Log;
-
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
 
-import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**

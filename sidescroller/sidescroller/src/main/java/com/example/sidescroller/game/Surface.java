@@ -3,6 +3,7 @@ package com.example.sidescroller.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -29,23 +30,24 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class Surface extends SurfaceView implements
         SurfaceHolder.Callback {
 
-    private static final Bitmap.Config    IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
-    private              int              xScroll;
+    private static final Bitmap.Config IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
+    private int xScroll;
 
     private        int[] pixels;
     private static int   GAME_WIDTH;
     private static int   GAME_HEIGHT;
     private static int   LEVEL_ID;
+    private int score;
 
-    private Screen      screen;
-    private Level       level;
-    private Frank       frank;
-    private SnailEnemy  snailEnemy;
-    private FishEnemy   fishEnemy;
-    private GameLoop    thread;
-    private JumpButton  jumpButton;
-    private Sounds      pool;
-
+    private Screen     screen;
+    private Level      level;
+    private Frank      frank;
+    private SnailEnemy snailEnemy;
+    private FishEnemy  fishEnemy;
+    private GameLoop   thread;
+    private JumpButton jumpButton;
+    private Sounds     pool;
+    private Paint      scoreFontStyle;
 
     public static void setDimensions(int width, int height) {
         GAME_WIDTH = width;
@@ -55,6 +57,9 @@ public class Surface extends SurfaceView implements
 
     public Surface(Context c) {
         super(c);
+
+        scoreFontStyle = new Paint();
+        scoreFontStyle.setTextSize(40);
 
         SpriteSheet.setView(this);
         Level.setView(this);
@@ -83,6 +88,7 @@ public class Surface extends SurfaceView implements
         //Set thread
         getHolder().addCallback(this);
         setFocusable(true);
+        score = 0;
     }
 
 
@@ -158,6 +164,10 @@ public class Surface extends SurfaceView implements
         Bitmap bmp = newBitmap();
         fillBitmap(bmp);
         c.drawBitmap(bmp, 0, 0, null);
+
+        score += 50;
+        String scoreText = Integer.toString(score);
+        c.drawText(scoreText, GAME_WIDTH-(scoreText.length()*25),50,scoreFontStyle);
     }
 
     private Bitmap newBitmap() {

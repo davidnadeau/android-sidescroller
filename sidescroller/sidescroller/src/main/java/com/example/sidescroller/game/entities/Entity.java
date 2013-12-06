@@ -1,7 +1,6 @@
 package com.example.sidescroller.game.entities;
 
 import com.example.sidescroller.game.Screen;
-import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
@@ -13,10 +12,10 @@ import java.util.LinkedList;
  */
 public class Entity {
     protected int x, y;
-    protected Level  level;
-    protected Sprite sprite;
-    private   static Screen screen;
-    public static LinkedList<Entity> entities;
+    protected      Level              level;
+    protected      Sprite             sprite;
+    private static Screen             screen;
+    public static  LinkedList<Entity> entities;
 
     public void setLevel(Level level) { this.level = level; }
     public static void setScreen(Screen displayScreen) { screen = displayScreen; }
@@ -40,12 +39,12 @@ public class Entity {
         return false;
     }
 
-    private boolean inTheRangeOf(int bombPosition, int bombSize, int enemyPosition, int enemySize){
-        enemyPosition -= enemySize/2; //start from bottom of it
-        bombPosition -= bombSize/2;
-        for(int i = 0; i < bombSize; i++){
-            for(int j = 0; j < enemySize; j++){
-                if(bombPosition+j == enemyPosition+i){
+    private boolean inTheRangeOf(int bombPosition, int bombSize, int enemyPosition, int enemySize) {
+        enemyPosition -= enemySize / 2; //start from bottom of it
+        bombPosition -= bombSize / 2;
+        for (int i = 0; i < bombSize; i++) {
+            for (int j = 0; j < enemySize; j++) {
+                if (bombPosition + j == enemyPosition + i) {
                     return true;
                 }
             }

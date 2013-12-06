@@ -13,7 +13,7 @@ public class TileSprites {
     public static Sprite grass       = new Sprite(Tile.TILE_SIZE, 2, 3);
     public static Sprite dirt        = new Sprite(Tile.TILE_SIZE, 3, 3);
     public static Sprite cloud       = new Sprite(Tile.TILE_SIZE, 2, 2);
-//  public static Sprite spikes      = new Sprite(Tile.TILE_SIZE, 3, 2);
+    //  public static Sprite spikes      = new Sprite(Tile.TILE_SIZE, 3, 2);
     public static Sprite bridge      = new Sprite(Tile.TILE_SIZE, 0, 4);
     public static Sprite errTile     = new Sprite(Tile.TILE_SIZE, 0, 0);
 }
