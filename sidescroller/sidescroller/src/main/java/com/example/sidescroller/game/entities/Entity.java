@@ -52,6 +52,9 @@ public class Entity {
         return false;
     }
 
+    public boolean isOffsetScreen() {
+        return (x < 0 || y < 0 || x >= screen.getWidth() || y >= screen.getHeight())? true: false;
+    }
     public void move() {}
     public void draw() { screen.draw(x, y, sprite); }
 

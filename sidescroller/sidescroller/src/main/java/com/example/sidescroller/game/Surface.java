@@ -147,7 +147,6 @@ public class Surface extends SurfaceView implements
     @Override
     public void onDraw(Canvas c) {
         super.onDraw(c);
-        Log.i("MyActivity", "MyClass.getView() — get item number " + 22);
 
         xScroll += Tile.TILE_SIZE; //scroll map to the left
         level.draw(xScroll, 0, screen);
@@ -156,13 +155,19 @@ public class Surface extends SurfaceView implements
         //move and draw all our entities
         for (Entity e : Entity.entities) e.move();
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
-        for (Bomb b : Bomb.bombs) b.shoot(screen);
+        //Make a copy of bomb before looping to allow removal of offscreen bombs.
+        for (Bomb b : new LinkedList<Bomb>(Bomb.bombs))  {
+            //if bomb is offscreen, remove reference to bomb object for gc
+            if(b.isOffsetScreen()) Bomb.bombs.remove(b);
+            else b.shoot(screen);
+        }
 
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
         Bitmap bmp = newBitmap();
         fillBitmap(bmp);
+
         c.drawBitmap(bmp, 0, 0, null);
 
         score += 50;

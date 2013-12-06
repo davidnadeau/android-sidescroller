@@ -15,5 +15,6 @@ public class TileSprites {
     public static Sprite cloud       = new Sprite(Tile.TILE_SIZE, 2, 2);
     //  public static Sprite spikes      = new Sprite(Tile.TILE_SIZE, 3, 2);
     public static Sprite bridge      = new Sprite(Tile.TILE_SIZE, 0, 4);
+    public static Sprite goldCoin    = new Sprite(Tile.TILE_SIZE, 3, 4);
     public static Sprite errTile     = new Sprite(Tile.TILE_SIZE, 0, 0);
 }

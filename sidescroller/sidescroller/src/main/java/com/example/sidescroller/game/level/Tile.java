@@ -20,6 +20,7 @@ public class Tile {
     public static Tile dirt        = new Tile(TileSprites.dirt, false);
     //  public static Tile spikes      = new Tile(TileSprites.spikes, true);
     public static Tile bridge      = new Tile(TileSprites.bridge, true);
+    public static Tile goldCoin      = new Tile(TileSprites.goldCoin, false);
     public static Tile errTile     = new Tile(TileSprites.errTile, false);
 
 

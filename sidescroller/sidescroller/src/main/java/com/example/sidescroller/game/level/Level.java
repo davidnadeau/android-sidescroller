@@ -81,6 +81,8 @@ public class Level {
                 return Tile.liquidWater;
             case 0xfffe00f0: //bright pink, put water underneath this tile to make it smooth
                 return Tile.bridge;
+            case 0xffabcbeb:
+                return Tile.goldCoin;
             default:
                 return Tile.castleWall;
         }
