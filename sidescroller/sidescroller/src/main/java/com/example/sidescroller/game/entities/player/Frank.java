@@ -24,10 +24,8 @@ public class Frank extends Entity {
 
     @Override
     public void move() {
-
-
         sprite = FrankSprites.frank_walk0;
-        if (jumping && !frankIsDead) {
+        if (jumping && !collision_enemy(x, y, 64)) {
             if (!collision(0, -sprite.getSize()) && y >= jumpHeight) {
                 sprite = FrankSprites.frank_jump;//jump sprite
                 y -= sprite.getSize();
@@ -36,7 +34,7 @@ public class Frank extends Entity {
                 jumping = false;
                 falling = true;
             }
-        } else if (falling && !frankIsDead) {
+        } else if (falling && !collision_enemy(x, y, 64)) {
             if (!collision(0, sprite.getSize())) {
                 sprite = FrankSprites.frank_fall;//fall sprite
                 y += sprite.getSize();
