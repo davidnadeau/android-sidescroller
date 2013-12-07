@@ -16,11 +16,11 @@ public class Tile {
     public static Tile snowCenter  = new Tile(TileSprites.snowCenter, false);
     public static Tile cloud       = new Tile(TileSprites.cloud, false);
     public static Tile liquidWater = new Tile(TileSprites.liquidWater, false);
+    public static Tile liquidLava = new Tile(TileSprites.liquidLava, false);
     public static Tile grass       = new Tile(TileSprites.grass, true);
     public static Tile dirt        = new Tile(TileSprites.dirt, false);
     //  public static Tile spikes      = new Tile(TileSprites.spikes, true);
     public static Tile bridge      = new Tile(TileSprites.bridge, true);
-    public static Tile goldCoin      = new Tile(TileSprites.goldCoin, "coin");
     public static Tile errTile     = new Tile(TileSprites.errTile, false);
 
 

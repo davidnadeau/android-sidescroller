@@ -12,7 +12,7 @@ public class Bomb extends Entity {
 
     private                double                      angle;
     private                boolean                     shooting;
-    public static volatile ConcurrentLinkedQueue<Bomb> bombs;
+    public static ConcurrentLinkedQueue<Bomb> bombs;
 
     public Bomb() {
         sprite = PeripheralSprites.bomb;
@@ -20,6 +20,12 @@ public class Bomb extends Entity {
     }
 
     public void shoot(Screen s) {
+        //if bomb is offscreen, remove reference to bomb object for gc
+        if(isOffScreen()) {
+            Bomb.bombs.remove(this);
+            return;
+        }
+
         if (!isShooting()) return;
         else {
             int xold = x, yold = y;
@@ -34,9 +40,7 @@ public class Bomb extends Entity {
                 shooting = false;
                 sprite = PeripheralSprites.explosion;
                 draw();
-                synchronized (bombs) {
-                    bombs.remove(this);
-                }
+                bombs.remove(this);
             }
         }
     }

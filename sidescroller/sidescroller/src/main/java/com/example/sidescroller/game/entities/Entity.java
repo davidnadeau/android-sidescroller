@@ -1,8 +1,10 @@
 package com.example.sidescroller.game.entities;
 
+import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
@@ -19,7 +21,7 @@ public class Entity {
     protected      Level                         level;
     protected      Sprite                        sprite;
     private static Screen                        screen;
-    public static volatile ConcurrentLinkedQueue<Entity> entities;
+    public static ConcurrentLinkedQueue<Entity> entities;
 
     public void setLevel(Level level) { this.level = level; }
     public static void setScreen(Screen displayScreen) { screen = displayScreen; }
@@ -37,9 +39,8 @@ public class Entity {
         for (Entity e : mutableEntities)  {
             if(inTheRangeOf(xa, size, e.getX(), 64) &&
                inTheRangeOf(ya, size, e.getY(), 64)){ //all of our entities are size 64
-                synchronized (entities) {
-                    entities.remove(e);//delete that guy!!
-                }
+
+                entities.remove(e);//delete that guy!!
                 return true;
             }
         }
@@ -64,6 +65,10 @@ public class Entity {
     public void move() {}
     public void draw() { screen.draw(x, y, sprite); }
 
+    public Rect toRect() {
+        int size = sprite.getSize()/2;
+        return new Rect(x-size,y-size,x+size,y+size);
+    }
     public int getX() { return x; }
     public int getY() { return y; }
     public void setX(int x) { this.x = x; }

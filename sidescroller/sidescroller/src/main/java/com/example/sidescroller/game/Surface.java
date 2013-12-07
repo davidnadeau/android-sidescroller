@@ -1,18 +1,13 @@
 package com.example.sidescroller.game;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.RadioGroup;
 
-import com.example.sidescroller.R;
-import com.example.sidescroller.activities.GameActivity;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.entities.Entity;
@@ -23,6 +18,7 @@ import com.example.sidescroller.game.entities.player.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
+import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.sound.Sounds;
 
 import java.util.LinkedList;
@@ -41,7 +37,6 @@ public class Surface extends SurfaceView implements
     private static int   GAME_WIDTH;
     private static int   GAME_HEIGHT;
     private static int   LEVEL_ID;
-    private int score;
 
     private Screen     screen;
     private Level      level;
@@ -70,7 +65,9 @@ public class Surface extends SurfaceView implements
 
         jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT, ButtonSprites.jumpButton);
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
-        level = new Level(LEVEL_ID);
+
+        Level.coins = new ConcurrentLinkedQueue<Coin>();
+        level = new Level(LEVEL_ID, screen);
 
         Entity.setScreen(screen);
         Entity.entities = new ConcurrentLinkedQueue<Entity>();
@@ -83,10 +80,8 @@ public class Surface extends SurfaceView implements
         snailEnemy = new SnailEnemy(GAME_WIDTH, 128);
         fishEnemy = new FishEnemy(GAME_WIDTH, 128);
 
-        synchronized (Entity.entities) {
-            for (Entity e : Entity.entities) {
-                e.setLevel(level);
-            }
+        for (Entity e : Entity.entities) {
+            e.setLevel(level);
         }
 
         pool = new Sounds(c);
@@ -94,7 +89,6 @@ public class Surface extends SurfaceView implements
         //Set thread
         getHolder().addCallback(this);
         setFocusable(true);
-        score = 0;
     }
 
 
@@ -141,9 +135,7 @@ public class Surface extends SurfaceView implements
                 Bomb bomb = new Bomb();
                 bomb.setLevel(level);
                 bomb.setShooting(true, frank.getX(), frank.getY(), event.getX(), event.getY());
-                synchronized (Bomb.bombs) {
-                    Bomb.bombs.add(bomb);
-                }
+                Bomb.bombs.add(bomb);
                 pool.play(2, false);
             }
         }
@@ -157,18 +149,17 @@ public class Surface extends SurfaceView implements
         level.draw(xScroll, 0, screen);
         jumpButton.draw(screen);
 
+        //draw all the coins on the canvas
+        for (Coin coin : Level.coins) {
+            coin.setX(coin.getX()-Tile.TILE_SIZE);
+            coin.draw(coin.getX(), coin.getY(), screen);
+        }
         //move and draw all our entities
         for (Entity e : Entity.entities) e.move();
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
         //Make a copy of bomb before looping to allow removal of offscreen bombs.
         for (Bomb b : new LinkedList<Bomb>(Bomb.bombs))  {
-            //if bomb is offscreen, remove reference to bomb object for gc
-            if(b.isOffScreen()) {
-                synchronized (Bomb.bombs) {
-                    Bomb.bombs.remove(b);
-                }
-            }
-            else b.shoot(screen);
+            b.shoot(screen);
         }
 
 //        if(frank.frankIsDead){
@@ -184,8 +175,7 @@ public class Surface extends SurfaceView implements
 
         c.drawBitmap(bmp, 0, 0, null);
 
-        score += 50;
-        String scoreText = Integer.toString(score);
+        String scoreText = Integer.toString(frank.getScore());
         c.drawText(scoreText, GAME_WIDTH-(scoreText.length()*25),50,scoreFontStyle);
     }
 

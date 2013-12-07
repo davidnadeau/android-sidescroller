@@ -1,6 +1,13 @@
 package com.example.sidescroller.game.entities.player;
 
+import android.graphics.Rect;
+import android.util.Log;
+
 import com.example.sidescroller.game.entities.Entity;
+import com.example.sidescroller.game.entities.coins.Coin;
+import com.example.sidescroller.game.level.Level;
+
+import java.util.LinkedList;
 
 /**
  * Created by Owner on 18/11/13.
@@ -18,13 +25,14 @@ public class Frank extends Entity {
     public Frank(int x, int y) {
         this.x = x / 4;
         this.y = y;
+        score = 0;
         jumpHeight = this.y - 64;
+        sprite = FrankSprites.frank_walk0;
         Entity.entities.add(this);
     }
 
     @Override
     public void move() {
-        sprite = FrankSprites.frank_walk0;
         if (jumping && !collision_enemy(x, y, 64)) {
             if (!collision(0, -sprite.getSize()) && y >= jumpHeight) {
                 sprite = FrankSprites.frank_jump;//jump sprite
@@ -71,16 +79,28 @@ public class Frank extends Entity {
           }
         }
         draw();
+        score+=50;
+        coinCollision();
     }
-    private boolean coinCollision(int xa, int ya) {
-        int tileX = (x + xa) / sprite.getSize();
-        int tileY = (y + ya) / sprite.getSize();
-        return "coin".equals(level.getTile(tileX, tileY).getTileType());
-    }
+
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
         startY = y;
         jumpHeight = startY - 128;
+    }
+
+    private void coinCollision() {
+        LinkedList<Coin> mutableCoins = new LinkedList<Coin>(Level.coins);
+
+        for (Coin c : mutableCoins)  {
+            Rect frank = this.toRect();
+            Rect coin = c.toRect();
+
+            if (frank.intersect(coin)) {
+                Level.coins.remove(c);
+                score += c.getValue();
+            }
+        }
     }
 
     public boolean isJumping() { return jumping; }

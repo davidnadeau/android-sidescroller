@@ -6,22 +6,29 @@ import android.view.View;
 
 import com.example.sidescroller.R;
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.entities.coins.Coin;
+import com.example.sidescroller.game.entities.coins.Level1Coins;
+
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by soote on 11/23/13.
  */
 public class Level {
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
-    private int[] tiles;
+    private                int[]                       tiles;
+    public static ConcurrentLinkedQueue<Coin> coins;
+
 
     private static View v;
     public static void setView(View v1) { v = v1; }
 
-    public Level(int id) {
+    public Level(int id, Screen screen) {
         int levelID = 0;
         switch (id) {
             case R.id.level1:
                 levelID = R.drawable.level1image;
+                new Level1Coins(screen);
                 break;
             case R.id.level2:
                 levelID = R.drawable.level2image;
@@ -34,7 +41,6 @@ public class Level {
     }
 
     private void loadLevel(int id) {
-
         Bitmap bmp = loadBitmap(id);
         IMAGE_WIDTH = bmp.getWidth();
         IMAGE_HEIGHT = bmp.getHeight();
@@ -80,8 +86,6 @@ public class Level {
                 return Tile.liquidWater;
             case 0xfffe00f0: //bright pink, put water underneath this tile to make it smooth
                 return Tile.bridge;
-            case 0xffff0000:
-                return Tile.goldCoin;
             default:
                 return Tile.castleWall;
         }
