@@ -35,5 +35,7 @@ public class Sprite {
     }
 
     public int getSize() { return SIZE; }
+    public int getX() {return x;}
+    public int getY() {return y;}
 
 }

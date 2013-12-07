@@ -1,11 +1,13 @@
 package com.example.sidescroller.game.entities.player;
 
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.entities.coins.Coin;
+import com.example.sidescroller.game.entities.coins.CoinSprites;
 import com.example.sidescroller.game.level.Level;
+import com.example.sidescroller.game.level.Tile;
+import com.example.sidescroller.game.level.TileSprites;
 
 import java.util.LinkedList;
 
@@ -20,12 +22,12 @@ public class Frank extends Entity {
     private int     startY  = y;
     private int jumpHeight;
     private int walkingNumber = 0;
-    public boolean frankIsDead = false;
 
     public Frank(int x, int y) {
         this.x = x / 4;
         this.y = y;
         score = 0;
+        lives = 3;
         jumpHeight = this.y - 64;
         sprite = FrankSprites.frank_walk0;
         Entity.entities.add(this);
@@ -33,8 +35,12 @@ public class Frank extends Entity {
 
     @Override
     public void move() {
-        if (jumping && !collision_enemy(x, y, 64)) {
-            if (!collision(0, -sprite.getSize()) && y >= jumpHeight) {
+        if (isDead()) {
+            draw();
+            return;
+        }
+        if (jumping) {
+            if (!tileCollision(0, -sprite.getSize()) && y >= jumpHeight) {
                 sprite = FrankSprites.frank_jump;//jump sprite
                 y -= sprite.getSize();
             } else {
@@ -42,20 +48,16 @@ public class Frank extends Entity {
                 jumping = false;
                 falling = true;
             }
-        } else if (falling && !collision_enemy(x, y, 64)) {
-            if (!collision(0, sprite.getSize())) {
+        } else if (falling) {
+            if (!tileCollision(0, sprite.getSize())) {
                 sprite = FrankSprites.frank_fall;//fall sprite
                 y += sprite.getSize();
             } else {
                 sprite = FrankSprites.frank_land;//land sprite
                 falling = false;
             }
-        } else  if(collision_enemy(x, y, 64)){
-            frankIsDead = true;
-
-            //Entity.entities.remove(this);
-        }else { //if hes not falling or hes not jumping and hes not dying, hes walking
-            if(!collision(0, sprite.getSize())){//make sure hes not falling into a hole though
+        } else { //if hes not falling or hes not jumping and hes not dying, hes walking
+            if(!tileCollision(0, sprite.getSize())){//make sure hes not falling into a hole though
                 falling = true;
                 sprite = FrankSprites.frank_fall;
                 y += sprite.getSize();
@@ -80,7 +82,6 @@ public class Frank extends Entity {
         }
         draw();
         score+=50;
-        coinCollision();
     }
 
     public void setJumping(boolean jumping) {
@@ -89,11 +90,11 @@ public class Frank extends Entity {
         jumpHeight = startY - 128;
     }
 
-    private void coinCollision() {
+    public void coinCollision() {
         LinkedList<Coin> mutableCoins = new LinkedList<Coin>(Level.coins);
 
+        Rect frank = this.toRect();
         for (Coin c : mutableCoins)  {
-            Rect frank = this.toRect();
             Rect coin = c.toRect();
 
             if (frank.intersect(coin)) {
@@ -110,7 +111,14 @@ public class Frank extends Entity {
      * Returns true if the object was hit
      */
     public boolean shoot() { return true; }
-
+    public void die() {
+        lives--;
+        sprite = TileSprites.liquidLava;
+    }
+    public boolean isDead() {
+        return    sprite.getX()/sprite.getSize() == 1
+               && sprite.getY()/sprite.getSize() == 3;
+    }
     public int getLives() { return lives; }
     public int getScore() { return score; }
 

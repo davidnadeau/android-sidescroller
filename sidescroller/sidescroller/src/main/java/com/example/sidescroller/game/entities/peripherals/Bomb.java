@@ -1,8 +1,14 @@
 package com.example.sidescroller.game.entities.peripherals;
 
+import android.graphics.Rect;
+
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
+import com.example.sidescroller.game.entities.coins.Coin;
+import com.example.sidescroller.game.level.Level;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -34,13 +40,21 @@ public class Bomb extends Entity {
             int xdelta = x - xold >= sprite.getSize() ? sprite.getSize() : 0;
             int ydelta = y - yold >= sprite.getSize() ? sprite.getSize() : 0;
 
-            if (!collision(xdelta, ydelta) && !collision_enemy(x, y, 32)) { //if no collision
-                draw(); //draw there
-            } else { //if there is a collision
+            Entity enemy = enemyCollision(this.toRect());
+            if (tileCollision(xdelta, ydelta)) { //tile was hit
                 shooting = false;
                 sprite = PeripheralSprites.explosion;
                 draw();
                 bombs.remove(this);
+            } else if (Entity.entities.contains(enemy)) { //enemy was hit
+                shooting = false;
+                sprite = PeripheralSprites.explosion;
+                draw();
+                bombs.remove(this);
+                Entity.entities.remove(enemy);
+
+            } else {
+                draw();
             }
         }
     }
@@ -55,4 +69,5 @@ public class Bomb extends Entity {
     }
 
     public boolean isShooting() { return shooting; }
+
 }

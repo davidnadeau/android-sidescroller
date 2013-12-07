@@ -24,7 +24,7 @@ public class FishEnemy extends Entity {
         sprite = EnemySprites.flyFish;
 
         if (mid_air) { //if he is in mid air, we want him to fall to the floor
-            if (!collision(x, +sprite.getSize())) { //if he is not on the ground to begin with
+            if (!tileCollision(x, +sprite.getSize())) { //if he is not on the ground to begin with
                 y += sprite.getSize(); //increment y to make him closer to ground
             } else { //he has already hit the ground so now enemy has to jump
                 mid_air = false;

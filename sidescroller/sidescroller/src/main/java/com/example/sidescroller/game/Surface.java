@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -23,6 +26,9 @@ import com.example.sidescroller.game.sound.Sounds;
 
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by soote on 11/23/13.
@@ -30,13 +36,17 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class Surface extends SurfaceView implements
         SurfaceHolder.Callback {
 
-    private static final Bitmap.Config IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
+    //lets us delay method calls
+    private static final ScheduledExecutorService worker       =
+            Executors.newSingleThreadScheduledExecutor();
+    private static final Bitmap.Config            IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
     private int xScroll;
 
     private        int[] pixels;
     private static int   GAME_WIDTH;
     private static int   GAME_HEIGHT;
     private static int   LEVEL_ID;
+    private        int   scrollSpeed;
 
     private Screen     screen;
     private Level      level;
@@ -73,7 +83,8 @@ public class Surface extends SurfaceView implements
         Entity.entities = new ConcurrentLinkedQueue<Entity>();
         Bomb.bombs = new ConcurrentLinkedQueue<Bomb>();
 
-        xScroll = -Tile.TILE_SIZE;
+        scrollSpeed = Tile.TILE_SIZE;
+        xScroll = -scrollSpeed;
         //game height is 720. that is not a multiple of 64 so we have to set franks y to be a
         // multiple
         frank = new Frank(GAME_WIDTH, 128);
@@ -145,13 +156,14 @@ public class Surface extends SurfaceView implements
     @Override
     public void onDraw(Canvas c) {
         super.onDraw(c);
-        xScroll += Tile.TILE_SIZE; //scroll map to the left
+
+        xScroll += scrollSpeed; //scroll map to the left
         level.draw(xScroll, 0, screen);
         jumpButton.draw(screen);
 
         //draw all the coins on the canvas
         for (Coin coin : Level.coins) {
-            coin.setX(coin.getX()-Tile.TILE_SIZE);
+            coin.setX(coin.getX()-scrollSpeed);
             coin.draw(coin.getX(), coin.getY(), screen);
         }
         //move and draw all our entities
@@ -162,10 +174,22 @@ public class Surface extends SurfaceView implements
             b.shoot(screen);
         }
 
-//        if(frank.frankIsDead){
-//            xScroll -= xScroll;
-//            frank.frankIsDead = false;
-//        }
+        Entity enemy = frank.enemyCollision(frank.toRect());
+        if (Entity.entities.contains(enemy)) {
+            //change sprite
+            frank.die();
+            //play death sound
+
+            //stop scrolling
+            scrollSpeed = 0;
+            Runnable task = new Runnable() {
+                public void run() {
+                    resetGame();
+                }
+            };
+            worker.schedule(task, 5, TimeUnit.SECONDS);
+        }
+        frank.coinCollision();
 
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
@@ -179,6 +203,25 @@ public class Surface extends SurfaceView implements
         c.drawText(scoreText, GAME_WIDTH-(scoreText.length()*25),50,scoreFontStyle);
     }
 
+    private void resetGame() {
+        Entity.entities = new ConcurrentLinkedQueue<Entity>();
+
+        scrollSpeed = Tile.TILE_SIZE;
+        xScroll = -scrollSpeed;
+
+        int lives = frank.getLives();
+        int score = frank.getScore();
+        frank = new Frank(GAME_WIDTH, 128);
+        frank.setLives(lives-1);
+        frank.setScore((int)(score*.75));
+
+        snailEnemy = new SnailEnemy(GAME_WIDTH, 128);
+        fishEnemy = new FishEnemy(GAME_WIDTH, 128);
+
+        for (Entity e : Entity.entities) {
+            e.setLevel(level);
+        }
+    }
     private Bitmap newBitmap() {
         return Bitmap.createBitmap(GAME_WIDTH, GAME_HEIGHT,
                 IMAGE_FORMAT);

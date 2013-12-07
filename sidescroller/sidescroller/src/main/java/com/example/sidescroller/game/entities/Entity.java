@@ -5,7 +5,10 @@ import android.util.Log;
 
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.coins.Coin;
+import com.example.sidescroller.game.entities.coins.CoinSprites;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
+import com.example.sidescroller.game.entities.player.Frank;
+import com.example.sidescroller.game.entities.player.FrankSprites;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
@@ -26,36 +29,20 @@ public class Entity {
     public void setLevel(Level level) { this.level = level; }
     public static void setScreen(Screen displayScreen) { screen = displayScreen; }
 
-    protected boolean collision(int xa, int ya) {
+    protected boolean tileCollision(int xa, int ya) {
         int tileX = (x + xa + screen.xOffset) / Tile.TILE_SIZE;
         int tileY = (y + ya) / Tile.TILE_SIZE;
         return level.getTile(tileX, tileY).isSolid();
     }
 
-    protected boolean collision_enemy(int xa, int ya, int size) {
+    public Entity enemyCollision(Rect other) {
         LinkedList<Entity> mutableEntities = new LinkedList<Entity>(entities);
         mutableEntities.pop();
 
-        for (Entity e : mutableEntities)  {
-            if(inTheRangeOf(xa, size, e.getX(), 64) &&
-               inTheRangeOf(ya, size, e.getY(), 64)){ //all of our entities are size 64
-
-                entities.remove(e);//delete that guy!!
-                return true;
-            }
-        }
-        return false;
-    }
-
-    protected boolean inTheRangeOf(int bombPosition, int bombSize, int enemyPosition, int enemySize) {
-        enemyPosition -= enemySize / 2; //start from bottom of it
-        bombPosition -= bombSize / 2;
-        for (int i = 0; i < bombSize; i++) {
-            for (int j = 0; j < enemySize; j++) {
-                if (bombPosition + j == enemyPosition + i) {return true;}
-            }
-        }
-        return false;
+        for (Entity e : mutableEntities)
+            if (other.intersect(e.toRect()))
+                return e;
+        return new Entity();
     }
 
     public boolean isOffScreen() {

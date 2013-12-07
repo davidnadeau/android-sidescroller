@@ -60,4 +60,6 @@ public class GameLoop extends Thread {
             }
         }
     }
+    public SurfaceHolder getSurfaceHolder() { return surfaceHolder;}
+    public Surface getSurface() { return gamePanel;}
 }
