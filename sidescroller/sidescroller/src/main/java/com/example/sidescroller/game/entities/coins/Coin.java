@@ -2,7 +2,6 @@ package com.example.sidescroller.game.entities.coins;
 
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
-import com.example.sidescroller.game.level.Level;
 
 /**
  * Created by soote on 12/6/13.
@@ -24,7 +23,7 @@ public class Coin extends Entity {
         }
     }
     public void draw(int x, int y, Screen screen) {
-       screen.draw(x, y, sprite);
+        screen.draw(x, y, sprite);
     }
 
     public int getValue() {

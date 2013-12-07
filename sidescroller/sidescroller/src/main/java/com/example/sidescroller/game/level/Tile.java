@@ -9,19 +9,19 @@ import com.example.sidescroller.game.graphics.Sprite;
 public class Tile {
     public  Sprite  sprite;
     private boolean solid;
-    private String tileType = "";
-    public static int  TILE_SIZE   = 64;
-    public static Tile castleWall  = new Tile(TileSprites.castleWall, false);
-    public static Tile snowMid     = new Tile(TileSprites.snowMid, true);
-    public static Tile snowCenter  = new Tile(TileSprites.snowCenter, false);
-    public static Tile cloud       = new Tile(TileSprites.cloud, false);
-    public static Tile liquidWater = new Tile(TileSprites.liquidWater, false);
-    public static Tile liquidLava = new Tile(TileSprites.liquidLava, false);
-    public static Tile grass       = new Tile(TileSprites.grass, true);
-    public static Tile dirt        = new Tile(TileSprites.dirt, false);
+    private       String tileType    = "";
+    public static int    TILE_SIZE   = 64;
+    public static Tile   castleWall  = new Tile(TileSprites.castleWall, false);
+    public static Tile   snowMid     = new Tile(TileSprites.snowMid, true);
+    public static Tile   snowCenter  = new Tile(TileSprites.snowCenter, false);
+    public static Tile   cloud       = new Tile(TileSprites.cloud, false);
+    public static Tile   liquidWater = new Tile(TileSprites.liquidWater, false);
+    public static Tile   liquidLava  = new Tile(TileSprites.liquidLava, false);
+    public static Tile   grass       = new Tile(TileSprites.grass, true);
+    public static Tile   dirt        = new Tile(TileSprites.dirt, false);
     //  public static Tile spikes      = new Tile(TileSprites.spikes, true);
-    public static Tile bridge      = new Tile(TileSprites.bridge, true);
-    public static Tile errTile     = new Tile(TileSprites.errTile, false);
+    public static Tile   bridge      = new Tile(TileSprites.bridge, true);
+    public static Tile   errTile     = new Tile(TileSprites.errTile, false);
 
 
     public Tile(Sprite sprite, boolean solid) {

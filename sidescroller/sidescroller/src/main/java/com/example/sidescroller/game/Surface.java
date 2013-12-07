@@ -4,9 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -14,6 +11,7 @@ import android.view.SurfaceView;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.entities.Entity;
+import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.entities.enemies.FishEnemy;
 import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
@@ -21,7 +19,6 @@ import com.example.sidescroller.game.entities.player.Frank;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
-import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.sound.Sounds;
 
 import java.util.LinkedList;
@@ -163,34 +160,27 @@ public class Surface extends SurfaceView implements
 
         //draw all the coins on the canvas
         for (Coin coin : Level.coins) {
-            coin.setX(coin.getX()-scrollSpeed);
+            coin.setX(coin.getX() - scrollSpeed);
             coin.draw(coin.getX(), coin.getY(), screen);
         }
         //move and draw all our entities
         for (Entity e : Entity.entities) e.move();
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
         //Make a copy of bomb before looping to allow removal of offscreen bombs.
-        for (Bomb b : new LinkedList<Bomb>(Bomb.bombs))  {
+        for (Bomb b : new LinkedList<Bomb>(Bomb.bombs)) {
             b.shoot(screen);
         }
 
         Entity enemy = frank.enemyCollision(frank.toRect());
         if (Entity.entities.contains(enemy)) {
-            //change sprite
-            frank.die();
-            //play death sound
-
-            //stop scrolling
-            scrollSpeed = 0;
-            Runnable task = new Runnable() {
-                public void run() {
-                    resetGame();
-                }
-            };
-            worker.schedule(task, 5, TimeUnit.SECONDS);
+            handleDeath();
         }
         frank.coinCollision();
 
+        if (frank.isOffScreen()) {
+            handleDeath();
+        }
+        
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
@@ -200,9 +190,23 @@ public class Surface extends SurfaceView implements
         c.drawBitmap(bmp, 0, 0, null);
 
         String scoreText = Integer.toString(frank.getScore());
-        c.drawText(scoreText, GAME_WIDTH-(scoreText.length()*25),50,scoreFontStyle);
+        c.drawText(scoreText, GAME_WIDTH - (scoreText.length() * 25), 50, scoreFontStyle);
     }
 
+    private void handleDeath() {
+        //change sprite
+        frank.die();
+        //play death sound
+
+        //stop scrolling
+        scrollSpeed = 0;
+        Runnable task = new Runnable() {
+            public void run() {
+                resetGame();
+            }
+        };
+        worker.schedule(task, 2, TimeUnit.SECONDS);
+    }
     private void resetGame() {
         Entity.entities = new ConcurrentLinkedQueue<Entity>();
 
@@ -212,8 +216,8 @@ public class Surface extends SurfaceView implements
         int lives = frank.getLives();
         int score = frank.getScore();
         frank = new Frank(GAME_WIDTH, 128);
-        frank.setLives(lives-1);
-        frank.setScore((int)(score*.75));
+        frank.setLives(lives - 1);
+        frank.setScore((int) (score * .75));
 
         snailEnemy = new SnailEnemy(GAME_WIDTH, 128);
         fishEnemy = new FishEnemy(GAME_WIDTH, 128);

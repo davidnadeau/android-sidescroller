@@ -1,14 +1,8 @@
 package com.example.sidescroller.game.entities.peripherals;
 
-import android.graphics.Rect;
-
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.Entity;
-import com.example.sidescroller.game.entities.coins.Coin;
-import com.example.sidescroller.game.level.Level;
 
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -16,8 +10,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class Bomb extends Entity {
 
-    private                double                      angle;
-    private                boolean                     shooting;
+    private       double                      angle;
+    private       boolean                     shooting;
     public static ConcurrentLinkedQueue<Bomb> bombs;
 
     public Bomb() {
@@ -27,7 +21,7 @@ public class Bomb extends Entity {
 
     public void shoot(Screen s) {
         //if bomb is offscreen, remove reference to bomb object for gc
-        if(isOffScreen()) {
+        if (isOffScreen()) {
             Bomb.bombs.remove(this);
             return;
         }

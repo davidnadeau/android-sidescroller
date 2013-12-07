@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class Level {
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
-    private                int[]                       tiles;
+    private       int[]                       tiles;
     public static ConcurrentLinkedQueue<Coin> coins;
 
 

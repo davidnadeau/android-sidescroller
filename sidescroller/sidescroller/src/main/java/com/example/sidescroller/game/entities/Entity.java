@@ -1,14 +1,8 @@
 package com.example.sidescroller.game.entities;
 
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.example.sidescroller.game.Screen;
-import com.example.sidescroller.game.entities.coins.Coin;
-import com.example.sidescroller.game.entities.coins.CoinSprites;
-import com.example.sidescroller.game.entities.peripherals.Bomb;
-import com.example.sidescroller.game.entities.player.Frank;
-import com.example.sidescroller.game.entities.player.FrankSprites;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
@@ -24,7 +18,7 @@ public class Entity {
     protected      Level                         level;
     protected      Sprite                        sprite;
     private static Screen                        screen;
-    public static ConcurrentLinkedQueue<Entity> entities;
+    public static  ConcurrentLinkedQueue<Entity> entities;
 
     public void setLevel(Level level) { this.level = level; }
     public static void setScreen(Screen displayScreen) { screen = displayScreen; }
@@ -46,15 +40,15 @@ public class Entity {
     }
 
     public boolean isOffScreen() {
-        return (x < 0 || y < 0 || x >= screen.getWidth() || y >= screen.getHeight())? true: false;
+        return (x < 0 || y < 0 || x >= screen.getWidth() || y >= screen.getHeight()) ? true : false;
     }
 
     public void move() {}
     public void draw() { screen.draw(x, y, sprite); }
 
     public Rect toRect() {
-        int size = sprite.getSize()/2;
-        return new Rect(x-size,y-size,x+size,y+size);
+        int size = sprite.getSize() / 2;
+        return new Rect(x - size, y - size, x + size, y + size);
     }
     public int getX() { return x; }
     public int getY() { return y; }

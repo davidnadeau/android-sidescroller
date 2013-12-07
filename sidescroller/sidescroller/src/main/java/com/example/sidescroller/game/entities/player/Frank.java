@@ -4,9 +4,7 @@ import android.graphics.Rect;
 
 import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.entities.coins.Coin;
-import com.example.sidescroller.game.entities.coins.CoinSprites;
 import com.example.sidescroller.game.level.Level;
-import com.example.sidescroller.game.level.Tile;
 import com.example.sidescroller.game.level.TileSprites;
 
 import java.util.LinkedList;
@@ -57,11 +55,11 @@ public class Frank extends Entity {
                 falling = false;
             }
         } else { //if hes not falling or hes not jumping and hes not dying, hes walking
-            if(!tileCollision(0, sprite.getSize())){//make sure hes not falling into a hole though
+            if (!tileCollision(0, sprite.getSize())) {//make sure hes not falling into a hole though
                 falling = true;
                 sprite = FrankSprites.frank_fall;
                 y += sprite.getSize();
-            } else{
+            } else {
                 switch (walkingNumber) {
                     case 1:
                         sprite = FrankSprites.frank_walk1;//walking sprite
@@ -78,10 +76,10 @@ public class Frank extends Entity {
                         break;
                 }
                 walkingNumber++;
-          }
+            }
         }
         draw();
-        score+=50;
+        score += 50;
     }
 
     public void setJumping(boolean jumping) {
@@ -94,7 +92,7 @@ public class Frank extends Entity {
         LinkedList<Coin> mutableCoins = new LinkedList<Coin>(Level.coins);
 
         Rect frank = this.toRect();
-        for (Coin c : mutableCoins)  {
+        for (Coin c : mutableCoins) {
             Rect coin = c.toRect();
 
             if (frank.intersect(coin)) {
@@ -116,8 +114,8 @@ public class Frank extends Entity {
         sprite = TileSprites.liquidLava;
     }
     public boolean isDead() {
-        return    sprite.getX()/sprite.getSize() == 1
-               && sprite.getY()/sprite.getSize() == 3;
+        return sprite.getX() / sprite.getSize() == 1
+                && sprite.getY() / sprite.getSize() == 3;
     }
     public int getLives() { return lives; }
     public int getScore() { return score; }

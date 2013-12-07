@@ -50,7 +50,7 @@ public class GameLoop extends Thread {
                 c = surfaceHolder.lockCanvas(null);
                 synchronized (surfaceHolder) {
                     //call methods to draw and process next fame
-                    if (c==null) break;
+                    if (c == null) break;
                     gamePanel.onDraw(c);
                 }
             } finally {
@@ -60,6 +60,4 @@ public class GameLoop extends Thread {
             }
         }
     }
-    public SurfaceHolder getSurfaceHolder() { return surfaceHolder;}
-    public Surface getSurface() { return gamePanel;}
 }
