@@ -34,7 +34,9 @@ public class Bomb extends Entity {
                 shooting = false;
                 sprite = PeripheralSprites.explosion;
                 draw();
-                bombs.remove(this);
+                synchronized (bombs) {
+                    bombs.remove(this);
+                }
             }
         }
     }

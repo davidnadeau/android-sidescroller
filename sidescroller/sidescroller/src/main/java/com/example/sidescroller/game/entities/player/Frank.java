@@ -44,7 +44,8 @@ public class Frank extends Entity {
             }
         } else  if(collision_enemy(x, y, 64)){
             frankIsDead = true;
-            Entity.entities.remove(this);
+
+            //Entity.entities.remove(this);
         }else { //if hes not falling or hes not jumping and hes not dying, hes walking
             if(!collision(0, sprite.getSize())){//make sure hes not falling into a hole though
                 falling = true;

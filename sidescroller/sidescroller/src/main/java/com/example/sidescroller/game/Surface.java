@@ -72,8 +72,8 @@ public class Surface extends SurfaceView implements
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
         level = new Level(LEVEL_ID);
 
-        Entity.entities = new LinkedList<Entity>();
         Entity.setScreen(screen);
+        Entity.entities = new ConcurrentLinkedQueue<Entity>();
         Bomb.bombs = new ConcurrentLinkedQueue<Bomb>();
 
         xScroll = -Tile.TILE_SIZE;
@@ -83,8 +83,10 @@ public class Surface extends SurfaceView implements
         snailEnemy = new SnailEnemy(GAME_WIDTH, 128);
         fishEnemy = new FishEnemy(GAME_WIDTH, 128);
 
-        for (Entity e : Entity.entities) {
-            e.setLevel(level);
+        synchronized (Entity.entities) {
+            for (Entity e : Entity.entities) {
+                e.setLevel(level);
+            }
         }
 
         pool = new Sounds(c);
@@ -161,7 +163,11 @@ public class Surface extends SurfaceView implements
         //Make a copy of bomb before looping to allow removal of offscreen bombs.
         for (Bomb b : new LinkedList<Bomb>(Bomb.bombs))  {
             //if bomb is offscreen, remove reference to bomb object for gc
-            if(b.isOffsetScreen()) Bomb.bombs.remove(b);
+            if(b.isOffScreen()) {
+                synchronized (Bomb.bombs) {
+                    Bomb.bombs.remove(b);
+                }
+            }
             else b.shoot(screen);
         }
 

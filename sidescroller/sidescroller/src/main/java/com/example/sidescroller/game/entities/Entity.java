@@ -3,21 +3,23 @@ package com.example.sidescroller.game.entities;
 import android.util.Log;
 
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
 
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by Owner on 18/11/13.
  */
 public class Entity {
     protected int x, y;
-    protected      Level              level;
-    protected      Sprite             sprite;
-    private static Screen             screen;
-    public static  LinkedList<Entity> entities;
+    protected      Level                         level;
+    protected      Sprite                        sprite;
+    private static Screen                        screen;
+    public static volatile ConcurrentLinkedQueue<Entity> entities;
 
     public void setLevel(Level level) { this.level = level; }
     public static void setScreen(Screen displayScreen) { screen = displayScreen; }
@@ -29,10 +31,15 @@ public class Entity {
     }
 
     protected boolean collision_enemy(int xa, int ya, int size) {
-        for (int i = 1; i < entities.size(); i++) {//start at 1 because frank is the first entity
-            if(inTheRangeOf(xa, size, entities.get(i).getX(), 64) &&
-               inTheRangeOf(ya, size, entities.get(i).getY(), 64)){ //all of our entities are size 64
-                entities.remove(i);//delete that guy!!
+        LinkedList<Entity> mutableEntities = new LinkedList<Entity>(entities);
+        mutableEntities.pop();
+
+        for (Entity e : mutableEntities)  {
+            if(inTheRangeOf(xa, size, e.getX(), 64) &&
+               inTheRangeOf(ya, size, e.getY(), 64)){ //all of our entities are size 64
+                synchronized (entities) {
+                    entities.remove(e);//delete that guy!!
+                }
                 return true;
             }
         }
@@ -50,7 +57,7 @@ public class Entity {
         return false;
     }
 
-    public boolean isOffsetScreen() {
+    public boolean isOffScreen() {
         return (x < 0 || y < 0 || x >= screen.getWidth() || y >= screen.getHeight())? true: false;
     }
 
