@@ -180,7 +180,7 @@ public class Surface extends SurfaceView implements
         if (frank.isOffScreen()) {
             handleDeath();
         }
-        
+
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 

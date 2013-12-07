@@ -8,6 +8,8 @@ import com.example.sidescroller.R;
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.entities.coins.Level1Coins;
+import com.example.sidescroller.game.entities.coins.Level2Coins;
+import com.example.sidescroller.game.entities.coins.Level3Coins;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -32,9 +34,11 @@ public class Level {
                 break;
             case R.id.level2:
                 levelID = R.drawable.level2image;
+                new Level2Coins(screen);
                 break;
             case R.id.level3:
                 levelID = R.drawable.level3image;
+                new Level3Coins(screen);
                 break;
         }
         loadLevel(levelID);
