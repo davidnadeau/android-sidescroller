@@ -14,7 +14,8 @@ public class Tile {
     public static Tile   castleWall  = new Tile(TileSprites.castleWall, false);
     public static Tile   snowMid     = new Tile(TileSprites.snowMid, true);
     public static Tile   snowCenter  = new Tile(TileSprites.snowCenter, false);
-    public static Tile   cloud       = new Tile(TileSprites.cloud, false);
+    public static Tile   cloudLevel1       = new Tile(TileSprites.cloudLevel1, false);
+    public static Tile   cloudLevel2       = new Tile(TileSprites.cloudLevel2, false);
     public static Tile   liquidWater = new Tile(TileSprites.liquidWater, false);
     public static Tile   liquidLava  = new Tile(TileSprites.liquidLava, false);
     public static Tile   grass       = new Tile(TileSprites.grass, true);
