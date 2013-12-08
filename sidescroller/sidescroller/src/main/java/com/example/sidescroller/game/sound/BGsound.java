@@ -1,6 +1,9 @@
 package com.example.sidescroller.game.sound;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.Resources;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 import com.example.sidescroller.R;
@@ -20,15 +23,20 @@ public class BGsound {
 
     //not tested about the media name
     public BGsound(Context context) {
-        this.soundName = soundName;
         player = new MediaPlayer();
 
-        player.create(context, R.raw.background1);
-        try {
-            player.prepare();
-        } catch (Exception e) {
+        //player.create(context, R.raw.background1);
 
-        }
+        Resources res = context.getResources();
+        AssetFileDescriptor afd = res.openRawResourceFd(R.raw.background1);
+
+        player.reset();
+        player.setAudioStreamType(AudioManager.STREAM_ALARM);
+        try{
+        player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            player.setVolume(0,1);
+        player.prepare();
+        }catch (Exception e){};
 
     }
 

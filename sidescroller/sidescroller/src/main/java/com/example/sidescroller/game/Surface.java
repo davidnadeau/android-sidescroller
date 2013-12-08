@@ -124,8 +124,8 @@ public class Surface extends SurfaceView implements
         //Set thread
         getHolder().addCallback(this);
         setFocusable(true);
-        bgMusic.play(true);
         bg = level.getBg();
+        bgMusic.play(true);
     }
 
     @Override

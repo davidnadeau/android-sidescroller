@@ -10,6 +10,7 @@ import com.example.sidescroller.game.Surface;
 import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.level.Level;
+import com.example.sidescroller.game.sound.BGsound;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -34,8 +35,15 @@ public class GameActivity extends Activity {
 
         Surface.setDimensions(width, height);
         Surface.setLevel(b.getInt("level"));
+
+
+
         surface = new Surface(this);
         setContentView(surface);
+
+
+
+
     }
 
     @Override
