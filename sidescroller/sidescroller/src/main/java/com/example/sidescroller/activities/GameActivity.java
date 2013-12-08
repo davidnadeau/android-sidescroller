@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.example.sidescroller.fragments.MenuFragment;
+import com.example.sidescroller.game.GameLoop;
 import com.example.sidescroller.game.Surface;
 
 /**
@@ -40,19 +41,11 @@ public class GameActivity extends Activity {
     }
     public void onBackPressed(View v) {
         super.onBackPressed();
-        enabledButtons();
-    }
-
-    public void showMenu(View v) {
-        //avoid multiple btn clicks from running multiple fragments
-        if (btnClicked) return;
-        btnClicked = true;
-
-        getFragmentManager()
-                .beginTransaction()
-                .replace(android.R.id.content, new MenuFragment())
-                .addToBackStack(null)
-                .commit();
+        surface.setThread(new GameLoop(surface.getHolder(), surface));
+        // at this point the surface is created and
+        // we can safely start the game loop
+        surface.getThread().setRunning(true);
+        surface.getThread().start();
     }
 
     public void restart(View v) {}//restart this activity at current level

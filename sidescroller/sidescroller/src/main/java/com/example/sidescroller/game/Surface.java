@@ -1,5 +1,6 @@
 package com.example.sidescroller.game;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.example.sidescroller.fragments.MenuFragment;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.buttons.MenuButton;
@@ -144,6 +146,12 @@ public class Surface extends SurfaceView implements
                 }
             } else if (menuButton.wasClicked(x,y)) {
                 thread.setRunning(false);
+                MenuFragment.setScore(frank.getScore());
+                ((Activity)getContext()).getFragmentManager()
+                        .beginTransaction()
+                        .replace(android.R.id.content, new MenuFragment())
+                        .addToBackStack(null)
+                        .commit();
             } else {
                 Bomb bomb = new Bomb();
                 bomb.setLevel(level);
@@ -242,5 +250,11 @@ public class Surface extends SurfaceView implements
     private void fillBitmap(Bitmap bmp) {
         bmp.setPixels(pixels, 0, GAME_WIDTH, 0, 0, GAME_WIDTH,
                 GAME_HEIGHT);
+    }
+    public GameLoop getThread() {
+        return thread;
+    }
+    public void setThread(GameLoop thread) {
+        this.thread = thread;
     }
 }

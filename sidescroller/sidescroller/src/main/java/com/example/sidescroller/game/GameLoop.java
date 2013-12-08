@@ -1,6 +1,7 @@
 package com.example.sidescroller.game;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**
@@ -20,8 +21,8 @@ public class GameLoop extends Thread {
     private Surface       gamePanel;
 
     // flag to hold game state
-    private boolean running;
-    public void setRunning(boolean running) {
+    private volatile boolean running;
+    public synchronized void setRunning(boolean running) {
         this.running = running;
     }
 
@@ -59,5 +60,6 @@ public class GameLoop extends Thread {
                 }
             }
         }
+        if(!running) Log.v("NOT RUNNING","NOOOOOOT");
     }
 }
