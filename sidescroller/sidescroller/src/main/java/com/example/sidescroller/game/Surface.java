@@ -102,7 +102,6 @@ public class Surface extends SurfaceView implements
         setFocusable(true);
     }
 
-
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                int height) {
@@ -143,6 +142,8 @@ public class Surface extends SurfaceView implements
                     frank.setJumping(true);
                     pool.play(1, false);
                 }
+            } else if (menuButton.wasClicked(x,y)) {
+                thread.setRunning(false);
             } else {
                 Bomb bomb = new Bomb();
                 bomb.setLevel(level);
