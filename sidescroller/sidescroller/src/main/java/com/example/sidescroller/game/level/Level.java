@@ -1,7 +1,11 @@
 package com.example.sidescroller.game.level;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import com.example.sidescroller.R;
@@ -20,25 +24,32 @@ public class Level {
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
     private       int[]                       tiles;
     public static ConcurrentLinkedQueue<Coin> coins;
-
+    private Bitmap bmp =  Bitmap.createBitmap(Tile.TILE_SIZE, Tile.TILE_SIZE,
+            Bitmap.Config.ARGB_8888);
+    private Paint mPaint = new Paint();
+    private Tile tile;
+    private Bitmap bg;
 
     private static View v;
     public static void setView(View v1) { v = v1; }
 
-    public Level(int id, Screen screen) {
+    public Level(int id, Screen screen, Resources r) {
         int levelID = 0;
         switch (id) {
             case R.id.level1:
                 levelID = R.drawable.level1image;
                 new Level1Coins(screen);
+                bg = BitmapFactory.decodeResource(r,R.drawable.level1bg);
                 break;
             case R.id.level2:
                 levelID = R.drawable.level2image;
                 new Level2Coins(screen);
+                bg = BitmapFactory.decodeResource(r,R.drawable.level2bg);
                 break;
             case R.id.level3:
                 levelID = R.drawable.level3image;
                 new Level3Coins(screen);
+                bg = BitmapFactory.decodeResource(r,R.drawable.level1bg);
                 break;
         }
         loadLevel(levelID);
@@ -54,21 +65,29 @@ public class Level {
         bmp.getPixels(tiles, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
     }
 
-    public void draw(int xScroll, int yScroll, Screen s) {
-        s.setOffset(xScroll, yScroll);
+    public void draw(int xScroll, Screen s, Canvas c) {
+        s.setOffset(xScroll);
         int x0 = xScroll / Tile.TILE_SIZE;
         int x1 = (xScroll + s.getWidth() + Tile.TILE_SIZE) / Tile.TILE_SIZE;
-        int y0 = yScroll / Tile.TILE_SIZE;
-        int y1 = (yScroll + s.getHeight() + Tile.TILE_SIZE) / Tile.TILE_SIZE;
+        int y0 = s.getHeight()  / Tile.TILE_SIZE;
 
-        for (int y = y0; y < y1; y++) {
+        for (int y = 0; y < y0; y++) {
             for (int x = x0; x < x1; x++) {
                 //draw every tile to Screen
-                getTile(x, y).draw(x, y, s);
+                //getTile(x, y).draw(x, y, s);
+                tile = getTile(x, y);
+                if (!tile.isBG()){
+                    bmp.setPixels(tile.sprite.pixels, 0, Tile.TILE_SIZE, 0, 0, Tile.TILE_SIZE,
+                            Tile.TILE_SIZE);
+                    c.drawBitmap(bmp,
+                            x * Tile.TILE_SIZE - xScroll,
+                            y * Tile.TILE_SIZE,
+                            mPaint);
+                }
             }
         }
     }
-
+    public Bitmap getBg() { return bg; }
     public Tile getTile(int x, int y) {
         //if out of bounds
         if (x < 0 || y < 0 || x >= IMAGE_WIDTH || y >= IMAGE_HEIGHT)

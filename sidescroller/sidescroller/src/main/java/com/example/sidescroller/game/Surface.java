@@ -3,13 +3,19 @@ package com.example.sidescroller.game;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.ImageView;
 
+import com.example.sidescroller.R;
 import com.example.sidescroller.fragments.MenuFragment;
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
@@ -20,9 +26,12 @@ import com.example.sidescroller.game.entities.enemies.FishEnemy;
 import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.entities.player.Frank;
+import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
+import com.example.sidescroller.game.level.TileSprites;
+import com.example.sidescroller.game.sound.BGsound;
 import com.example.sidescroller.game.sound.Sounds;
 
 import java.util.LinkedList;
@@ -48,6 +57,7 @@ public class Surface extends SurfaceView implements
     private static int   GAME_HEIGHT;
     private static int   LEVEL_ID;
     private        int   scrollSpeed;
+    private String scoreText;
     int snailPosition; //used when displaying the enemies for the levels
     int fishPosition;
     private Screen     screen;
@@ -59,7 +69,14 @@ public class Surface extends SurfaceView implements
     private JumpButton jumpButton;
     private MenuButton menuButton;
     private Sounds     pool;
+    private BGsound    bgMusic;
     private Paint      scoreFontStyle;
+    private Bitmap     bmp;
+    private Entity     enemy;
+    private Bitmap   bg;
+    private Paint mPaint = new Paint();
+
+
 
     public static void setDimensions(int width, int height) {
         GAME_WIDTH = width;
@@ -75,6 +92,7 @@ public class Surface extends SurfaceView implements
 
         scoreFontStyle = new Paint();
         scoreFontStyle.setTextSize(40);
+        bmp = newBitmap();
 
         SpriteSheet.setView(this);
         Level.setView(this);
@@ -82,9 +100,10 @@ public class Surface extends SurfaceView implements
         jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT);
         menuButton = new MenuButton(GAME_WIDTH, GAME_HEIGHT);
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
+        pixels = new int[GAME_WIDTH * GAME_HEIGHT];
 
         Level.coins = new ConcurrentLinkedQueue<Coin>();
-        level = new Level(LEVEL_ID, screen);
+        level = new Level(LEVEL_ID, screen, getResources());
 
         Entity.setScreen(screen);
         Entity.entities = new ConcurrentLinkedQueue<Entity>();
@@ -111,10 +130,13 @@ public class Surface extends SurfaceView implements
         }
 
         pool = new Sounds(c);
+        bgMusic = new BGsound(c);
 
         //Set thread
         getHolder().addCallback(this);
         setFocusable(true);
+        bgMusic.play(true);
+        bg = level.getBg();
     }
 
     @Override
@@ -180,8 +202,12 @@ public class Surface extends SurfaceView implements
     public void onDraw(Canvas c) {
         super.onDraw(c);
 
+        screen.pixels = new int[GAME_WIDTH * GAME_HEIGHT];
+        pixels = new int[GAME_WIDTH * GAME_HEIGHT];
+        c.drawBitmap(bg,0,0,mPaint);
+
         xScroll += scrollSpeed; //scroll map to the left
-        level.draw(xScroll, 0, screen);
+        level.draw(xScroll, screen, c);
         jumpButton.draw(screen);
         menuButton.draw(screen);
 
@@ -198,7 +224,7 @@ public class Surface extends SurfaceView implements
             b.shoot(screen);
         }
 
-        Entity enemy = frank.enemyCollision(frank.toRect());
+        enemy = frank.enemyCollision(frank.toRect());
         if (Entity.entities.contains(enemy)) {
             handleDeath();
         }
@@ -208,15 +234,11 @@ public class Surface extends SurfaceView implements
             handleDeath();
         }
 
-        pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
-
-        Bitmap bmp = newBitmap();
-        fillBitmap(bmp);
-
+        fillBitmap(bmp, GAME_WIDTH, GAME_HEIGHT);
         c.drawBitmap(bmp, 0, 0, null);
 
-        String scoreText = Integer.toString(frank.getScore());
+        scoreText = Integer.toString(frank.getScore());
         c.drawText(scoreText, GAME_WIDTH - (scoreText.length() * 25), 50, scoreFontStyle);
 
         jumpButton.up();
@@ -264,13 +286,14 @@ public class Surface extends SurfaceView implements
             e.setLevel(level);
         }
     }
+
     private Bitmap newBitmap() {
         return Bitmap.createBitmap(GAME_WIDTH, GAME_HEIGHT,
                 IMAGE_FORMAT);
     }
-    private void fillBitmap(Bitmap bmp) {
-        bmp.setPixels(pixels, 0, GAME_WIDTH, 0, 0, GAME_WIDTH,
-                GAME_HEIGHT);
+    private void fillBitmap(Bitmap bmp, int width, int height) {
+        bmp.setPixels(pixels, 0, width, 0, 0, width,
+                height);
     }
     public GameLoop getThread() {
         return thread;

@@ -60,6 +60,5 @@ public class GameLoop extends Thread {
                 }
             }
         }
-        if(!running) Log.v("NOT RUNNING","NOOOOOOT");
     }
 }

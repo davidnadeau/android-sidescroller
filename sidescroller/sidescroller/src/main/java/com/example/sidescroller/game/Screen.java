@@ -8,7 +8,7 @@ import com.example.sidescroller.game.graphics.Sprite;
 public class Screen {
     private int width, height;
     public int[] pixels;
-    public int   xOffset, yOffset;
+    public int   xOffset;
 
     public Screen(int width, int height) {
         this.width = width;
@@ -17,20 +17,6 @@ public class Screen {
         pixels = new int[width * height];
     }
 
-    public void drawTile(int xp, int yp, Sprite sprite) {
-        xp -= xOffset;
-        yp -= yOffset;
-        for (int y = 0; y < sprite.getSize(); y++) {
-            int ya = y + yp;
-            if (ya < 0 || ya >= height) break;
-            for (int x = 0; x < sprite.getSize(); x++) {
-                int xa = x + xp;
-                if (xa < -sprite.getSize() || xa >= width) break;
-                if (xa < 0) xa = 0;
-                pixels[xa + ya * width] = sprite.pixels[x + y * sprite.getSize()];
-            }
-        }
-    }
     public void draw(int xx, int yy, Sprite sprite) {
         for (int y = 0; y < sprite.getSize(); y++) {
             int ya = y + yy;
@@ -48,9 +34,8 @@ public class Screen {
         if (color > 0xffdcdcd0 && color < 0xffdcdcdf) return true;
         return false;
     }
-    public void setOffset(int xOffset, int yOffset) {
+    public void setOffset(int xOffset) {
         this.xOffset = xOffset;
-        this.yOffset = yOffset;
     }
 
     public int getWidth() { return width; }

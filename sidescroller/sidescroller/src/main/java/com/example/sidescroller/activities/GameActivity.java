@@ -55,7 +55,7 @@ public class GameActivity extends Activity {
     public void restart(View v) {
         Bomb.bombs.clear();
         Level.coins = new ConcurrentLinkedQueue<Coin>();
-        surface.resetLevel(new Level(surface.getLevel(), surface.getScreen()));
+        surface.resetLevel(new Level(surface.getLevel(), surface.getScreen(), getResources()));
         surface.resetGame();
         onBackPressed(v);
 
