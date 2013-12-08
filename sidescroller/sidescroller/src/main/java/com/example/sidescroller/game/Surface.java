@@ -155,6 +155,7 @@ public class Surface extends SurfaceView implements
                 // try again shutting down the thread
             }
         }
+        bgMusic.stop();
     }
 
     @Override
