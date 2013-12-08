@@ -3,21 +3,13 @@ package com.example.sidescroller.game;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.ImageView;
 
-import com.example.sidescroller.R;
 import com.example.sidescroller.fragments.MenuFragment;
-import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.buttons.MenuButton;
 import com.example.sidescroller.game.entities.Entity;
@@ -26,11 +18,9 @@ import com.example.sidescroller.game.entities.enemies.FishEnemy;
 import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.entities.player.Frank;
-import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
-import com.example.sidescroller.game.level.TileSprites;
 import com.example.sidescroller.game.sound.BGsound;
 import com.example.sidescroller.game.sound.Sounds;
 
@@ -52,12 +42,12 @@ public class Surface extends SurfaceView implements
     private static final Bitmap.Config            IMAGE_FORMAT = Bitmap.Config.ARGB_8888;
     private int xScroll;
 
-    private        int[] pixels;
-    private static int   GAME_WIDTH;
-    private static int   GAME_HEIGHT;
-    private static int   LEVEL_ID;
-    private        int   scrollSpeed;
-    private String scoreText;
+    private        int[]  pixels;
+    private static int    GAME_WIDTH;
+    private static int    GAME_HEIGHT;
+    private static int    LEVEL_ID;
+    private        int    scrollSpeed;
+    private        String scoreText;
     int snailPosition; //used when displaying the enemies for the levels
     int fishPosition;
     private Screen     screen;
@@ -73,9 +63,8 @@ public class Surface extends SurfaceView implements
     private Paint      scoreFontStyle;
     private Bitmap     bmp;
     private Entity     enemy;
-    private Bitmap   bg;
+    private Bitmap     bg;
     private Paint mPaint = new Paint();
-
 
 
     public static void setDimensions(int width, int height) {
@@ -117,12 +106,12 @@ public class Surface extends SurfaceView implements
 
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
-        for(int i = 0; i < 10; i++){
-            int randomJumpHeight = 3 + (int)(Math.random() * ((10 - 3) + 1));//between 3 and 10
+        for (int i = 0; i < 10; i++) {
+            int randomJumpHeight = 3 + (int) (Math.random() * ((10 - 3) + 1));//between 3 and 10
             snailEnemy = new SnailEnemy(snailPosition, 128);
             fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);
             snailPosition += 350;
-            fishPosition  += 450;
+            fishPosition += 450;
         }
 
         for (Entity e : Entity.entities) {
@@ -179,10 +168,10 @@ public class Surface extends SurfaceView implements
                     frank.setJumping(true);
                     pool.play(1, false);
                 }
-            } else if (menuButton.wasClicked(x,y)) {
+            } else if (menuButton.wasClicked(x, y)) {
                 thread.setRunning(false);
                 MenuFragment.setScore(frank.getScore());
-                ((Activity)getContext()).getFragmentManager()
+                ((Activity) getContext()).getFragmentManager()
                         .beginTransaction()
                         .replace(android.R.id.content, new MenuFragment())
                         .addToBackStack(null)
@@ -204,7 +193,7 @@ public class Surface extends SurfaceView implements
 
         screen.pixels = new int[GAME_WIDTH * GAME_HEIGHT];
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
-        c.drawBitmap(bg,0,0,mPaint);
+        c.drawBitmap(bg, 0, 0, mPaint);
 
         xScroll += scrollSpeed; //scroll map to the left
         level.draw(xScroll, screen, c);
@@ -274,12 +263,12 @@ public class Surface extends SurfaceView implements
 
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
-        for(int i = 0; i < 10; i++){
-            int randomJumpHeight = 3 + (int)(Math.random() * ((10 - 3) + 1));//between 3 and 10
+        for (int i = 0; i < 10; i++) {
+            int randomJumpHeight = 3 + (int) (Math.random() * ((10 - 3) + 1));//between 3 and 10
             snailEnemy = new SnailEnemy(snailPosition, 128);
             fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);
             snailPosition += 400;
-            fishPosition  += 450;
+            fishPosition += 450;
         }
 
         for (Entity e : Entity.entities) {

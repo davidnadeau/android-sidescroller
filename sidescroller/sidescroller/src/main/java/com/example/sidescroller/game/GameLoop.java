@@ -1,7 +1,6 @@
 package com.example.sidescroller.game;
 
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**

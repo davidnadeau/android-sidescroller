@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-import com.example.sidescroller.fragments.MenuFragment;
 import com.example.sidescroller.game.GameLoop;
 import com.example.sidescroller.game.Surface;
 import com.example.sidescroller.game.entities.coins.Coin;

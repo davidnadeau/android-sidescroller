@@ -1,7 +1,6 @@
 package com.example.sidescroller.fragments;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,7 @@ public class MenuFragment extends Fragment {
         //start the xml files using this class not by just setting content view
 
         TextView scoreLabel = (TextView) vw.findViewById(R.id.score);
-        scoreLabel.setText("fdfdfdfdfdfdfdf"+score);
+        scoreLabel.setText("fdfdfdfdfdfdfdf" + score);
 
         return vw;
     }

@@ -13,7 +13,7 @@ public class JumpButton {
     public JumpButton(int x, int y) {
         this.x = x / 8;
         this.y = y - (y / 8);
-        this.sprite =  ButtonSprites.jumpButtonUp;
+        this.sprite = ButtonSprites.jumpButtonUp;
     }
 
     public boolean wasClicked(int x, int y) {
@@ -24,10 +24,10 @@ public class JumpButton {
     }
 
     public void down() {
-        this.sprite =  ButtonSprites.jumpButtonDown;
+        this.sprite = ButtonSprites.jumpButtonDown;
     }
     public void up() {
-        this.sprite =  ButtonSprites.jumpButtonUp;
+        this.sprite = ButtonSprites.jumpButtonUp;
     }
     public void draw(Screen s) { s.draw(x, y, sprite); }
 
