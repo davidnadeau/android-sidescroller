@@ -47,6 +47,7 @@ public class Entity {
     public void draw() { screen.draw(x, y, sprite); }
 
     public Rect toRect() {
+        if (sprite==null) return new Rect();
         int size = sprite.getSize() / 2;
         return new Rect(x - size, y - size, x + size, y + size);
     }
