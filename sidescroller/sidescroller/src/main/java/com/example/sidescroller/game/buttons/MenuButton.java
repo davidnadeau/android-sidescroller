@@ -6,13 +6,13 @@ import com.example.sidescroller.game.graphics.Sprite;
 /**
  * Created by soote on 11/29/13.
  */
-public class JumpButton {
+public class MenuButton {
     private int x, y;
     private Sprite sprite;
 
-    public JumpButton(int x, int y) {
-        this.x = x / 8;
-        this.y = y - (y / 8);
+    public MenuButton(int x, int y) {
+        this.x = x / 2;
+        this.y = y / 8;
         this.sprite =  ButtonSprites.jumpButtonUp;
     }
 

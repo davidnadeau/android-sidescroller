@@ -10,6 +10,7 @@ import android.view.SurfaceView;
 
 import com.example.sidescroller.game.buttons.ButtonSprites;
 import com.example.sidescroller.game.buttons.JumpButton;
+import com.example.sidescroller.game.buttons.MenuButton;
 import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.entities.enemies.FishEnemy;
@@ -52,6 +53,7 @@ public class Surface extends SurfaceView implements
     private FishEnemy  fishEnemy;
     private GameLoop   thread;
     private JumpButton jumpButton;
+    private MenuButton menuButton;
     private Sounds     pool;
     private Paint      scoreFontStyle;
 
@@ -70,7 +72,8 @@ public class Surface extends SurfaceView implements
         SpriteSheet.setView(this);
         Level.setView(this);
 
-        jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT, ButtonSprites.jumpButton);
+        jumpButton = new JumpButton(GAME_WIDTH, GAME_HEIGHT);
+        menuButton = new MenuButton(GAME_WIDTH, GAME_HEIGHT);
         screen = new Screen(GAME_WIDTH, GAME_HEIGHT);
 
         Level.coins = new ConcurrentLinkedQueue<Coin>();
@@ -136,6 +139,7 @@ public class Surface extends SurfaceView implements
             int y = (int) event.getY();
             if (jumpButton.wasClicked(x, y)) {
                 if (!frank.isJumping() && !frank.isFalling()) {
+                    jumpButton.down();
                     frank.setJumping(true);
                     pool.play(1, false);
                 }
@@ -157,6 +161,7 @@ public class Surface extends SurfaceView implements
         xScroll += scrollSpeed; //scroll map to the left
         level.draw(xScroll, 0, screen);
         jumpButton.draw(screen);
+        menuButton.draw(screen);
 
         //draw all the coins on the canvas
         for (Coin coin : Level.coins) {
@@ -191,6 +196,9 @@ public class Surface extends SurfaceView implements
 
         String scoreText = Integer.toString(frank.getScore());
         c.drawText(scoreText, GAME_WIDTH - (scoreText.length() * 25), 50, scoreFontStyle);
+
+        jumpButton.up();
+        menuButton.up();
     }
 
     private void handleDeath() {
