@@ -64,6 +64,9 @@ public class Surface extends SurfaceView implements
         GAME_HEIGHT = height;
     }
     public static void setLevel(int id) { LEVEL_ID = id; }
+    public int getLevel() { return LEVEL_ID; }
+    public void resetLevel(Level l) { level = l; }
+    public Screen getScreen() { return screen; }
 
     public Surface(Context c) {
         super(c);
@@ -213,6 +216,10 @@ public class Surface extends SurfaceView implements
     private void handleDeath() {
         //change sprite
         frank.die();
+        int lives = frank.getLives();
+        int score = frank.getScore();
+        frank.setLives(lives - 1);
+        frank.setScore((int) (score * .75));
         //play death sound
 
         //stop scrolling
@@ -224,17 +231,14 @@ public class Surface extends SurfaceView implements
         };
         worker.schedule(task, 2, TimeUnit.SECONDS);
     }
-    private void resetGame() {
+    public void resetGame() {
         Entity.entities = new ConcurrentLinkedQueue<Entity>();
 
         scrollSpeed = Tile.TILE_SIZE;
         xScroll = -scrollSpeed;
 
-        int lives = frank.getLives();
-        int score = frank.getScore();
         frank = new Frank(GAME_WIDTH, 128);
-        frank.setLives(lives - 1);
-        frank.setScore((int) (score * .75));
+
 
         snailEnemy = new SnailEnemy(GAME_WIDTH, 128);
         fishEnemy = new FishEnemy(GAME_WIDTH, 128);

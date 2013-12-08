@@ -110,7 +110,6 @@ public class Frank extends Entity {
      */
     public boolean shoot() { return true; }
     public void die() {
-        lives--;
         sprite = TileSprites.liquidLava;
     }
     public boolean isDead() {

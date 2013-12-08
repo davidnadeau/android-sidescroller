@@ -8,6 +8,11 @@ import android.view.View;
 import com.example.sidescroller.fragments.MenuFragment;
 import com.example.sidescroller.game.GameLoop;
 import com.example.sidescroller.game.Surface;
+import com.example.sidescroller.game.entities.coins.Coin;
+import com.example.sidescroller.game.entities.peripherals.Bomb;
+import com.example.sidescroller.game.level.Level;
+
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by Owner on 15/11/13.
@@ -47,8 +52,15 @@ public class GameActivity extends Activity {
         surface.getThread().setRunning(true);
         surface.getThread().start();
     }
+    public void restart(View v) {
+        Bomb.bombs = new ConcurrentLinkedQueue<Bomb>();
+        Level.coins = new ConcurrentLinkedQueue<Coin>();
+        surface.resetLevel(new Level(surface.getLevel(), surface.getScreen()));
+        surface.resetGame();
+        onBackPressed(v);
 
-    public void restart(View v) {}//restart this activity at current level
+    }
+
     public void quit(View v) { finish(); }//start main activity
 
     private void enabledButtons() { btnClicked = false; }
