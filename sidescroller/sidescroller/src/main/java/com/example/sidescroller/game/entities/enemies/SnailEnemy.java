@@ -28,12 +28,17 @@ public class SnailEnemy extends Entity {
                 walking_left = true;
             }
         } else if (walking_left) { //if he is already on the ground
-            x -= sprite.getSize() / 2; //move enemy to the left
-            if (spriteNumber == 1) {
-                sprite = EnemySprites.snail2;
-                spriteNumber = 0;
+            if (!tileCollision(0, sprite.getSize())) {//make sure hes not falling into a hole though
+                mid_air = true;
+                y += sprite.getSize();
             } else {
-                spriteNumber++;
+                x -= sprite.getSize() / 2; //move enemy to the left
+                if (spriteNumber == 1) {
+                    sprite = EnemySprites.snail2;
+                    spriteNumber = 0;
+                } else {
+                    spriteNumber++;
+                }
             }
         }
         draw();

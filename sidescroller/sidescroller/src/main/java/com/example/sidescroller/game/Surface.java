@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -47,7 +48,8 @@ public class Surface extends SurfaceView implements
     private static int   GAME_HEIGHT;
     private static int   LEVEL_ID;
     private        int   scrollSpeed;
-
+    int snailPosition; //used when displaying the enemies for the levels
+    int fishPosition;
     private Screen     screen;
     private Level      level;
     private Frank      frank;
@@ -93,8 +95,16 @@ public class Surface extends SurfaceView implements
         //game height is 720. that is not a multiple of 64 so we have to set franks y to be a
         // multiple
         frank = new Frank(GAME_WIDTH, 128);
-        snailEnemy = new SnailEnemy(GAME_WIDTH, 128);
-        fishEnemy = new FishEnemy(GAME_WIDTH, 128);
+
+        snailPosition = GAME_WIDTH;
+        fishPosition = GAME_WIDTH;
+        for(int i = 0; i < 10; i++){
+            int randomJumpHeight = 3 + (int)(Math.random() * ((10 - 3) + 1));//between 3 and 10
+            snailEnemy = new SnailEnemy(snailPosition, 128);
+            fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);
+            snailPosition += 350;
+            fishPosition  += 450;
+        }
 
         for (Entity e : Entity.entities) {
             e.setLevel(level);
@@ -240,8 +250,15 @@ public class Surface extends SurfaceView implements
         frank = new Frank(GAME_WIDTH, 128);
 
 
-        snailEnemy = new SnailEnemy(GAME_WIDTH, 128);
-        fishEnemy = new FishEnemy(GAME_WIDTH, 128);
+        snailPosition = GAME_WIDTH;
+        fishPosition = GAME_WIDTH;
+        for(int i = 0; i < 10; i++){
+            int randomJumpHeight = 3 + (int)(Math.random() * ((10 - 3) + 1));//between 3 and 10
+            snailEnemy = new SnailEnemy(snailPosition, 128);
+            fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);
+            snailPosition += 400;
+            fishPosition  += 450;
+        }
 
         for (Entity e : Entity.entities) {
             e.setLevel(level);

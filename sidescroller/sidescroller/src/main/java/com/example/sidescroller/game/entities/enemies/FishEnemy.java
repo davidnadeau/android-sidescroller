@@ -12,10 +12,10 @@ public class FishEnemy extends Entity {
     private int spriteNumber = 0;
     //fight the power
     public FishEnemy() {}
-    public FishEnemy(int x, int y) {
+    public FishEnemy(int x, int y, int jump) {
         this.x = x;
         this.y = y;
-        jumpHeight = this.y - 10;
+        jumpHeight = this.y - jump;
         Entity.entities.add(this);
     }
 
