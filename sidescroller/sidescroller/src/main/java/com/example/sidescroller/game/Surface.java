@@ -116,14 +116,19 @@ public class Surface extends SurfaceView implements
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
 
-        for (int i = 0; i < difficulty * 200; i++) {
+        for (int i = 0; i < 500; i++) {
             int randomJumpHeight = r.nextInt(10) + 3;//between 3 and 10
-            int randomPositionSnail = r.nextInt(500) + 275;
-            int randomPositionFish = r.nextInt(550) + 375;
             snailEnemy = new SnailEnemy(snailPosition, 128);
             fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);
-            snailPosition += randomPositionSnail;
-            fishPosition += randomPositionFish;
+            if(difficulty == 1){//easy
+            snailPosition += 1000; //spawn far away from each other
+            fishPosition += 1150; }
+            else if(difficulty == 2){//easy
+            snailPosition += 800; //spawn far away from each other
+            fishPosition += 850; }
+            else if(difficulty == 3){//easy
+            snailPosition += 450; //spawn far away from each other
+            fishPosition += 550; }
         }
 
         for (Entity e : Entity.entities) {
