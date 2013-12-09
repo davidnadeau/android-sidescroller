@@ -214,6 +214,7 @@ public class Surface extends SurfaceView implements
             coin.setX(coin.getX() - scrollSpeed);
             coin.draw(coin.getX(), coin.getY(), screen);
         }
+
         LinkedList<Entity> entitiesCopy = new LinkedList<Entity>(Entity.entities);
         entitiesCopy.pop().move();
         //move and draw all our entities
