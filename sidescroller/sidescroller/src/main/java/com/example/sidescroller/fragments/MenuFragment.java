@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sidescroller.R;
@@ -14,6 +15,7 @@ import com.example.sidescroller.R;
  */
 public class MenuFragment extends Fragment {
     public static int score;
+    private static String message;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -22,12 +24,18 @@ public class MenuFragment extends Fragment {
         //start the xml files using this class not by just setting content view
 
         TextView scoreLabel = (TextView) vw.findViewById(R.id.score);
+        TextView msgLabel = (TextView) vw.findViewById(R.id.message);
         scoreLabel.setText(""+score);
+        msgLabel.setText(""+message);
+        if (!message.equalsIgnoreCase("pause"))
+                vw.findViewById(R.id.button).setEnabled(false);
 
         return vw;
     }
     public static void setScore(int frankScore) {
         score = frankScore;
     }
-
+    public static void setMessage(String msg) {
+        message = msg;
+    }
 }
