@@ -268,6 +268,7 @@ public class Surface extends SurfaceView implements
     }
     public void resetGame() {
         Entity.entities = new ConcurrentLinkedQueue<Entity>();
+        Bomb.bombs = new ConcurrentLinkedQueue<Bomb>();
 
         scrollSpeed = Tile.TILE_SIZE;
         xScroll = -scrollSpeed;
