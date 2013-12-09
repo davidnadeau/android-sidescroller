@@ -7,5 +7,6 @@ import com.example.sidescroller.game.graphics.Sprite;
  */
 public class ButtonSprites {
     public static Sprite jumpButtonUp   = new Sprite(80, 2, 0);
-    public static Sprite jumpButtonDown = new Sprite(80, 1, 2);
+
+    public static Sprite menuButton = new Sprite(64, 4, 4);
 }

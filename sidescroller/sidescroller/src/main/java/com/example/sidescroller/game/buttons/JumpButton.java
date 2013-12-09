@@ -24,7 +24,7 @@ public class JumpButton {
     }
 
     public void down() {
-        this.sprite = ButtonSprites.jumpButtonDown;
+        this.sprite = ButtonSprites.jumpButtonUp;
     }
     public void up() {
         this.sprite = ButtonSprites.jumpButtonUp;

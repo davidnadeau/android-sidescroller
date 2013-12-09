@@ -25,6 +25,7 @@ import com.example.sidescroller.game.sound.BGsound;
 import com.example.sidescroller.game.sound.Sounds;
 
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -65,13 +66,15 @@ public class Surface extends SurfaceView implements
     private Entity     enemy;
     private Bitmap     bg;
     private Paint mPaint = new Paint();
-
+    private static int difficulty;
+    private Random r = new Random();
 
     public static void setDimensions(int width, int height) {
         GAME_WIDTH = width;
         GAME_HEIGHT = height;
     }
     public static void setLevel(int id) { LEVEL_ID = id; }
+    public static void setDifficulty(int number) { difficulty = number; }//1 for easy, 2 medium, 3 hard
     public int getLevel() { return LEVEL_ID; }
     public void resetLevel(Level l) { level = l; }
     public Screen getScreen() { return screen; }
@@ -106,12 +109,15 @@ public class Surface extends SurfaceView implements
 
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
-        for (int i = 0; i < 10; i++) {
-            int randomJumpHeight = 3 + (int) (Math.random() * ((10 - 3) + 1));//between 3 and 10
+
+        for (int i = 0; i < difficulty*15; i++) {
+            int randomJumpHeight = r.nextInt(10)+3;//between 3 and 10
+            int randomPositionSnail = r.nextInt(500)+275;
+            int randomPositionFish = r.nextInt(550)+375;
             snailEnemy = new SnailEnemy(snailPosition, 128);
             fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);
-            snailPosition += 350;
-            fishPosition += 450;
+            snailPosition += randomPositionSnail;
+            fishPosition += randomPositionFish;
         }
 
         for (Entity e : Entity.entities) {

@@ -13,7 +13,7 @@ public class MenuButton {
     public MenuButton(int x, int y) {
         this.x = x / 2;
         this.y = y / 8;
-        this.sprite = ButtonSprites.jumpButtonUp;
+        this.sprite = ButtonSprites.menuButton;
     }
 
     public boolean wasClicked(int x, int y) {
@@ -24,10 +24,10 @@ public class MenuButton {
     }
 
     public void down() {
-        this.sprite = ButtonSprites.jumpButtonDown;
+        this.sprite = ButtonSprites.menuButton;
     }
     public void up() {
-        this.sprite = ButtonSprites.jumpButtonUp;
+        this.sprite = ButtonSprites.menuButton;
     }
     public void draw(Screen s) { s.draw(x, y, sprite); }
 
