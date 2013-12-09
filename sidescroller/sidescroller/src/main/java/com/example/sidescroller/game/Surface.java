@@ -253,13 +253,13 @@ public class Surface extends SurfaceView implements
         new Life(48,48, CoinSprites.gold).draw(160,20,screen);
         new Life(48,48, CoinSprites.exxx).draw(220,30,screen);
         drawCoinCount();
+
+        scoreText = Integer.toString(frank.getScore());
+        drawScore(scoreText);
+
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
         fillBitmap(bmp, GAME_WIDTH, GAME_HEIGHT);
         c.drawBitmap(bmp, 0, 0, null);
-
-        scoreText = Integer.toString(frank.getScore());
-        c.drawText(scoreText, GAME_WIDTH - (scoreText.length() * 25), 50, scoreFontStyle);
-
 
         jumpButton.up();
         if ((frank.getX() + (xScroll)) > (level.getWidth() * 64)) {
@@ -274,6 +274,17 @@ public class Surface extends SurfaceView implements
                     .addToBackStack(null)
                     .commit();
         }
+    }
+    private void drawScore(String s) {
+        int len = s.length();
+        int distance = GAME_WIDTH - 40;
+        for (int i=len-1; i>=0; i--){
+            char c = s.charAt(i);
+            new Life(48,48, getNumber(Character.getNumericValue(c)))
+                            .draw(distance-((len-i)*30),
+                            30,screen);
+        }
+
     }
     private void drawCoinCount() {
         int number1,number2,number3;
