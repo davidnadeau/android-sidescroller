@@ -19,7 +19,6 @@ public class LevelSelectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View vw = inflater.inflate(R.layout.fragment_level_select, container, false);
-        vw.setBackgroundColor(getResources().getColor(android.R.color.background_light));
         return vw;
     }
 }
