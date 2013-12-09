@@ -2,6 +2,7 @@ package com.example.sidescroller.game.entities.player;
 
 import android.graphics.Rect;
 
+import com.example.sidescroller.game.Surface;
 import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.level.Level;
@@ -96,6 +97,7 @@ public class Frank extends Entity {
             Rect coin = c.toRect();
 
             if (frank.intersect(coin)) {
+                Surface.pool.play(0,false);
                 Level.coins.remove(c);
                 score += c.getValue();
             }

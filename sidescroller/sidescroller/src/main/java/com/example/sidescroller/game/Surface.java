@@ -59,7 +59,7 @@ public class Surface extends SurfaceView implements
     private GameLoop   thread;
     private JumpButton jumpButton;
     private MenuButton menuButton;
-    private Sounds     pool;
+    public static Sounds     pool;
     private BGsound    bgMusic;
     private Paint      scoreFontStyle;
     private Bitmap     bmp;

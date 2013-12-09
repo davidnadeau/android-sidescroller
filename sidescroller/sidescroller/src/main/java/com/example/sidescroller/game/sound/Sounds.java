@@ -11,7 +11,7 @@ import com.example.sidescroller.R;
  */
 public class Sounds {
 
-    private final int soundSize = 4;  //0 is background,1 is jump,2 is bomb
+    private final int soundSize = 4;  //0 is coin,1 is jump,2 is bomb,3 is bomb
     private SoundPool pool;
     private int       soundID[];
 
@@ -21,7 +21,7 @@ public class Sounds {
         soundID[0] = pool.load(c,R.raw.coin,1);
         soundID[1] = pool.load(c, R.raw.jump, 1);
         soundID[2] = pool.load(c, R.raw.bomb, 1);
-        soundID[3] = pool.load(c,R.raw.bombEx,1);
+        soundID[3] = pool.load(c,R.raw.bombe,1);
     }
 
     public void pause(int index) {

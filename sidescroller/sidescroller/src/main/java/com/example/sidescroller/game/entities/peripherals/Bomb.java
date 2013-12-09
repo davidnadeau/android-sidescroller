@@ -1,6 +1,7 @@
 package com.example.sidescroller.game.entities.peripherals;
 
 import com.example.sidescroller.game.Screen;
+import com.example.sidescroller.game.Surface;
 import com.example.sidescroller.game.entities.Entity;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -36,6 +37,7 @@ public class Bomb extends Entity {
 
             Entity enemy = enemyCollision(this.toRect());
             if (tileCollision(xdelta, ydelta)) { //tile was hit
+                Surface.pool.play(3,false);
                 shooting = false;
                 sprite = PeripheralSprites.explosion;
                 draw();
