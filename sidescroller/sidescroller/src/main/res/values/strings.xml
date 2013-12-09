@@ -9,4 +9,10 @@
     <string name="level2">2 - TWO</string>
     <string name="level1">1 - ONE</string>
 
+    <string-array name="difficulty">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
 </resources>

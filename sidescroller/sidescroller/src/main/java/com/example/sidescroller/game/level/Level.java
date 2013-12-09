@@ -32,7 +32,7 @@ public class Level {
     private static View v;
     public static void setView(View v1) { v = v1; }
 
-    public Level(int id, Screen screen, Resources r) {
+    public Level(int id, int dif Screen screen, Resources r) {
         int levelID = 0;
         switch (id) {
             case R.id.level1:
@@ -49,6 +49,16 @@ public class Level {
                 levelID = R.drawable.level3image;
                 new Level3Coins(screen);
                 bg = BitmapFactory.decodeResource(r, R.drawable.level1bg);
+                break;
+        }
+
+        switch (dif) {
+            case R.id.easy:
+                dif
+                break;
+            case R.id.medium:
+                break;
+            case R.id.hard:
                 break;
         }
         loadLevel(levelID);

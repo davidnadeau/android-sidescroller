@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.sidescroller.R;
 
@@ -18,7 +20,6 @@ public class LevelSelectFragment extends Fragment {
                              Bundle savedInstanceState) {
         View vw = inflater.inflate(R.layout.fragment_level_select, container, false);
         vw.setBackgroundColor(getResources().getColor(android.R.color.background_light));
-        //start the xml files using this class not by just setting content view
         return vw;
     }
 }

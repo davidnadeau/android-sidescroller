@@ -58,7 +58,9 @@ public class MainActivity extends Activity {
 
         Intent i = new Intent(getApplicationContext(), GameActivity.class);
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        RadioGroup difficulty = (RadioGroup) findViewById(R.id.difficulty);
         i.putExtra("level", radioGroup.getCheckedRadioButtonId());
+        i.putExtra("difficulty", difficulty.getCheckedRadioButtonId());
         startActivity(i);
     }
 
