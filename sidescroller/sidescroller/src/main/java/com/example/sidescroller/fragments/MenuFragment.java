@@ -13,7 +13,7 @@ import com.example.sidescroller.R;
  * Created by Owner on 11/18/13.
  */
 public class MenuFragment extends Fragment {
-    public static  int    score;
+    public static  int    score, totalCoinCount, coinCount;
     private static String message;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,8 +24,10 @@ public class MenuFragment extends Fragment {
 
         TextView scoreLabel = (TextView) vw.findViewById(R.id.score);
         TextView msgLabel = (TextView) vw.findViewById(R.id.message);
+        TextView coinLabel = (TextView) vw.findViewById(R.id.coins);
         scoreLabel.setText("" + score);
         msgLabel.setText("" + message);
+        coinLabel.setText("Coins " + coinCount +" / "+ totalCoinCount);
         if (!message.equalsIgnoreCase("pause"))
             vw.findViewById(R.id.button).setEnabled(false);
 
@@ -33,6 +35,10 @@ public class MenuFragment extends Fragment {
     }
     public static void setScore(int frankScore) {
         score = frankScore;
+    }
+    public static void setCoins(int coinss, int totall) {
+        coinCount = coinss;
+        totalCoinCount = totall;
     }
     public static void setMessage(String msg) {
         message = msg;

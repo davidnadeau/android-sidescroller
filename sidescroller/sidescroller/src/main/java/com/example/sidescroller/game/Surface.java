@@ -185,6 +185,8 @@ public class Surface extends SurfaceView implements
                 thread.setRunning(false);
                 MenuFragment.setScore(frank.getScore());
                 MenuFragment.setMessage("Pause");
+                MenuFragment.setCoins(frank.getCoins(), Level.coins.size());
+
                 ((Activity) getContext()).getFragmentManager()
                         .beginTransaction()
                         .replace(android.R.id.content, new MenuFragment())
@@ -268,6 +270,8 @@ public class Surface extends SurfaceView implements
 
             MenuFragment.setScore(frank.getScore());
             MenuFragment.setMessage("You Win");
+            MenuFragment.setCoins(frank.getCoins(), Level.coins.size());
+
             ((Activity) getContext()).getFragmentManager()
                     .beginTransaction()
                     .replace(android.R.id.content, mf)
@@ -348,6 +352,8 @@ public class Surface extends SurfaceView implements
 
             MenuFragment.setScore(frank.getScore());
             MenuFragment.setMessage("You Died");
+            MenuFragment.setCoins(frank.getCoins(), Level.coins.size());
+
             ((Activity) getContext()).getFragmentManager()
                     .beginTransaction()
                     .replace(android.R.id.content, mf)
