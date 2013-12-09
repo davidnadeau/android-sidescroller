@@ -229,14 +229,16 @@ public class Surface extends SurfaceView implements
             b.shoot(screen);
         }
 
-        enemy = frank.enemyCollision(frank.toRect());
-        if (Entity.entities.contains(enemy)) {
-            handleDeath();
-        }
-        frank.coinCollision();
+        if(!frank.isDead()) {
+            enemy = frank.enemyCollision(frank.toRect());
+            if (Entity.entities.contains(enemy)) {
+                handleDeath();
+            }
+            frank.coinCollision();
 
-        if (frank.isOffScreen()) {
-            handleDeath();
+            if (frank.isOffScreen()) {
+                handleDeath();
+            }
         }
 
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
@@ -247,6 +249,17 @@ public class Surface extends SurfaceView implements
         c.drawText(scoreText, GAME_WIDTH - (scoreText.length() * 25), 50, scoreFontStyle);
 
         jumpButton.up();
+        if ((frank.getX()+(xScroll))>(level.getWidth()*64)) {
+            thread.setRunning(false);
+            MenuFragment mf = new MenuFragment();
+
+            MenuFragment.setScore(frank.getScore());
+            ((Activity) getContext()).getFragmentManager()
+                    .beginTransaction()
+                    .replace(android.R.id.content, mf)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     private void handleDeath() {
@@ -258,6 +271,17 @@ public class Surface extends SurfaceView implements
         frank.setScore((int) (score * .75));
         //play death sound
 
+        if (frank.getLives()==0) {
+            MenuFragment mf = new MenuFragment();
+
+            MenuFragment.setScore(frank.getScore());
+            ((Activity) getContext()).getFragmentManager()
+                    .beginTransaction()
+                    .replace(android.R.id.content, mf)
+                    .addToBackStack(null)
+                    .commit();
+            return;
+        }
         //stop scrolling
         scrollSpeed = 0;
         Runnable task = new Runnable() {
@@ -273,9 +297,11 @@ public class Surface extends SurfaceView implements
 
         scrollSpeed = Tile.TILE_SIZE;
         xScroll = -scrollSpeed;
-
+        int lives = frank.getLives();
+        int score = frank.getScore();
         frank = new Frank(GAME_WIDTH, 128);
-
+        frank.setLives(lives);
+        frank.setScore(score);
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
         for (int i = 0; i < 500; i++) { //max enemies is 500

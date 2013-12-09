@@ -115,8 +115,8 @@ public class Frank extends Entity {
         sprite = FrankSprites.frank_die;
     }
     public boolean isDead() {
-        return sprite.getX() / sprite.getSize() == 1
-                && sprite.getY() / sprite.getSize() == 3;
+        return sprite.getX() / sprite.getSize() == 5
+                && sprite.getY() / sprite.getSize() == 4;
     }
     public int getLives() { return lives; }
     public int getScore() { return score; }

@@ -29,7 +29,7 @@ public class Level {
     private Paint  mPaint = new Paint();
     private Tile   tile;
     private Bitmap bg;
-
+    public int getWidth() { return IMAGE_WIDTH; }
     private static View v;
     public static void setView(View v1) { v = v1; }
 
