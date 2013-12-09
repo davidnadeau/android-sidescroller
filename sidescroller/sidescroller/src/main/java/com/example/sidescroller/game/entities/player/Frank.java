@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * Created by Owner on 18/11/13.
  */
 public class Frank extends Entity {
-    private int lives, score;
+    private int lives, score, coins;
 
     private boolean jumping = false;
     private boolean falling = true;
@@ -25,6 +25,7 @@ public class Frank extends Entity {
         this.x = x / 4;
         this.y = y;
         score = 0;
+        coins = 0;
         lives = 3;
         jumpHeight = this.y - 64;
         sprite = FrankSprites.frank_walk0;
@@ -98,6 +99,7 @@ public class Frank extends Entity {
             if (frank.intersect(coin)) {
                 Surface.pool.play(0, false);
                 Level.coins.remove(c);
+                coins++;
                 score += c.getValue();
             }
         }
@@ -105,7 +107,8 @@ public class Frank extends Entity {
 
     public boolean isJumping() { return jumping; }
     public boolean isFalling() { return falling; }
-
+    public int getCoins() { return coins; }
+    public void setCoins(int v) { coins=v; }
     /**
      * Returns true if the object was hit
      */

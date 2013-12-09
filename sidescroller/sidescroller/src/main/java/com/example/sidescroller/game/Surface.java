@@ -20,6 +20,7 @@ import com.example.sidescroller.game.entities.enemies.FishEnemy;
 import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.entities.player.Frank;
+import com.example.sidescroller.game.graphics.Sprite;
 import com.example.sidescroller.game.graphics.SpriteSheet;
 import com.example.sidescroller.game.level.Level;
 import com.example.sidescroller.game.level.Tile;
@@ -247,17 +248,11 @@ public class Surface extends SurfaceView implements
 
         new Life(48,48, CoinSprites.lives).draw(20,20,screen);
         new Life(48,48, CoinSprites.exxx).draw(80,30,screen);
-        switch (frank.getLives()) {
-            case 1:
-                new Life(48,48, CoinSprites.one).draw(120,30,screen);
-                break;
-            case 2:
-                new Life(48,48, CoinSprites.two).draw(120,30,screen);
-                break;
-            case 3:
-                new Life(48,48, CoinSprites.three).draw(120,30,screen);
-                break;
-        }
+        new Life(48,48, getNumber(frank.getLives())).draw(120,30,screen);
+
+        new Life(48,48, CoinSprites.gold).draw(160,20,screen);
+        new Life(48,48, CoinSprites.exxx).draw(220,30,screen);
+        drawCoinCount();
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
         fillBitmap(bmp, GAME_WIDTH, GAME_HEIGHT);
         c.drawBitmap(bmp, 0, 0, null);
@@ -279,6 +274,54 @@ public class Surface extends SurfaceView implements
                     .addToBackStack(null)
                     .commit();
         }
+    }
+    private void drawCoinCount() {
+        int number1,number2,number3;
+        switch ((""+frank.getCoins()).length()) {
+            case 1:
+                number1 = Integer.parseInt((""+frank.getCoins()).substring(0,1));
+                new Life(48,48, getNumber(number1)).draw(260,30,screen);
+                break;
+            case 2:
+                number1 = Integer.parseInt((""+frank.getCoins()).substring(0,1));
+                number2 = Integer.parseInt((""+frank.getCoins()).substring(1,2));
+                new Life(48,48, getNumber(number1)).draw(260,30,screen);
+                new Life(48,48, getNumber(number2)).draw(290,30,screen);
+                break;
+            case 3:
+                number1 = Integer.parseInt((""+frank.getCoins()).substring(0,1));
+                number2 = Integer.parseInt((""+frank.getCoins()).substring(1,2));
+                number3 = Integer.parseInt((""+frank.getCoins()).substring(2,3));
+                new Life(48,48, getNumber(number1)).draw(260,30,screen);
+                new Life(48,48, getNumber(number2)).draw(290,30,screen);
+                new Life(48,48, getNumber(number3)).draw(320,30,screen);
+                break;
+        }
+    }
+    private Sprite getNumber(int n) {
+        switch (n) {
+            case 0:
+                return CoinSprites.zero;
+            case 1:
+                return CoinSprites.one;
+            case 2:
+                return CoinSprites.two;
+            case 3:
+                return CoinSprites.three;
+            case 4:
+                return CoinSprites.four;
+            case 5:
+                return CoinSprites.five;
+            case 6:
+                return CoinSprites.six;
+            case 7:
+                return CoinSprites.seven;
+            case 8:
+                return CoinSprites.eight;
+            case 9:
+                return CoinSprites.nine;
+        }
+        return CoinSprites.gold;
     }
     private void handleDeath() {
         //change sprite
@@ -319,9 +362,11 @@ public class Surface extends SurfaceView implements
         xScroll = -scrollSpeed;
         int lives = frank.getLives();
         int score = frank.getScore();
+        int coins = frank.getCoins();
         frank = new Frank(GAME_WIDTH, 128);
         frank.setLives(lives);
         frank.setScore(score);
+        frank.setCoins(coins);
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
         for (int i = 0; i < 500; i++) { //max enemies is 500

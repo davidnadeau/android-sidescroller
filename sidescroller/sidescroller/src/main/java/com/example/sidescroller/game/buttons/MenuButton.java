@@ -11,7 +11,7 @@ public class MenuButton {
     private Sprite sprite;
 
     public MenuButton(int x, int y) {
-        this.x = 200;
+        this.x = 380;
         this.y = 20;
         this.sprite = ButtonSprites.menuButton;
     }
