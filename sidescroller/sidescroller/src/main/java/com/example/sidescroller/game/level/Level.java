@@ -117,6 +117,10 @@ public class Level {
                 return Tile.snowLeftCorner;
             case 0xff00ffff:
                 return Tile.snowRightCorner;
+            case 0xfff19f9f:
+                return Tile.grassLeftCorner;
+            case 0xff2aff00:
+                return Tile.grassRightCorner;
             case 0xff00cccc: //baby blue
                 return Tile.cloudLevel2;
             case 0xff8b4513: //brown
@@ -129,10 +133,8 @@ public class Level {
                 return Tile.bridge;
             case 0xffffaec9: //lv3 land
                 return Tile.land_lv3;
-
             case 0xffb5e61d: //lv3 floor
                 return Tile.floor_lv3;
-
             case 0xffa300cc: //lv3 cloud
                 return Tile.cloudLevel3;
             default:

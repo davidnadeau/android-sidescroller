@@ -18,10 +18,11 @@ public class Tile {
     public static Tile liquidWater = new Tile(TileSprites.liquidWater, false, true);
     public static Tile grass       = new Tile(TileSprites.grass, true, false);
     public static Tile dirt        = new Tile(TileSprites.dirt, false, false);
-    //  public static Tile spikes      = new Tile(TileSprites.spikes, true);
     public static Tile bridge      = new Tile(TileSprites.bridge, true, false);
     public static Tile snowLeftCorner      = new Tile(TileSprites.snowLeftCorner, true, false);
     public static Tile snowRightCorner      = new Tile(TileSprites.snowRightCorner, true, false);
+    public static Tile grassLeftCorner      = new Tile(TileSprites.grassLeftCorner, true, false);
+    public static Tile grassRightCorner      = new Tile(TileSprites.grassRightCorner, true, false);
     public static Tile floor_lv3     =new Tile(TileSprites.floor_lv3,true,false);
     public static Tile land_lv3     =new Tile(TileSprites.dirt,true,false);
     public static Tile cloudLevel3 = new Tile(TileSprites.cloudLevel3,false,false);
