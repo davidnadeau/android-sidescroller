@@ -22,7 +22,7 @@ public class MenuFragment extends Fragment {
         //start the xml files using this class not by just setting content view
 
         TextView scoreLabel = (TextView) vw.findViewById(R.id.score);
-        scoreLabel.setText(score);
+        scoreLabel.setText(""+score);
 
         return vw;
     }
