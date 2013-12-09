@@ -64,11 +64,6 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 
-    public void volumeSelect(View view) {
-        SeekBar bar = (SeekBar) findViewById(R.id.seekBar);
-        int View = bar.getProgress();
-        //music.setVolume(View);???
-    }
 
     public void quit(View v) { finish(); }
 

@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/game_name"
-        android:id="@+id/textView2"/>
+        android:id="@+id/textView2"
+        android:textStyle="bold|normal" />
 
     <Button
         android:layout_width="150dp"

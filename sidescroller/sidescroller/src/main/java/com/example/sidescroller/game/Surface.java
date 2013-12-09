@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -111,7 +112,7 @@ public class Surface extends SurfaceView implements
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
 
-        for (int i = 0; i < difficulty*15; i++) {
+        for (int i = 0; i < difficulty*200; i++) {
             int randomJumpHeight = r.nextInt(10)+3;//between 3 and 10
             int randomPositionSnail = r.nextInt(500)+275;
             int randomPositionFish = r.nextInt(550)+375;
@@ -213,8 +214,14 @@ public class Surface extends SurfaceView implements
             coin.setX(coin.getX() - scrollSpeed);
             coin.draw(coin.getX(), coin.getY(), screen);
         }
+        LinkedList<Entity> entitiesCopy = new LinkedList<Entity>(Entity.entities);
+        entitiesCopy.pop().move();
         //move and draw all our entities
-        for (Entity e : Entity.entities) e.move();
+        for (Entity e : entitiesCopy){
+            e.setX(e.getX() - scrollSpeed);
+            if(!e.isOffScreen()) e.move();
+        }
+
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
         //Make a copy of bomb before looping to allow removal of offscreen bombs.
         for (Bomb b : new LinkedList<Bomb>(Bomb.bombs)) {
@@ -270,7 +277,7 @@ public class Surface extends SurfaceView implements
 
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < difficulty*200; i++) {
             int randomJumpHeight = 3 + (int) (Math.random() * ((10 - 3) + 1));//between 3 and 10
             snailEnemy = new SnailEnemy(snailPosition, 128);
             fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);

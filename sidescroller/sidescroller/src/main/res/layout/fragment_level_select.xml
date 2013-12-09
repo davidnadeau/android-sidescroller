@@ -52,19 +52,6 @@
         android:layout_gravity="center_horizontal"
         android:onClick="startGame"/>
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/seekBar"
-        android:layout_gravity="center"
-        android:layout_marginLeft="30pt"
-        android:layout_marginRight="30pt"
-        android:max="100"
-        android:progress="50"
-        android:onClick="volumeSelect"
-
-        />
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/difficulty"
                 android:layout_width="fill_parent"
