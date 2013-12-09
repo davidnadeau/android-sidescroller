@@ -14,4 +14,5 @@ public class FrankSprites {
     public static Sprite frank_jump  = new Sprite(64, 4, 3);
     public static Sprite frank_fall  = new Sprite(64, 5, 3);
     public static Sprite frank_land  = new Sprite(64, 5, 2);
+    public static Sprite frank_die  = new Sprite(64, 5, 4);
 }

@@ -34,7 +34,7 @@ public class BGsound {
         player.setAudioStreamType(AudioManager.STREAM_ALARM);
         try{
         player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            player.setVolume(0,1);
+            player.setVolume(0,0.2f);
         player.prepare();
         }catch (Exception e){};
 

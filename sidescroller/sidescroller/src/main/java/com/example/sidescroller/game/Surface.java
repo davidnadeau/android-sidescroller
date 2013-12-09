@@ -276,7 +276,6 @@ public class Surface extends SurfaceView implements
 
         frank = new Frank(GAME_WIDTH, 128);
 
-
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
         for (int i = 0; i < 500; i++) { //max enemies is 500
@@ -287,12 +286,12 @@ public class Surface extends SurfaceView implements
                 snailPosition += 1000; //spawn far away from each other
                 fishPosition += 1150;
             }
-            else if(difficulty == 2){//easy
-                snailPosition += 800; //spawn far away from each other
+            else if(difficulty == 2){//medium
+                snailPosition += 800;
                 fishPosition += 850;
             }
-            else if(difficulty == 3){//easy
-                snailPosition += 450; //spawn far away from each other
+            else if(difficulty == 3){//hard
+                snailPosition += 450; //spawn close to each other
                 fishPosition += 550;
             }
         }

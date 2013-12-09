@@ -112,7 +112,7 @@ public class Frank extends Entity {
      */
     public boolean shoot() { return true; }
     public void die() {
-        sprite = TileSprites.cloudLevel2;
+        sprite = FrankSprites.frank_die;
     }
     public boolean isDead() {
         return sprite.getX() / sprite.getSize() == 1

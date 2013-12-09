@@ -48,6 +48,4 @@ public class Sounds {
     public void stop(int index) {
         pool.stop(soundID[index]);
     }
-
-
 }
