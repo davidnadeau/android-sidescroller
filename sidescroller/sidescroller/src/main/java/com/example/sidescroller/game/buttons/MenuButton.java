@@ -1,5 +1,7 @@
 package com.example.sidescroller.game.buttons;
 
+import android.util.Log;
+
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
 
@@ -11,8 +13,8 @@ public class MenuButton {
     private Sprite sprite;
 
     public MenuButton(int x, int y) {
-        this.x = x / 2;
-        this.y = y / 8;
+        this.x = 50;
+        this.y = 10;
         this.sprite = ButtonSprites.menuButton;
     }
 
@@ -23,12 +25,5 @@ public class MenuButton {
                 && y <= this.y + sprite.getSize();
     }
 
-    public void down() {
-        this.sprite = ButtonSprites.menuButton;
-    }
-    public void up() {
-        this.sprite = ButtonSprites.menuButton;
-    }
     public void draw(Screen s) { s.draw(x, y, sprite); }
-
 }

@@ -238,7 +238,6 @@ public class Surface extends SurfaceView implements
         c.drawText(scoreText, GAME_WIDTH - (scoreText.length() * 25), 50, scoreFontStyle);
 
         jumpButton.up();
-        menuButton.up();
     }
 
     private void handleDeath() {
