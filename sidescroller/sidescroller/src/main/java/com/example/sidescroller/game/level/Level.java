@@ -22,6 +22,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class Level {
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
     private       int[]                       tiles;
+    private int                 DIFFICULTY = 1;
     public static ConcurrentLinkedQueue<Coin> coins;
     private Bitmap bmp    = Bitmap.createBitmap(Tile.TILE_SIZE, Tile.TILE_SIZE,
             Bitmap.Config.ARGB_8888);
@@ -32,33 +33,35 @@ public class Level {
     private static View v;
     public static void setView(View v1) { v = v1; }
 
-    public Level(int id, int dif Screen screen, Resources r) {
+    public Level(int id, int dif, Resources r) {
         int levelID = 0;
         switch (id) {
             case R.id.level1:
                 levelID = R.drawable.level1image;
-                new Level1Coins(screen);
+                new Level1Coins();
                 bg = BitmapFactory.decodeResource(r, R.drawable.level1bg);
                 break;
             case R.id.level2:
                 levelID = R.drawable.level2image;
-                new Level2Coins(screen);
+                new Level2Coins();
                 bg = BitmapFactory.decodeResource(r, R.drawable.level2bg);
                 break;
             case R.id.level3:
                 levelID = R.drawable.level3image;
-                new Level3Coins(screen);
+                new Level3Coins();
                 bg = BitmapFactory.decodeResource(r, R.drawable.level1bg);
                 break;
         }
 
         switch (dif) {
             case R.id.easy:
-                dif
+                DIFFICULTY = 1;
                 break;
             case R.id.medium:
+                DIFFICULTY = 2;
                 break;
             case R.id.hard:
+                DIFFICULTY = 3;
                 break;
         }
         loadLevel(levelID);

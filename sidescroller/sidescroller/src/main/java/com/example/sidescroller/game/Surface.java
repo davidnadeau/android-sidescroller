@@ -75,6 +75,7 @@ public class Surface extends SurfaceView implements
     }
     public static void setLevel(int id) { LEVEL_ID = id; }
     public static void setDifficulty(int number) { difficulty = number; }//1 for easy, 2 medium, 3 hard
+    public int getDifficulty() { return difficulty; }
     public int getLevel() { return LEVEL_ID; }
     public void resetLevel(Level l) { level = l; }
     public Screen getScreen() { return screen; }
@@ -95,7 +96,7 @@ public class Surface extends SurfaceView implements
         pixels = new int[GAME_WIDTH * GAME_HEIGHT];
 
         Level.coins = new ConcurrentLinkedQueue<Coin>();
-        level = new Level(LEVEL_ID, screen, getResources());
+        level = new Level(LEVEL_ID, difficulty, getResources());
 
         Entity.setScreen(screen);
         Entity.entities = new ConcurrentLinkedQueue<Entity>();

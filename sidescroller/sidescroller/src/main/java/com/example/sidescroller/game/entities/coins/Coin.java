@@ -9,7 +9,7 @@ import com.example.sidescroller.game.entities.Entity;
 public class Coin extends Entity {
     private int value;
 
-    public Coin(int x, int y, int value, Screen screen) {
+    public Coin(int x, int y, int value) {
         this.x = x;
         this.y = y;
 

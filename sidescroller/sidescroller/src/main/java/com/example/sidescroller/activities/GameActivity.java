@@ -37,14 +37,8 @@ public class GameActivity extends Activity {
         Surface.setLevel(b.getInt("level"));
         Surface.setDifficulty(b.getInt("difficulty"));
 
-
-
         surface = new Surface(this);
         setContentView(surface);
-
-
-
-
     }
 
     @Override
@@ -63,7 +57,7 @@ public class GameActivity extends Activity {
     public void restart(View v) {
         Bomb.bombs.clear();
         Level.coins = new ConcurrentLinkedQueue<Coin>();
-        surface.resetLevel(new Level(surface.getLevel(), surface.getDifficulty(),surface.getScreen(), getResources()));
+        surface.resetLevel(new Level(surface.getLevel(), surface.getDifficulty(), getResources()));
         surface.resetGame();
         onBackPressed(v);
 
