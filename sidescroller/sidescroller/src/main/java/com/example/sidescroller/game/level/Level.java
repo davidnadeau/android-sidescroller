@@ -113,6 +113,10 @@ public class Level {
                 return Tile.snowCenter;
             case 0xffff8400: //orange
                 return Tile.cloudLevel1;
+            case 0xffffff00:
+                return Tile.snowLeftCorner;
+            case 0xff00ffff:
+                return Tile.snowRightCorner;
             case 0xff00cccc: //baby blue
                 return Tile.cloudLevel2;
             case 0xff8b4513: //brown

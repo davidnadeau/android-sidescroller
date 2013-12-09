@@ -16,11 +16,12 @@ public class Tile {
     public static Tile cloudLevel1 = new Tile(TileSprites.cloudLevel1, false, false);
     public static Tile cloudLevel2 = new Tile(TileSprites.cloudLevel2, false, false);
     public static Tile liquidWater = new Tile(TileSprites.liquidWater, false, true);
-    public static Tile liquidLava  = new Tile(TileSprites.liquidLava, false, false);
     public static Tile grass       = new Tile(TileSprites.grass, true, false);
     public static Tile dirt        = new Tile(TileSprites.dirt, false, false);
     //  public static Tile spikes      = new Tile(TileSprites.spikes, true);
     public static Tile bridge      = new Tile(TileSprites.bridge, true, false);
+    public static Tile snowLeftCorner      = new Tile(TileSprites.snowLeftCorner, true, false);
+    public static Tile snowRightCorner      = new Tile(TileSprites.snowRightCorner, true, false);
     public static Tile errTile     = new Tile(TileSprites.errTile, false, true);
 
 
