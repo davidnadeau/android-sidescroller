@@ -94,7 +94,7 @@ public class Level {
                             Tile.TILE_SIZE);
                     c.drawBitmap(bmp,
                             x * Tile.TILE_SIZE - xScroll,
-                            y * Tile.TILE_SIZE,
+                            y * Tile.TILE_SIZE + 64,
                             mPaint);
                 }
             }

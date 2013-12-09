@@ -25,7 +25,7 @@ public class Entity {
 
     protected boolean tileCollision(int xa, int ya) {
         int tileX = (x + xa + screen.xOffset) / Tile.TILE_SIZE;
-        int tileY = (y + ya) / Tile.TILE_SIZE;
+        int tileY = (y + ya - 64) / Tile.TILE_SIZE;
         if (level == null || level.getTile(tileX, tileY) == null)
             return false;
         else return level.getTile(tileX, tileY).isSolid();
