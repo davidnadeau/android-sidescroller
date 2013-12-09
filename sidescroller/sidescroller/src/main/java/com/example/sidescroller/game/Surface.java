@@ -14,6 +14,8 @@ import com.example.sidescroller.game.buttons.JumpButton;
 import com.example.sidescroller.game.buttons.MenuButton;
 import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.entities.coins.Coin;
+import com.example.sidescroller.game.entities.coins.CoinSprites;
+import com.example.sidescroller.game.entities.coins.Life;
 import com.example.sidescroller.game.entities.enemies.FishEnemy;
 import com.example.sidescroller.game.entities.enemies.SnailEnemy;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
@@ -68,6 +70,7 @@ public class Surface extends SurfaceView implements
     private Paint mPaint = new Paint();
     private static int difficulty;
     private Random r = new Random();
+
 
     public static void setDimensions(int width, int height) {
         GAME_WIDTH = width;
@@ -213,7 +216,7 @@ public class Surface extends SurfaceView implements
         //draw all the coins on the canvas
         for (Coin coin : Level.coins) {
             coin.setX(coin.getX() - scrollSpeed);
-            coin.draw(coin.getX(), coin.getY(), screen);
+            if (!coin.isOffScreen()) coin.draw(coin.getX(), coin.getY(), screen);
         }
 
         LinkedList<Entity> entitiesCopy = new LinkedList<Entity>(Entity.entities);
@@ -242,12 +245,26 @@ public class Surface extends SurfaceView implements
             }
         }
 
+        new Life(48,48, CoinSprites.lives).draw(20,20,screen);
+        new Life(48,48, CoinSprites.exxx).draw(80,30,screen);
+        switch (frank.getLives()) {
+            case 1:
+                new Life(48,48, CoinSprites.one).draw(120,30,screen);
+                break;
+            case 2:
+                new Life(48,48, CoinSprites.two).draw(120,30,screen);
+                break;
+            case 3:
+                new Life(48,48, CoinSprites.three).draw(120,30,screen);
+                break;
+        }
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
         fillBitmap(bmp, GAME_WIDTH, GAME_HEIGHT);
         c.drawBitmap(bmp, 0, 0, null);
 
         scoreText = Integer.toString(frank.getScore());
         c.drawText(scoreText, GAME_WIDTH - (scoreText.length() * 25), 50, scoreFontStyle);
+
 
         jumpButton.up();
         if ((frank.getX() + (xScroll)) > (level.getWidth() * 64)) {
@@ -263,7 +280,6 @@ public class Surface extends SurfaceView implements
                     .commit();
         }
     }
-
     private void handleDeath() {
         //change sprite
         frank.die();
