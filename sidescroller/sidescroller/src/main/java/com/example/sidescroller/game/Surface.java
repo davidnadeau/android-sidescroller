@@ -97,7 +97,7 @@ public class Surface extends SurfaceView implements
 
         Level.coins = new ConcurrentLinkedQueue<Coin>();
         level = new Level(LEVEL_ID, difficulty, getResources());
-
+        difficulty = level.getDifficulty();
         Entity.setScreen(screen);
         Entity.entities = new ConcurrentLinkedQueue<Entity>();
         Bomb.bombs = new ConcurrentLinkedQueue<Bomb>();

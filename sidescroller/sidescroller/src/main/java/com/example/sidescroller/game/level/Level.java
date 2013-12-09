@@ -127,7 +127,7 @@ public class Level {
                 return Tile.castleWall;
         }
     }
-
+    public int getDifficulty() { return DIFFICULTY; }
     private Bitmap loadBitmap(int id) {
         return BitmapFactory.decodeResource(v.getResources(), id);
     }
