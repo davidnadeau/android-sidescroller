@@ -103,7 +103,7 @@ public class Level {
     public Tile getTile(int x, int y) {
         //if out of bounds
         if (x < 0 || y < 0 || x >= IMAGE_WIDTH || y >= IMAGE_HEIGHT)
-            return Tile.errTile;
+            return null;
 
         //each int holds the colour of the pixel in ARGB format: aarrggbb
         switch (tiles[x + y * IMAGE_WIDTH]) {
