@@ -88,6 +88,7 @@ public class Level {
                 //draw every tile to Screen
                 //getTile(x, y).draw(x, y, s);
                 tile = getTile(x, y);
+                if (tile == null) break;
                 if (!tile.isBG()) {
                     bmp.setPixels(tile.sprite.pixels, 0, Tile.TILE_SIZE, 0, 0, Tile.TILE_SIZE,
                             Tile.TILE_SIZE);
