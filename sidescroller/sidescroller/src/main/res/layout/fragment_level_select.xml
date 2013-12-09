@@ -46,16 +46,20 @@
     </RadioGroup>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="PLAY!"
         android:id="@+id/play"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
         android:layout_gravity="center_horizontal"
         android:onClick="startGame"/>
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/difficulty"
-                android:layout_width="fill_parent"
+        android:layout_marginLeft="475dp"
+        android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 

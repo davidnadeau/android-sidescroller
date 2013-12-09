@@ -24,26 +24,32 @@
         android:paddingBottom="20dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Resume"
         android:id="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
         android:layout_gravity="center_horizontal"
-        android:onClick="onBackPressed"/>
+        android:onClick="onBackPressed" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Restart"
         android:id="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
         android:layout_gravity="center_horizontal"
         android:onClick="restart"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Quit"
         android:id="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
         android:layout_gravity="center_horizontal"
         android:onClick="quit"/>
 </LinearLayout>

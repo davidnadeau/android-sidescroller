@@ -280,6 +280,7 @@ public class Surface extends SurfaceView implements
                     .replace(android.R.id.content, mf)
                     .addToBackStack(null)
                     .commit();
+            frank.setScore(0);
             return;
         }
         //stop scrolling
