@@ -43,6 +43,7 @@ public class Bomb extends Entity {
                 draw();
                 bombs.remove(this);
             } else if (Entity.entities.contains(enemy)) { //enemy was hit
+                Surface.pool.play(3,false);
                 shooting = false;
                 sprite = PeripheralSprites.explosion;
                 draw();
