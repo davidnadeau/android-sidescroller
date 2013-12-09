@@ -18,11 +18,11 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View vw = inflater.inflate(R.layout.fragment_menu, container, false);
-        vw.setBackgroundColor(getResources().getColor(android.R.color.background_light));
+        //vw.setBackgroundColor(getResources().getColor(android.R.color.background_light));
         //start the xml files using this class not by just setting content view
 
         TextView scoreLabel = (TextView) vw.findViewById(R.id.score);
-        scoreLabel.setText("fdfdfdfdfdfdfdf" + score);
+        scoreLabel.setText(score);
 
         return vw;
     }
