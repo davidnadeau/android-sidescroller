@@ -22,7 +22,9 @@ public class Tile {
     public static Tile bridge      = new Tile(TileSprites.bridge, true, false);
     public static Tile snowLeftCorner      = new Tile(TileSprites.snowLeftCorner, true, false);
     public static Tile snowRightCorner      = new Tile(TileSprites.snowRightCorner, true, false);
-    public static Tile errTile     = new Tile(TileSprites.errTile, false, true);
+    public static Tile floor_lv3     =new Tile(TileSprites.floor_lv3,true,false);
+    public static Tile land_lv3     =new Tile(TileSprites.dirt,true,false);
+    public static Tile cloudLevel3 = new Tile(TileSprites.cloudLevel3,false,false);
 
 
     public Tile(Sprite sprite, boolean solid, boolean bg) {

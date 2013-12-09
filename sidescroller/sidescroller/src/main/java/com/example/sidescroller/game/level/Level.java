@@ -49,7 +49,7 @@ public class Level {
             case R.id.level3:
                 levelID = R.drawable.level3image;
                 new Level3Coins();
-                bg = BitmapFactory.decodeResource(r, R.drawable.level1bg);
+                bg = BitmapFactory.decodeResource(r, R.drawable.level3bg);
                 break;
         }
 
@@ -127,6 +127,14 @@ public class Level {
                 return Tile.liquidWater;
             case 0xfffe00f0: //bright pink, put water underneath this tile to make it smooth
                 return Tile.bridge;
+            case 0xffffaec9: //lv3 land
+                return Tile.land_lv3;
+
+            case 0xffb5e61d: //lv3 floor
+                return Tile.floor_lv3;
+
+            case 0xffa300cc: //lv3 cloud
+                return Tile.cloudLevel3;
             default:
                 return Tile.castleWall;
         }

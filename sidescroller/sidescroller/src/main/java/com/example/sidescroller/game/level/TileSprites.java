@@ -17,5 +17,6 @@ public class TileSprites {
     public static Sprite cloudLevel1 = new Sprite(Tile.TILE_SIZE, 3, 2);
     public static Sprite cloudLevel2 = new Sprite(Tile.TILE_SIZE, 2, 2);
     public static Sprite bridge      = new Sprite(Tile.TILE_SIZE, 0, 4);
-    public static Sprite errTile     = new Sprite(Tile.TILE_SIZE, 0, 0);
+    public static Sprite cloudLevel3 = new Sprite(Tile.TILE_SIZE, 5, 5);
+    public static Sprite floor_lv3   = new Sprite(Tile.TILE_SIZE, 4, 5);
 }
