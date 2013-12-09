@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
-import android.widget.SeekBar;
 
 import com.example.sidescroller.R;
 import com.example.sidescroller.fragments.LevelSelectFragment;

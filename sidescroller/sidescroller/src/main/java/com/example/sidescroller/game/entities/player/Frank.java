@@ -6,7 +6,6 @@ import com.example.sidescroller.game.Surface;
 import com.example.sidescroller.game.entities.Entity;
 import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.level.Level;
-import com.example.sidescroller.game.level.TileSprites;
 
 import java.util.LinkedList;
 
@@ -97,7 +96,7 @@ public class Frank extends Entity {
             Rect coin = c.toRect();
 
             if (frank.intersect(coin)) {
-                Surface.pool.play(0,false);
+                Surface.pool.play(0, false);
                 Level.coins.remove(c);
                 score += c.getValue();
             }

@@ -1,7 +1,5 @@
 package com.example.sidescroller.game.buttons;
 
-import android.util.Log;
-
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
 

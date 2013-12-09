@@ -10,7 +10,6 @@ import com.example.sidescroller.game.Surface;
 import com.example.sidescroller.game.entities.coins.Coin;
 import com.example.sidescroller.game.entities.peripherals.Bomb;
 import com.example.sidescroller.game.level.Level;
-import com.example.sidescroller.game.sound.BGsound;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 

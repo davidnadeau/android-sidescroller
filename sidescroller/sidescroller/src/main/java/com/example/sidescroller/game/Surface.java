@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -52,20 +51,20 @@ public class Surface extends SurfaceView implements
     private        String scoreText;
     int snailPosition; //used when displaying the enemies for the levels
     int fishPosition;
-    private Screen     screen;
-    private Level      level;
-    private Frank      frank;
-    private SnailEnemy snailEnemy;
-    private FishEnemy  fishEnemy;
-    private GameLoop   thread;
-    private JumpButton jumpButton;
-    private MenuButton menuButton;
+    private       Screen     screen;
+    private       Level      level;
+    private       Frank      frank;
+    private       SnailEnemy snailEnemy;
+    private       FishEnemy  fishEnemy;
+    private       GameLoop   thread;
+    private       JumpButton jumpButton;
+    private       MenuButton menuButton;
     public static Sounds     pool;
-    private BGsound    bgMusic;
-    private Paint      scoreFontStyle;
-    private Bitmap     bmp;
-    private Entity     enemy;
-    private Bitmap     bg;
+    private       BGsound    bgMusic;
+    private       Paint      scoreFontStyle;
+    private       Bitmap     bmp;
+    private       Entity     enemy;
+    private       Bitmap     bg;
     private Paint mPaint = new Paint();
     private static int difficulty;
     private Random r = new Random();
@@ -75,7 +74,8 @@ public class Surface extends SurfaceView implements
         GAME_HEIGHT = height;
     }
     public static void setLevel(int id) { LEVEL_ID = id; }
-    public static void setDifficulty(int number) { difficulty = number; }//1 for easy, 2 medium, 3 hard
+    public static void setDifficulty(int number) { difficulty = number; }//1 for easy, 2 medium,
+    // 3 hard
     public int getDifficulty() { return difficulty; }
     public int getLevel() { return LEVEL_ID; }
     public void resetLevel(Level l) { level = l; }
@@ -112,10 +112,10 @@ public class Surface extends SurfaceView implements
         snailPosition = GAME_WIDTH;
         fishPosition = GAME_WIDTH;
 
-        for (int i = 0; i < difficulty*200; i++) {
-            int randomJumpHeight = r.nextInt(10)+3;//between 3 and 10
-            int randomPositionSnail = r.nextInt(500)+275;
-            int randomPositionFish = r.nextInt(550)+375;
+        for (int i = 0; i < difficulty * 200; i++) {
+            int randomJumpHeight = r.nextInt(10) + 3;//between 3 and 10
+            int randomPositionSnail = r.nextInt(500) + 275;
+            int randomPositionFish = r.nextInt(550) + 375;
             snailEnemy = new SnailEnemy(snailPosition, 128);
             fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);
             snailPosition += randomPositionSnail;
@@ -219,9 +219,9 @@ public class Surface extends SurfaceView implements
         LinkedList<Entity> entitiesCopy = new LinkedList<Entity>(Entity.entities);
         entitiesCopy.pop().move();
         //move and draw all our entities
-        for (Entity e : entitiesCopy){
+        for (Entity e : entitiesCopy) {
             e.setX(e.getX() - scrollSpeed);
-            if(!e.isOffScreen()) e.move();
+            if (!e.isOffScreen()) e.move();
         }
 
         //this for loop allows us to shoot more then 1 bomb at 1 time.. we have to render each one
@@ -230,7 +230,7 @@ public class Surface extends SurfaceView implements
             b.shoot(screen);
         }
 
-        if(!frank.isDead()) {
+        if (!frank.isDead()) {
             enemy = frank.enemyCollision(frank.toRect());
             if (Entity.entities.contains(enemy)) {
                 handleDeath();
@@ -250,7 +250,7 @@ public class Surface extends SurfaceView implements
         c.drawText(scoreText, GAME_WIDTH - (scoreText.length() * 25), 50, scoreFontStyle);
 
         jumpButton.up();
-        if ((frank.getX()+(xScroll))>(level.getWidth()*64)) {
+        if ((frank.getX() + (xScroll)) > (level.getWidth() * 64)) {
             thread.setRunning(false);
             MenuFragment mf = new MenuFragment();
 
@@ -273,7 +273,7 @@ public class Surface extends SurfaceView implements
         frank.setScore((int) (score * .75));
         //play death sound
 
-        if (frank.getLives()==0) {
+        if (frank.getLives() == 0) {
             MenuFragment mf = new MenuFragment();
 
             MenuFragment.setScore(frank.getScore());
@@ -312,15 +312,13 @@ public class Surface extends SurfaceView implements
             int randomJumpHeight = 3 + (int) (Math.random() * ((10 - 3) + 1));//between 3 and 10
             snailEnemy = new SnailEnemy(snailPosition, 128);
             fishEnemy = new FishEnemy(fishPosition, 128, randomJumpHeight);
-            if(difficulty == 1){//easy
+            if (difficulty == 1) {//easy
                 snailPosition += 1000; //spawn far away from each other
                 fishPosition += 1150;
-            }
-            else if(difficulty == 2){//medium
+            } else if (difficulty == 2) {//medium
                 snailPosition += 800;
                 fishPosition += 850;
-            }
-            else if(difficulty == 3){//hard
+            } else if (difficulty == 3) {//hard
                 snailPosition += 450; //spawn close to each other
                 fishPosition += 550;
             }

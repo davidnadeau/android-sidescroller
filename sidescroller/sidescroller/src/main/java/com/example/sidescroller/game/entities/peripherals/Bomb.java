@@ -37,13 +37,13 @@ public class Bomb extends Entity {
 
             Entity enemy = enemyCollision(this.toRect());
             if (tileCollision(xdelta, ydelta)) { //tile was hit
-                Surface.pool.play(3,false);
+                Surface.pool.play(3, false);
                 shooting = false;
                 sprite = PeripheralSprites.explosion;
                 draw();
                 bombs.remove(this);
             } else if (Entity.entities.contains(enemy)) { //enemy was hit
-                Surface.pool.play(3,false);
+                Surface.pool.play(3, false);
                 shooting = false;
                 sprite = PeripheralSprites.explosion;
                 draw();

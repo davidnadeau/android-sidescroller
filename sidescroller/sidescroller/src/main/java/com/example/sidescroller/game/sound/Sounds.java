@@ -18,10 +18,10 @@ public class Sounds {
     public Sounds(Context c) {
         soundID = new int[soundSize];
         pool = new SoundPool(soundSize, AudioManager.STREAM_MUSIC, 1);
-        soundID[0] = pool.load(c,R.raw.coin,1);
+        soundID[0] = pool.load(c, R.raw.coin, 1);
         soundID[1] = pool.load(c, R.raw.jump, 1);
         soundID[2] = pool.load(c, R.raw.bomb, 1);
-        soundID[3] = pool.load(c,R.raw.bombe,1);
+        soundID[3] = pool.load(c, R.raw.bombe, 1);
     }
 
     public void pause(int index) {

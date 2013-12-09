@@ -32,11 +32,12 @@ public class BGsound {
 
         player.reset();
         player.setAudioStreamType(AudioManager.STREAM_ALARM);
-        try{
-        player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            player.setVolume(0,0.2f);
-        player.prepare();
-        }catch (Exception e){};
+        try {
+            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            player.setVolume(0, 0.2f);
+            player.prepare();
+        } catch (Exception e) {}
+        ;
 
     }
 

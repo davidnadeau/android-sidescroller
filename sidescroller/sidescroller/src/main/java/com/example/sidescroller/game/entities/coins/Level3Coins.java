@@ -1,6 +1,5 @@
 package com.example.sidescroller.game.entities.coins;
 
-import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.level.Level;
 
 

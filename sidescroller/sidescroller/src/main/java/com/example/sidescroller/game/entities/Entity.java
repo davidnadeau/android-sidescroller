@@ -1,7 +1,6 @@
 package com.example.sidescroller.game.entities;
 
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.example.sidescroller.game.Screen;
 import com.example.sidescroller.game.graphics.Sprite;
@@ -27,7 +26,7 @@ public class Entity {
     protected boolean tileCollision(int xa, int ya) {
         int tileX = (x + xa + screen.xOffset) / Tile.TILE_SIZE;
         int tileY = (y + ya) / Tile.TILE_SIZE;
-        if (level==null || level.getTile(tileX, tileY)==null)
+        if (level == null || level.getTile(tileX, tileY) == null)
             return false;
         else return level.getTile(tileX, tileY).isSolid();
     }
@@ -50,7 +49,7 @@ public class Entity {
     public void draw() { screen.draw(x, y, sprite); }
 
     public Rect toRect() {
-        if (sprite==null) return new Rect();
+        if (sprite == null) return new Rect();
         int size = sprite.getSize() / 2;
         return new Rect(x - size, y - size, x + size, y + size);
     }

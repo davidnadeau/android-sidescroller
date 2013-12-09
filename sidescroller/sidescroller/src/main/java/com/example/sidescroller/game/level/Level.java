@@ -21,8 +21,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class Level {
     private int IMAGE_WIDTH, IMAGE_HEIGHT;
-    private       int[]                       tiles;
-    private int                 DIFFICULTY = 1;
+    private int[] tiles;
+    private int DIFFICULTY = 1;
     public static ConcurrentLinkedQueue<Coin> coins;
     private Bitmap bmp    = Bitmap.createBitmap(Tile.TILE_SIZE, Tile.TILE_SIZE,
             Bitmap.Config.ARGB_8888);
